@@ -1,0 +1,257 @@
+<!doctype html><html lang="hr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AQUVA — Natural Spring Water</title><link rel="stylesheet" href="styles.css"></head><body>
+<header><a href="#top"><img src="assets/aquva-logo.jpg"></a><nav><a href="#voda">Voda</a><a href="#limenka">Limenka</a><a href="#o-nama">O nama</a><a href="#kontakt">Kontakt</a></nav><a class="cta shop-link" href="#shop" onclick="openShop(event)">Shop <span class="cart-count" id="cartCount">0</span></a></header>
+<section class="hero" id="top"><div><small>AQUVA / NATURAL SPRING WATER</small><h1>Čista voda.<br><em>Drugačiji format.</em></h1><p>Prirodna izvorska voda, punjena u Italiji i predstavljena u premium aluminijskoj limenci od 330 ml.</p><a class="btn" href="#voda">Upoznaj AQUVU</a></div><div class="visual"><div></div><img src="assets/aquva-can-prototype.jpg" alt="AQUVA limenka"></div></section>
+<div class="ticker">NATURAL SPRING WATER　•　330 ML　•　MADE IN ITALY　•　ALUMINIUM</div>
+<section class="section" id="voda"><small>01 / VODA</small><div class="grid"><h2>Od izvora<br><em>do limenke.</em></h2><div><p class="lead">AQUVA koristi prirodnu izvorsku vodu talijanskog podrijetla, a punjenje i proizvodnja odvijaju se u Italiji.</p><p>Naš partner <b>Acqua Adv</b> iz Verone proizvodi personalizirane limenke vode. Njihovi aktualni javni materijali navode talijansku oligomineralnu izvorsku vodu, punjenu na izvoru.</p><p class="note">Točan naziv i lokaciju izvora ne navodimo dok ga ne potvrdimo službenom specifikacijom vode. AQUVA će komunicirati samo provjerene podatke.</p></div></div>
+<div class="facts"><div><b>VODA</b><strong>Prirodna izvorska</strong><p>Talijanskog podrijetla.</p></div><div><b>TIP</b><strong>Oligomineralna</strong><p>Prema specifikaciji partnera.</p></div><div><b>IZVOR</b><strong>~2.000 m</strong><p>Nova izvorska voda u zaštićenom prirodnom području, prema objavi Acqua Adv iz lipnja 2026.</p></div><div><b>ROK</b><strong>24 mjeseca</strong><p>Od proizvodnje, prema partnerovim javnim informacijama.</p></div></div></section>
+<section class="dark"><div><small>ITALY / SOURCE</small><h2>Izvor koji<br><em>čuva karakter vode.</em></h2><p>Acqua Adv u novijim materijalima navodi novu izvorsku vodu s izvora na oko 2.000 m nadmorske visine, unutar zaštićenog prirodnog područja.</p><span>SOURCE DETAILS / TO BE CONFIRMED</span></div></section>
+<section class="section" id="limenka"><small>02 / LIMENKA</small><div class="grid"><h2>Voda u<br><em>aluminiju.</em></h2><div><p class="lead">AQUVA dolazi u slim aluminijskoj limenci od 330 ml — praktičnom formatu koji postaje dio identiteta branda.</p><p>Acqua Adv za svoj 33 cl format navodi aluminijsko pakiranje, 360° personalizaciju i zaštitu vode od svjetla i kisika. Aluminij navode kao 100% reciklabilan.</p></div></div><div class="can"><img src="assets/aquva-can-prototype.jpg"><div class="specs"><div>330 ML<strong>Kapacitet</strong></div><div>ALUMINIJ<strong>Materijal</strong></div><div>SLIM<strong>Format</strong></div><div>360°<strong>Grafika</strong></div></div></div></section>
+<section class="section pale" id="o-nama"><small>03 / AQUVA</small><div class="grid"><div class="giant">AQ</div><div><h2>Prvi korak je<br><em>napraviti razliku.</em></h2><p>Radimo AQUVA kao ozbiljan brand prirodne vode za hrvatsko tržište. Suradnjom s talijanskim partnerom iz Verone spajamo iskustvo punjenja i aluminijskog packaginga s našim identitetom i tržištem.</p><p class="note">Detalje o izvoru, mineralnom sastavu, punionici i certifikatima objavit ćemo nakon što dobijemo konačnu dokumentaciju partnera.</p></div></div></section>
+<section class="trust"><div><small>PARTNER</small><strong>Acqua Adv</strong><p>Verona, Italy</p></div><div><small>WATER</small><strong>Italian Spring Water</strong><p>Oligomineral / source water</p></div><div><small>PACKAGING</small><strong>330 ml Aluminium</strong><p>360° surface</p></div></section>
+
+<section class="shop-section" id="shop"><button class="shop-modal-close" type="button" onclick="closeShop()">Zatvori ×</button>
+  <div class="shop-head">
+    <div>
+      <small>SHOP / AQUVA</small>
+      <h2>Odaberi<br><em>svoj format.</em></h2>
+    </div>
+    <div class="shop-cart-mini">
+      <span>KOŠARICA</span>
+      <strong><span id="cartTotalItems">0</span> proizvoda</strong>
+      <button class="btn shop-cart-btn" type="button" onclick="openCart()">Otvori košaricu</button>
+    </div>
+  </div>
+
+  <div class="products" id="products"></div>
+</section>
+
+<div class="cart-overlay" id="cartOverlay" aria-hidden="true">
+  <div class="cart-panel">
+    <button class="cart-close" type="button" onclick="closeCart()" aria-label="Zatvori">×</button>
+    <small>KOŠARICA</small>
+    <h2>Tvoja <em>narudžba.</em></h2>
+    <div id="cartItems"></div>
+    <div class="cart-summary">
+      <div><span>Međuzbroj</span><strong id="cartSubtotal">0,00 €</strong></div>
+      <div><span>Dostava</span><strong id="cartShipping">—</strong></div>
+      <div class="cart-total"><span>Ukupno</span><strong id="cartGrandTotal">0,00 €</strong></div>
+    </div>
+    <button class="btn checkout-btn" type="button" onclick="openCheckout()">Nastavi na checkout</button>
+  </div>
+</div>
+
+<div class="checkout-overlay" id="checkoutOverlay" aria-hidden="true">
+  <div class="checkout-panel">
+    <button class="cart-close" type="button" onclick="closeCheckout()" aria-label="Zatvori">×</button>
+    <small>CHECKOUT / AQUVA</small>
+    <h2>Završi <em>narudžbu.</em></h2>
+    <form id="checkoutForm">
+      <div class="checkout-grid">
+        <label>Ime i prezime<input required name="name" autocomplete="name"></label>
+        <label>Email<input required type="email" name="email" autocomplete="email"></label>
+        <label>Adresa<input required name="address" autocomplete="street-address"></label>
+        <label>Grad<input required name="city" autocomplete="address-level2"></label>
+        <label>Poštanski broj<input required name="zip" autocomplete="postal-code"></label>
+        <label>Država<select name="country"><option>Hrvatska</option></select></label>
+      </div>
+      <div class="payment-note">
+        <strong>Plaćanje</strong>
+        <p>Checkout je pripremljen za povezivanje s kartičnim plaćanjem. Prije produkcije treba spojiti payment gateway i backend za obradu narudžbi.</p>
+      </div>
+      <div class="checkout-bottom">
+        <span>Ukupno: <strong id="checkoutTotal">0,00 €</strong></span>
+        <button class="btn" type="submit">Potvrdi narudžbu</button>
+      </div>
+    </form>
+    <div class="order-success" id="orderSuccess" hidden>
+      <strong>Hvala na narudžbi.</strong>
+      <p>Tvoja narudžba je zaprimljena u demo shopu. Za stvarnu prodaju potrebno je spojiti backend i payment gateway.</p>
+      <button class="btn" type="button" onclick="closeCheckout()">Natrag na shop</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<section class="contact" id="kontakt"><div><small>04 / KONTAKT</small><h2>AQUVA<br><em>tek dolazi.</em></h2></div><div><p>Pratite razvoj branda, distribuciju i prve AQUVA proizvode.</p><a class="btn white" href="mailto:info@aquva.hr">info@aquva.hr ↗</a></div></section>
+<footer><b>AQUVA®</b><span>Natural Spring Water · Croatia</span><span>© 2026 AQUVA</span></footer>
+<script>
+const products = [
+  {
+    id:"aquva-330",
+    name:"AQUVA 330 ml",
+    tag:"NATURAL SPRING WATER",
+    description:"Prirodna izvorska voda u slim aluminijskoj limenci.",
+    price:2.50,
+    image:"assets/aquva-can-prototype.jpg"
+  },
+  {
+    id:"aquva-pack-6",
+    name:"AQUVA 6 × 330 ml",
+    tag:"SIX PACK",
+    description:"Pakiranje od šest AQUVA limenki za svaki dan.",
+    price:12.00,
+    image:"assets/aquva-can-prototype.jpg"
+  },
+  {
+    id:"aquva-pack-24",
+    name:"AQUVA 24 × 330 ml",
+    tag:"CASE",
+    description:"Cijelo pakiranje za ured, evente ili ugostiteljstvo.",
+    price:42.00,
+    image:"assets/aquva-can-prototype.jpg"
+  }
+];
+
+let cart = JSON.parse(localStorage.getItem("aquvaCart") || "[]");
+
+const euro = value => new Intl.NumberFormat("hr-HR",{style:"currency",currency:"EUR"}).format(value);
+
+function saveCart(){
+  localStorage.setItem("aquvaCart",JSON.stringify(cart));
+  renderCart();
+}
+
+function addToCart(id){
+  const item = cart.find(x=>x.id===id);
+  if(item) item.qty++;
+  else cart.push({id,qty:1});
+  saveCart();
+  showToast("Dodano u košaricu");
+}
+
+function changeQty(id, delta){
+  const item = cart.find(x=>x.id===id);
+  if(!item) return;
+  item.qty += delta;
+  if(item.qty <= 0) cart = cart.filter(x=>x.id!==id);
+  saveCart();
+}
+
+function removeFromCart(id){
+  cart = cart.filter(x=>x.id!==id);
+  saveCart();
+}
+
+function totals(){
+  const subtotal = cart.reduce((sum,item)=>{
+    const p=products.find(x=>x.id===item.id);
+    return sum + (p ? p.price*item.qty : 0);
+  },0);
+  const shipping = subtotal === 0 ? 0 : (subtotal >= 40 ? 0 : 4.90);
+  return {subtotal,shipping,total:subtotal+shipping,items:cart.reduce((s,x)=>s+x.qty,0)};
+}
+
+function renderProducts(){
+  document.getElementById("products").innerHTML = products.map(p=>`
+    <article class="product-card">
+      <div class="product-image"><img src="${p.image}" alt="${p.name}"></div>
+      <div class="product-info">
+        <span class="product-tag">${p.tag}</span>
+        <h3>${p.name}</h3>
+        <p>${p.description}</p>
+        <div class="product-buy">
+          <span class="product-price">${euro(p.price)}</span>
+          <button class="btn" type="button" onclick="addToCart('${p.id}')">Dodaj</button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+function renderCart(){
+  const t=totals();
+  document.getElementById("cartCount").textContent=t.items;
+  document.getElementById("cartTotalItems").textContent=t.items;
+  document.getElementById("cartSubtotal").textContent=euro(t.subtotal);
+  document.getElementById("cartShipping").textContent=t.subtotal===0 ? "—" : (t.shipping===0 ? "Besplatno" : euro(t.shipping));
+  document.getElementById("cartGrandTotal").textContent=euro(t.total);
+  document.getElementById("checkoutTotal").textContent=euro(t.total);
+
+  const box=document.getElementById("cartItems");
+  if(!cart.length){
+    box.innerHTML='<p style="color:#657a90;line-height:1.7">Košarica je trenutno prazna.</p>';
+    return;
+  }
+  box.innerHTML=cart.map(item=>{
+    const p=products.find(x=>x.id===item.id);
+    return `<div class="cart-row">
+      <img src="${p.image}" alt="${p.name}">
+      <div>
+        <h4>${p.name}</h4>
+        <p>${euro(p.price)} / kom</p>
+        <div class="qty">
+          <button onclick="changeQty('${p.id}',-1)">−</button>
+          <strong>${item.qty}</strong>
+          <button onclick="changeQty('${p.id}',1)">+</button>
+        </div>
+        <button class="cart-remove" onclick="removeFromCart('${p.id}')">Ukloni</button>
+      </div>
+      <strong>${euro(p.price*item.qty)}</strong>
+    </div>`;
+  }).join("");
+}
+
+
+function openShop(event){
+  if(event) event.preventDefault();
+  const shop=document.getElementById("shop");
+  shop.classList.add("shop-open");
+  document.body.classList.add("shop-modal-open");
+  history.replaceState(null,"","#shop");
+  renderCart();
+}
+function closeShop(){
+  const shop=document.getElementById("shop");
+  shop.classList.remove("shop-open");
+  document.body.classList.remove("shop-modal-open");
+  history.replaceState(null,"",window.location.pathname+window.location.search);
+}
+
+function openCart(){
+  document.getElementById("cartOverlay").classList.add("open");
+  document.getElementById("cartOverlay").setAttribute("aria-hidden","false");
+  renderCart();
+}
+function closeCart(){
+  document.getElementById("cartOverlay").classList.remove("open");
+  document.getElementById("cartOverlay").setAttribute("aria-hidden","true");
+}
+function openCheckout(){
+  if(!cart.length){showToast("Košarica je prazna");return;}
+  closeCart();
+  document.getElementById("checkoutOverlay").classList.add("open");
+  document.getElementById("checkoutOverlay").setAttribute("aria-hidden","false");
+  renderCart();
+}
+function closeCheckout(){
+  document.getElementById("checkoutOverlay").classList.remove("open");
+  document.getElementById("checkoutOverlay").setAttribute("aria-hidden","true");
+}
+function showToast(text){
+  const el=document.getElementById("toast");
+  el.textContent=text;
+  el.classList.add("show");
+  setTimeout(()=>el.classList.remove("show"),1800);
+}
+
+document.getElementById("checkoutForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  document.getElementById("checkoutForm").hidden=true;
+  document.getElementById("orderSuccess").hidden=false;
+  cart=[];
+  saveCart();
+});
+
+renderProducts();
+renderCart();
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){
+    closeCart();
+    closeCheckout();
+    closeShop();
+  }
+});
+</script>
+
+</body></html>
