@@ -862,3 +862,41 @@ html[lang="it"] .hero h1 em{
     opacity:.18;
   }
 }
+
+/* Language switcher: divider between primary and secondary languages */
+.language-switcher{
+  position:relative;
+  padding-bottom:5px;
+}
+.language-switcher::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:31px;
+  width:30px;
+  height:1px;
+  transform:translateX(-50%);
+  background:rgba(10,42,88,.35);
+  pointer-events:none;
+}
+@media(max-width:850px){
+  .language-switcher::after{
+    top:28px;
+    width:26px;
+  }
+}
+
+
+/* Mobile: no decorative water splashes */
+@media (max-width:850px){
+  .hero::before,
+  .hero::after,
+  .section::before,
+  .section::after,
+  .shop-section::before,
+  .shop-section::after{
+    display:none !important;
+    content:none !important;
+    background-image:none !important;
+  }
+}
