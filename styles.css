@@ -727,3 +727,70 @@ html[lang="it"] .hero h1 em{
     line-height:1.04;
   }
 }
+
+
+/* Mobile water splash visibility */
+@media(max-width:520px){
+  .hero::after{
+    display:block;
+    right:-8px;
+    bottom:-10px;
+    width:112px;
+    height:270px;
+    transform:scale(.94);
+    opacity:.72;
+  }
+
+  /* 01 / VODA — left splash */
+  .section#voda::before{
+    display:block;
+    left:-42px;
+    top:120px;
+    width:112px;
+    height:315px;
+    transform:scale(.88) rotate(3deg);
+    opacity:.62;
+  }
+
+  /* 02 / LIMENKA — right splash */
+  .section#limenka::before{
+    display:block;
+    right:-38px;
+    top:115px;
+    width:116px;
+    height:320px;
+    transform:scale(.84) rotate(180deg);
+    opacity:.58;
+  }
+
+  /* 03 / AQUVA — right splash */
+  .section.pale::before{
+    display:block;
+    right:-38px;
+    top:110px;
+    width:112px;
+    height:305px;
+    transform:scale(.82) rotate(180deg);
+    opacity:.58;
+  }
+
+  /* Shop — very subtle continuation of the same visual language */
+  .shop-section::before{
+    display:block;
+    left:-40px;
+    top:180px;
+    width:90px;
+    height:260px;
+    transform:scale(.72);
+    opacity:.20;
+  }
+  .shop-section::after{
+    display:block;
+    right:-42px;
+    top:150px;
+    width:88px;
+    height:235px;
+    transform:scale(.68);
+    opacity:.18;
+  }
+}
