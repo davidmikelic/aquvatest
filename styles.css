@@ -794,3 +794,71 @@ html[lang="it"] .hero h1 em{
     opacity:.18;
   }
 }
+
+
+/* Mobile splash v2: visible, behind content, kept in gutters */
+@media (max-width:520px){
+  .hero,
+  .section,
+  .shop-section{
+    overflow:hidden;
+  }
+
+  .hero::before,
+  .hero::after,
+  .section::before,
+  .section::after,
+  .shop-section::before,
+  .shop-section::after{
+    z-index:0;
+    pointer-events:none;
+  }
+
+  .hero > *,
+  .section > *,
+  .shop-section > *{
+    position:relative;
+    z-index:2;
+  }
+
+  .hero::after{
+    right:-30px;
+    bottom:-18px;
+    width:145px;
+    height:315px;
+    opacity:.82;
+    transform:scale(.92);
+  }
+
+  .section#voda::before{
+    left:-34px;
+    top:90px;
+    width:142px;
+    height:350px;
+    opacity:.72;
+    transform:scale(.88) rotate(3deg);
+  }
+
+  .section#limenka::before{
+    right:-30px;
+    top:90px;
+    width:145px;
+    height:355px;
+    opacity:.68;
+    transform:scale(.86) rotate(180deg);
+  }
+
+  .section.pale::before{
+    right:-28px;
+    top:90px;
+    width:140px;
+    height:345px;
+    opacity:.68;
+    transform:scale(.84) rotate(180deg);
+  }
+
+  .shop-section::before,
+  .shop-section::after{
+    opacity:.18;
+  }
+}
