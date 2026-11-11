@@ -403,7 +403,9 @@
     $("#privacyClose").addEventListener("click", function () {
       if (typeof dialog.close === "function") dialog.close(); else dialog.removeAttribute("open");
     });
-    dialog.addEventListener("click", function (e) { if (e.target === dialog) dialog.close(); });
+    dialog.addEventListener("click", function (e) {
+      if (e.target === dialog) { if (typeof dialog.close === "function") dialog.close(); else dialog.removeAttribute("open"); }
+    });
   }
 
   var year = $("#year");

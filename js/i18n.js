@@ -14,6 +14,8 @@ window.AQUVA_I18N = {
     "a11y.menuOpen": "Otvori izbornik",
     "a11y.menuClose": "Zatvori izbornik",
     "a11y.close": "Zatvori",
+    "a11y.navMain": "Glavna navigacija",
+    "a11y.navFooter": "Navigacija u podnožju",
 
     "nav.home": "Početna",
     "nav.products": "Proizvodi",
@@ -102,6 +104,8 @@ window.AQUVA_I18N = {
     "a11y.menuOpen": "Open menu",
     "a11y.menuClose": "Close menu",
     "a11y.close": "Close",
+    "a11y.navMain": "Main navigation",
+    "a11y.navFooter": "Footer navigation",
 
     "nav.home": "Home",
     "nav.products": "Products",
@@ -190,6 +194,8 @@ window.AQUVA_I18N = {
     "a11y.menuOpen": "Apri il menu",
     "a11y.menuClose": "Chiudi il menu",
     "a11y.close": "Chiudi",
+    "a11y.navMain": "Navigazione principale",
+    "a11y.navFooter": "Navigazione a piè di pagina",
 
     "nav.home": "Home",
     "nav.products": "Prodotti",
@@ -278,6 +284,8 @@ window.AQUVA_I18N = {
     "a11y.menuOpen": "Menü öffnen",
     "a11y.menuClose": "Menü schließen",
     "a11y.close": "Schließen",
+    "a11y.navMain": "Hauptnavigation",
+    "a11y.navFooter": "Fußzeilennavigation",
 
     "nav.home": "Start",
     "nav.products": "Produkte",

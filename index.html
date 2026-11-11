@@ -16,6 +16,8 @@
   <meta property="og:image" content="https://www.aquva-test.com/assets/img/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AQUVA Still i AQUVA Sparkling u aluminijskim limenkama od 330 ml">
+  <meta name="twitter:image" content="https://www.aquva-test.com/assets/img/og-image.jpg">
   <meta property="og:locale" content="hr_HR">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -102,7 +104,7 @@
         <span class="wordmark">AQUVA</span>
       </a>
 
-      <nav class="nav" aria-label="Main">
+      <nav class="nav" aria-label="Glavna navigacija" data-i18n-attr="aria-label:a11y.navMain">
         <a class="nav__link" href="#home" data-i18n="nav.home">Početna</a>
         <a class="nav__link" href="#products" data-i18n="nav.products">Proizvodi</a>
         <a class="nav__link" href="#philosophy" data-i18n="nav.philosophy">Naša filozofija</a>
@@ -126,7 +128,7 @@
 
   <!-- ============ MOBILE MENU ============ -->
   <div class="menu" id="menu" hidden>
-    <nav class="menu__nav" aria-label="Mobile">
+    <nav class="menu__nav" aria-label="Glavna navigacija" data-i18n-attr="aria-label:a11y.navMain">
       <a class="menu__link" href="#home" style="--i:0"><span data-i18n="nav.home">Početna</span></a>
       <a class="menu__link" href="#products" style="--i:1"><span data-i18n="nav.products">Proizvodi</span></a>
       <a class="menu__link" href="#philosophy" style="--i:2"><span data-i18n="nav.philosophy">Naša filozofija</span></a>
@@ -144,7 +146,7 @@
     </div>
   </div>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
 
     <!-- ============ HERO ============ -->
     <section class="hero" id="home" aria-labelledby="hero-title">
@@ -167,7 +169,7 @@
               <span data-i18n="hero.cta">Otkrij AQUVU</span>
               <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
-            <ul class="hero__meta" aria-label="AQUVA">
+            <ul class="hero__meta">
               <li>Still</li><li>Sparkling</li><li>330 ml</li>
             </ul>
           </div>
@@ -292,9 +294,9 @@
 
     <!-- ============ SUSTAINABILITY — SAY NO TO PLASTIC ============ -->
     <section class="sustain" id="sustainability" aria-labelledby="sustain-title">
-      <svg class="wave wave--top" viewBox="0 0 2880 80" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 40Q360 0 720 40T1440 40T2160 40T2880 40V80H0Z"/>
-      </svg>
+      <div class="wave wave--top" aria-hidden="true">
+        <svg viewBox="0 0 2880 80" preserveAspectRatio="none" focusable="false"><path d="M0 40Q180 0 360 40T720 40T1080 40T1440 40T1800 40T2160 40T2520 40T2880 40V80H0Z"/></svg>
+      </div>
 
       <div class="container sustain__intro">
         <p class="eyebrow eyebrow--light" data-reveal data-i18n="sustain.eyebrow">02 — Održivost</p>
@@ -346,9 +348,9 @@
         </div>
       </div>
 
-      <svg class="wave wave--bottom" viewBox="0 0 2880 80" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 40Q360 0 720 40T1440 40T2160 40T2880 40V80H0Z"/>
-      </svg>
+      <div class="wave wave--bottom" aria-hidden="true">
+        <svg viewBox="0 0 2880 80" preserveAspectRatio="none" focusable="false"><path d="M0 40Q180 0 360 40T720 40T1080 40T1440 40T1800 40T2160 40T2520 40T2880 40V80H0Z"/></svg>
+      </div>
     </section>
 
     <!-- ============ PHILOSOPHY ============ -->
@@ -447,7 +449,7 @@
           </a>
           <p class="footer__tagline" data-i18n="footer.tagline">Voda, iznova zamišljena.</p>
         </div>
-        <nav class="footer__nav" aria-label="Footer">
+        <nav class="footer__nav" aria-label="Navigacija u podnožju" data-i18n-attr="aria-label:a11y.navFooter">
           <a href="#home" data-i18n="nav.home">Početna</a>
           <a href="#products" data-i18n="nav.products">Proizvodi</a>
           <a href="#philosophy" data-i18n="nav.philosophy">Naša filozofija</a>
