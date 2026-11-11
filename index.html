@@ -1,370 +1,489 @@
-<!doctype html><html lang="hr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AQUVA — Natural Spring Water</title><link rel="stylesheet" href="styles.css"><link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
-<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon/favicon-48.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png"></head><body>
-<header><a href="#top"><img src="assets/aquva-logo.png" alt="AQUVA"></a><nav><a href="#voda" data-i18n="navWater">Voda</a><a href="#limenka" data-i18n="navCan">Limenka</a><a href="#o-nama" data-i18n="navAbout">O nama</a><a href="#kontakt" data-i18n="navContact">Kontakt</a></nav><div class="header-actions"><div class="language-switcher" aria-label="Language switcher"><button type="button" class="lang-btn active" data-lang="hr">HR</button><button type="button" class="lang-btn" data-lang="en">EN</button><button type="button" class="lang-btn" data-lang="it">IT</button></div><a class="cta shop-link" href="#shop" onclick="openShop(event)">Shop <span class="cart-count" id="cartCount">0</span></a></div></header>
-<section class="hero" id="top"><div><small>AQUVA / NATURAL SPRING WATER</small><h1><span data-i18n="heroTitle1">Čista voda.</span><br><em data-i18n="heroTitle2">Drugačiji format.</em></h1><p data-i18n="heroText">Prirodna izvorska voda, punjena u Italiji i predstavljena u premium aluminijskoj limenci od 330 ml.</p><a class="btn" href="#voda" data-i18n="heroBtn">Upoznaj AQUVU</a></div><div class="visual"><div></div><img src="assets/aquva-can-prototype.jpg" alt="AQUVA can"></div></section>
-<div class="ticker">NATURAL SPRING WATER　•　330 ML　•　MADE IN ITALY　•　ALUMINIUM</div>
-<section class="section" id="voda"><small data-i18n="waterEyebrow">01 / VODA</small><div class="grid"><h2><span data-i18n="waterTitle1">Od izvora</span><br><em data-i18n="waterTitle2">do limenke.</em></h2><div><p class="lead" data-i18n="waterLead">AQUVA koristi prirodnu izvorsku vodu talijanskog podrijetla, a punjenje i proizvodnja odvijaju se u Italiji.</p><p data-i18n="waterText">Naša voda dolazi iz prirodnog izvora smještenog na oko 2.000 metara nadmorske visine, u srcu zaštićenog prirodnog područja.</p><p class="note" data-i18n="waterNote">Detalje o izvoru, mineralnom sastavu, punionici i certifikatima objavit ćemo nakon što dobijemo konačnu dokumentaciju.</p></div></div>
-<div class="facts"><div><b data-i18n="factWaterLabel">VODA</b><strong data-i18n="factWaterValue">Prirodna izvorska</strong><p data-i18n="factWaterText">Talijanskog podrijetla.</p></div><div><b data-i18n="factTypeLabel">TIP</b><strong data-i18n="factTypeValue">Oligomineralna</strong><p data-i18n="factTypeText">Prema specifikaciji vode.</p></div><div><b data-i18n="factSourceLabel">IZVOR</b><strong>~2.000 m</strong><p data-i18n="factSourceText">Prirodni izvor u zaštićenom području.</p></div><div><b data-i18n="factShelfLabel">ROK</b><strong>24 mjeseca</strong><p data-i18n="factShelfText">Od proizvodnje.</p></div></div></section>
-<section class="dark"><div><small data-i18n="sourceEyebrow">ITALY / SOURCE</small><h2><span data-i18n="sourceTitle1">Izvor koji</span><br><em data-i18n="sourceTitle2">čuva karakter vode.</em></h2><p data-i18n="sourceText">Naša voda dolazi iz prirodnog izvora smještenog na oko 2.000 metara nadmorske visine, u srcu zaštićenog prirodnog područja.</p><span data-i18n="sourceBadge">SOURCE DETAILS / TO BE CONFIRMED</span></div></section>
-<section class="section" id="limenka"><small data-i18n="canEyebrow">02 / LIMENKA</small><div class="grid"><h2><span data-i18n="canTitle1">Voda u</span><br><em data-i18n="canTitle2">aluminiju.</em></h2><div><p class="lead" data-i18n="canLead">AQUVA dolazi u slim aluminijskoj limenci od 330 ml — praktičnom formatu koji postaje dio identiteta branda.</p><p data-i18n="canText">Aluminijska ambalaža omogućuje 360° personalizaciju i štiti vodu od svjetla i kisika. Aluminij je 100% reciklabilan.</p></div></div><div class="can"><img src="assets/aquva-can-prototype.jpg"><div class="specs"><div>330 ML<strong data-i18n="specCapacity">Kapacitet</strong></div><div><span data-i18n="specAluminium">ALUMINIJ</span><strong data-i18n="specMaterial">Materijal</strong></div><div>SLIM<strong data-i18n="specFormat">Format</strong></div><div>360°<strong data-i18n="specGraphic">Grafika</strong></div></div></div></section>
-<section class="section pale" id="o-nama"><small data-i18n="aboutEyebrow">03 / AQUVA</small><div class="grid"><div class="giant">AQ</div><div><h2><span data-i18n="aboutTitle1">Prvi korak je</span><br><em data-i18n="aboutTitle2">napraviti razliku.</em></h2><p data-i18n="aboutText">Radimo AQUVA kao ozbiljan brand prirodne vode za hrvatsko tržište. Spajamo iskustvo talijanske proizvodnje s našim identitetom i tržištem.</p><p class="note" data-i18n="aboutNote">Detalje o izvoru, mineralnom sastavu, punionici i certifikatima objavit ćemo nakon što dobijemo konačnu dokumentaciju.</p></div></div></section>
-<section class="trust"><div><small data-i18n="trustWaterLabel">WATER</small><strong data-i18n="trustWaterValue">Italian Spring Water</strong><p data-i18n="trustWaterText">Oligomineral / source water</p></div><div><small data-i18n="trustSourceLabel">SOURCE</small><strong>~2.000 m</strong><p data-i18n="trustSourceText">Protected natural area</p></div><div><small data-i18n="trustPackagingLabel">PACKAGING</small><strong>330 ml Aluminium</strong><p data-i18n="trustPackagingText">360° surface</p></div></section>
+<!doctype html>
+<html lang="hr" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AQUVA — Voda u aluminijskoj limenci</title>
+  <meta name="description" content="AQUVA je premium voda u aluminijskoj limenci od 330 ml. AQUVA Still i AQUVA Sparkling — osvježavajuća voda, iznova osmišljena u aluminiju.">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="canonical" href="https://www.aquva-test.com/">
 
-<section class="shop-section" id="shop"><button class="shop-modal-close" type="button" onclick="closeShop()" data-i18n="close">Zatvori ×</button>
-  <div class="shop-head">
-    <div>
-      <small>SHOP / AQUVA</small>
-      <h2><span data-i18n="shopTitle1">Odaberi</span><br><em data-i18n="shopTitle2">svoj format.</em></h2>
-    </div>
-    <div class="shop-cart-mini">
-      <span data-i18n="cartLabel">KOŠARICA</span>
-      <strong><span id="cartTotalItems">0</span> <span data-i18n="productsWord">proizvoda</span></strong>
-      <button class="btn shop-cart-btn" type="button" onclick="openCart()" data-i18n="openCart">Otvori košaricu</button>
-    </div>
-  </div>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AQUVA">
+  <meta property="og:url" content="https://www.aquva-test.com/">
+  <meta property="og:title" content="AQUVA — Voda u aluminijskoj limenci">
+  <meta property="og:description" content="Čista voda. Bolji izbor. AQUVA Still i AQUVA Sparkling u aluminijskoj limenci od 330 ml.">
+  <meta property="og:image" content="https://www.aquva-test.com/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="hr_HR">
+  <meta name="twitter:card" content="summary_large_image">
 
-  <div class="products" id="products"></div>
-</section>
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/favicon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
-<div class="cart-overlay" id="cartOverlay" aria-hidden="true">
-  <div class="cart-panel">
-    <button class="cart-close" type="button" onclick="closeCart()" aria-label="Zatvori">×</button>
-    <small data-i18n="cartLabel">KOŠARICA</small>
-    <h2><span data-i18n="cartTitle1">Tvoja</span> <em data-i18n="cartTitle2">narudžba.</em></h2>
-    <div id="cartItems"></div>
-    <div class="cart-summary">
-      <div><span data-i18n="subtotal">Međuzbroj</span><strong id="cartSubtotal">0,00 €</strong></div>
-      <div><span data-i18n="shipping">Dostava</span><strong id="cartShipping">—</strong></div>
-      <div class="cart-total"><span data-i18n="total">Ukupno</span><strong id="cartGrandTotal">0,00 €</strong></div>
-    </div>
-    <button class="btn checkout-btn" type="button" onclick="openCheckout()" data-i18n="checkout">Nastavi na checkout</button>
-  </div>
-</div>
+  <link rel="preload" href="assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" type="image/webp" href="assets/img/can-still-760.webp"
+        imagesrcset="assets/img/can-still-420.webp 420w, assets/img/can-still-760.webp 760w"
+        imagesizes="(max-width: 760px) 36vw, 340px">
+  <link rel="stylesheet" href="css/main.css">
 
-<div class="checkout-overlay" id="checkoutOverlay" aria-hidden="true">
-  <div class="checkout-panel">
-    <button class="cart-close" type="button" onclick="closeCheckout()" aria-label="Zatvori">×</button>
-    <small>CHECKOUT / AQUVA</small>
-    <h2><span data-i18n="checkoutTitle1">Završi</span> <em data-i18n="checkoutTitle2">narudžbu.</em></h2>
-    <form id="checkoutForm">
-      <div class="checkout-grid">
-        <label><span data-i18n="nameLabel">Ime i prezime</span><input required name="name" autocomplete="name"></label>
-        <label><span data-i18n="emailLabel">Email</span><input required type="email" name="email" autocomplete="email"></label>
-        <label><span data-i18n="addressLabel">Adresa</span><input required name="address" autocomplete="street-address"></label>
-        <label><span data-i18n="cityLabel">Grad</span><input required name="city" autocomplete="address-level2"></label>
-        <label><span data-i18n="zipLabel">Poštanski broj</span><input required name="zip" autocomplete="postal-code"></label>
-        <label><span data-i18n="countryLabel">Država</span><select name="country"><option value="hr" data-i18n="countryCroatia">Hrvatska</option><option value="en" data-i18n="countryEnglish">United Kingdom</option></select></label>
-      </div>
-      <div class="payment-note">
-        <strong data-i18n="paymentTitle">Plaćanje</strong>
-        <p data-i18n="paymentText">Checkout je pripremljen za povezivanje s kartičnim plaćanjem. Prije produkcije treba spojiti payment gateway i backend za obradu narudžbi.</p>
-      </div>
-      <div class="checkout-bottom">
-        <span><span data-i18n="total">Ukupno</span>: <strong id="checkoutTotal">0,00 €</strong></span>
-        <button class="btn" type="submit" data-i18n="confirmOrder">Potvrdi narudžbu</button>
-      </div>
-    </form>
-    <div class="order-success" id="orderSuccess" hidden>
-      <strong data-i18n="orderThanks">Hvala na narudžbi.</strong>
-      <p data-i18n="orderDemo">Tvoja narudžba je zaprimljena u demo shopu. Za stvarnu prodaju potrebno je spojiti backend i payment gateway.</p>
-      <button class="btn" type="button" onclick="closeCheckout()" data-i18n="backToShop">Natrag na shop</button>
-    </div>
-  </div>
-</div>
+  <script>
+    /* Runs before first paint: enables JS styles, decides whether the intro plays,
+       and hides text until a non-default saved language is applied (no flash). */
+    (function () {
+      var d = document.documentElement, c = ['js'];
+      var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var seen = false, lang = null;
+      try { seen = sessionStorage.getItem('aquva-intro') === '1'; } catch (e) {}
+      try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('aquva-lang'); } catch (e) {}
+      c.push(seen || reduce ? 'intro-seen' : 'intro-playing');
+      if (lang && lang !== 'hr' && /^(en|it|de)$/.test(lang)) { c.push('i18n-pending'); d.lang = lang; }
+      d.className = c.join(' ');
+    })();
+  </script>
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
 
-<div class="toast" id="toast"></div>
-
-<section class="contact" id="kontakt"><div><small data-i18n="contactEyebrow">04 / KONTAKT</small><h2>AQUVA<br><em data-i18n="contactTitle">tek dolazi.</em></h2></div><div><p data-i18n="contactText">Pratite razvoj branda, distribuciju i prve AQUVA proizvode.</p><a class="btn white" href="mailto:info@aquva.hr">info@aquva.hr</a></div></section>
-<footer><b>AQUVA®</b><span data-i18n="footerText">Natural Spring Water · Croatia</span><span>© 2026 AQUVA</span></footer>
-<script>
-
-const translations = {
-  hr: {
-    navWater:"Voda", navCan:"Limenka", navAbout:"O nama", navContact:"Kontakt",
-    heroTitle1:"Čista voda.", heroTitle2:"Drugačiji format.",
-    heroText:"Prirodna izvorska voda, punjena u Italiji i predstavljena u premium aluminijskoj limenci od 330 ml.",
-    heroBtn:"Upoznaj AQUVU",
-    waterEyebrow:"01 / VODA", waterTitle1:"Od izvora", waterTitle2:"do limenke.",
-    waterLead:"AQUVA koristi prirodnu izvorsku vodu talijanskog podrijetla, a punjenje i proizvodnja odvijaju se u Italiji.",
-    waterText:"Naša voda dolazi iz prirodnog izvora smještenog na oko 2.000 metara nadmorske visine, u srcu zaštićenog prirodnog područja.",
-    waterNote:"Detalje o izvoru, mineralnom sastavu, punionici i certifikatima objavit ćemo nakon što dobijemo konačnu dokumentaciju.",
-    factWaterLabel:"VODA", factWaterValue:"Prirodna izvorska", factWaterText:"Talijanskog podrijetla.",
-    factTypeLabel:"TIP", factTypeValue:"Oligomineralna", factTypeText:"Prema specifikaciji vode.",
-    factSourceLabel:"IZVOR", factSourceText:"Prirodni izvor u zaštićenom području.",
-    factShelfLabel:"ROK", factShelfText:"Od proizvodnje.",
-    sourceEyebrow:"ITALY / SOURCE", sourceTitle1:"Izvor koji", sourceTitle2:"čuva karakter vode.",
-    sourceText:"Naša voda dolazi iz prirodnog izvora smještenog na oko 2.000 metara nadmorske visine, u srcu zaštićenog prirodnog područja.",
-    sourceBadge:"SOURCE DETAILS / TO BE CONFIRMED",
-    canEyebrow:"02 / LIMENKA", canTitle1:"Voda u", canTitle2:"aluminiju.",
-    canLead:"AQUVA dolazi u slim aluminijskoj limenci od 330 ml — praktičnom formatu koji postaje dio identiteta branda.",
-    canText:"Aluminijska ambalaža omogućuje 360° personalizaciju i štiti vodu od svjetla i kisika. Aluminij je 100% reciklabilan.",
-    specCapacity:"Kapacitet", specAluminium:"ALUMINIJ", specMaterial:"Materijal", specFormat:"Format", specGraphic:"Grafika",
-    aboutEyebrow:"03 / AQUVA", aboutTitle1:"Prvi korak je", aboutTitle2:"napraviti razliku.",
-    aboutText:"Radimo AQUVA kao ozbiljan brand prirodne vode za hrvatsko tržište. Spajamo iskustvo talijanske proizvodnje s našim identitetom i tržištem.",
-    aboutNote:"Detalje o izvoru, mineralnom sastavu, punionici i certifikatima objavit ćemo nakon što dobijemo konačnu dokumentaciju.",
-    trustWaterLabel:"WATER", trustWaterValue:"Italian Spring Water", trustWaterText:"Oligomineral / source water",
-    trustSourceLabel:"SOURCE", trustSourceText:"Protected natural area", trustPackagingLabel:"PACKAGING", trustPackagingText:"360° surface",
-    shopTitle1:"Odaberi", shopTitle2:"svoj format.", cartLabel:"KOŠARICA", productsWord:"proizvoda", openCart:"Otvori košaricu",
-    close:"Zatvori ×", cartTitle1:"Tvoja", cartTitle2:"narudžba.", subtotal:"Međuzbroj", shipping:"Dostava", total:"Ukupno", checkout:"Nastavi na checkout",
-    checkoutTitle1:"Završi", checkoutTitle2:"narudžbu.", nameLabel:"Ime i prezime", emailLabel:"Email", addressLabel:"Adresa", cityLabel:"Grad", zipLabel:"Poštanski broj", countryLabel:"Država", countryCroatia:"Hrvatska", countryEnglish:"Ujedinjeno Kraljevstvo",
-    paymentTitle:"Plaćanje", paymentText:"Checkout je pripremljen za povezivanje s kartičnim plaćanjem. Prije produkcije treba spojiti payment gateway i backend za obradu narudžbi.",
-    confirmOrder:"Potvrdi narudžbu", orderThanks:"Hvala na narudžbi.", orderDemo:"Tvoja narudžba je zaprimljena u demo shopu. Za stvarnu prodaju potrebno je spojiti backend i payment gateway.", backToShop:"Natrag na shop",
-    contactEyebrow:"04 / KONTAKT", contactTitle:"tek dolazi.", contactText:"Pratite razvoj branda, distribuciju i prve AQUVA proizvode.", footerText:"Natural Spring Water · Croatia",
-    emptyCart:"Košarica je trenutno prazna.", added:"Dodano u košaricu", emptyCartToast:"Košarica je prazna.", remove:"Ukloni", each:"/ kom", free:"Besplatno"
-  },
-  en: {
-    navWater:"Water", navCan:"The Can", navAbout:"About", navContact:"Contact",
-    heroTitle1:"Pure water.", heroTitle2:"A different format.",
-    heroText:"Natural spring water, bottled in Italy and presented in a premium 330 ml aluminium can.",
-    heroBtn:"Discover AQUVA",
-    waterEyebrow:"01 / WATER", waterTitle1:"From source", waterTitle2:"to can.",
-    waterLead:"AQUVA uses natural spring water of Italian origin, with bottling and production taking place in Italy.",
-    waterText:"Our water comes from a natural spring located at around 2,000 metres above sea level, in the heart of a protected natural area.",
-    waterNote:"Details about the source, mineral composition, bottling facility and certifications will be published once the final documentation is received.",
-    factWaterLabel:"WATER", factWaterValue:"Natural spring", factWaterText:"Italian origin.",
-    factTypeLabel:"TYPE", factTypeValue:"Oligomineral", factTypeText:"According to the water specification.",
-    factSourceLabel:"SOURCE", factSourceText:"Natural source in a protected area.",
-    factShelfLabel:"SHELF LIFE", factShelfText:"From production.",
-    sourceEyebrow:"ITALY / SOURCE", sourceTitle1:"A source that", sourceTitle2:"shapes the water.",
-    sourceText:"Our water comes from a natural spring located at around 2,000 metres above sea level, in the heart of a protected natural area.",
-    sourceBadge:"SOURCE DETAILS / TO BE CONFIRMED",
-    canEyebrow:"02 / THE CAN", canTitle1:"Water in", canTitle2:"aluminium.",
-    canLead:"AQUVA comes in a slim 330 ml aluminium can — a practical format that becomes part of the brand identity.",
-    canText:"The aluminium packaging enables 360° customisation and protects the water from light and oxygen. Aluminium is 100% recyclable.",
-    specCapacity:"Capacity", specAluminium:"ALUMINIUM", specMaterial:"Material", specFormat:"Format", specGraphic:"Graphics",
-    aboutEyebrow:"03 / AQUVA", aboutTitle1:"The first step is", aboutTitle2:"making a difference.",
-    aboutText:"We are building AQUVA as a serious natural water brand for the Croatian market. We combine Italian production expertise with our own identity and market.",
-    aboutNote:"Details about the source, mineral composition, bottling facility and certifications will be published once the final documentation is received.",
-    trustWaterLabel:"WATER", trustWaterValue:"Italian Spring Water", trustWaterText:"Oligomineral / source water",
-    trustSourceLabel:"SOURCE", trustSourceText:"Protected natural area", trustPackagingLabel:"PACKAGING", trustPackagingText:"360° surface",
-    shopTitle1:"Choose", shopTitle2:"your format.", cartLabel:"CART", productsWord:"products", openCart:"Open cart",
-    close:"Close ×", cartTitle1:"Your", cartTitle2:"order.", subtotal:"Subtotal", shipping:"Shipping", total:"Total", checkout:"Proceed to checkout",
-    checkoutTitle1:"Complete", checkoutTitle2:"your order.", nameLabel:"Full name", emailLabel:"Email", addressLabel:"Address", cityLabel:"City", zipLabel:"Postal code", countryLabel:"Country", countryCroatia:"Croatia", countryEnglish:"United Kingdom",
-    paymentTitle:"Payment", paymentText:"Checkout is prepared for card payment integration. Before production, a payment gateway and order-processing backend need to be connected.",
-    confirmOrder:"Place order", orderThanks:"Thank you for your order.", orderDemo:"Your order has been received in the demo shop. For real sales, a backend and payment gateway need to be connected.", backToShop:"Back to shop",
-    contactEyebrow:"04 / CONTACT", contactTitle:"is coming.", contactText:"Follow the development of the brand, distribution and the first AQUVA products.", footerText:"Natural Spring Water · Croatia",
-    emptyCart:"Your cart is currently empty.", added:"Added to cart", emptyCartToast:"Your cart is empty.", remove:"Remove", each:"/ item", free:"Free"
-  },
-  it: {
-    navWater:"Acqua", navCan:"La lattina", navAbout:"Chi siamo", navContact:"Contatti",
-    heroTitle1:"Acqua pura.", heroTitle2:"Un formato diverso.",
-    heroText:"Acqua naturale di sorgente, imbottigliata in Italia e presentata in un’elegante lattina premium da 330 ml.",
-    heroBtn:"Scopri AQUVA",
-    waterEyebrow:"01 / ACQUA", waterTitle1:"Dalla sorgente", waterTitle2:"alla lattina.",
-    waterLead:"AQUVA utilizza acqua naturale di sorgente di origine italiana, con imbottigliamento e produzione in Italia.",
-    waterText:"La nostra acqua proviene da una sorgente naturale situata a circa 2.000 metri sul livello del mare, nel cuore di un’area naturale protetta.",
-    waterNote:"I dettagli sulla sorgente, sulla composizione minerale, sullo stabilimento di imbottigliamento e sulle certificazioni saranno pubblicati una volta ricevuta la documentazione definitiva.",
-    factWaterLabel:"ACQUA", factWaterValue:"Acqua di sorgente naturale", factWaterText:"Di origine italiana.",
-    factTypeLabel:"TIPO", factTypeValue:"Oligominerale", factTypeText:"Secondo la specifica dell’acqua.",
-    factSourceLabel:"SORGENTE", factSourceText:"Sorgente naturale in un’area protetta.",
-    factShelfLabel:"SCADENZA", factShelfText:"Dalla produzione.",
-    sourceEyebrow:"ITALIA / SORGENTE", sourceTitle1:"Una sorgente che", sourceTitle2:"custodisce il carattere dell’acqua.",
-    sourceText:"La nostra acqua proviene da una sorgente naturale situata a circa 2.000 metri sul livello del mare, nel cuore di un’area naturale protetta.",
-    sourceBadge:"DETTAGLI DELLA SORGENTE / DA CONFERMARE",
-    canEyebrow:"02 / LA LATTINA", canTitle1:"Acqua in", canTitle2:"alluminio.",
-    canLead:"AQUVA arriva in una sottile lattina in alluminio da 330 ml — un formato pratico che diventa parte dell’identità del brand.",
-    canText:"Il packaging in alluminio consente una personalizzazione a 360° e protegge l’acqua dalla luce e dall’ossigeno. L’alluminio è riciclabile al 100%.",
-    specCapacity:"Capacità", specAluminium:"ALLUMINIO", specMaterial:"Materiale", specFormat:"Formato", specGraphic:"Grafica",
-    aboutEyebrow:"03 / AQUVA", aboutTitle1:"Il primo passo è", aboutTitle2:"fare la differenza.",
-    aboutText:"Stiamo costruendo AQUVA come un brand serio di acqua naturale per il mercato croato. Uniamo l’esperienza della produzione italiana alla nostra identità e al nostro mercato.",
-    aboutNote:"I dettagli sulla sorgente, sulla composizione minerale, sullo stabilimento di imbottigliamento e sulle certificazioni saranno pubblicati una volta ricevuta la documentazione definitiva.",
-    trustWaterLabel:"ACQUA", trustWaterValue:"Acqua di sorgente italiana", trustWaterText:"Oligominerale / acqua di sorgente",
-    trustSourceLabel:"SORGENTE", trustSourceText:"Area naturale protetta", trustPackagingLabel:"PACKAGING", trustPackagingText:"Superficie a 360°",
-    shopTitle1:"Scegli", shopTitle2:"il tuo formato.", cartLabel:"CARRELLO", productsWord:"prodotti", openCart:"Apri il carrello",
-    close:"Chiudi ×", cartTitle1:"Il tuo", cartTitle2:"ordine.", subtotal:"Subtotale", shipping:"Spedizione", total:"Totale", checkout:"Procedi al checkout",
-    checkoutTitle1:"Completa", checkoutTitle2:"il tuo ordine.", nameLabel:"Nome e cognome", emailLabel:"Email", addressLabel:"Indirizzo", cityLabel:"Città", zipLabel:"CAP", countryLabel:"Paese", countryCroatia:"Croazia", countryEnglish:"Regno Unito",
-    paymentTitle:"Pagamento", paymentText:"Il checkout è predisposto per l’integrazione del pagamento con carta. Prima della produzione sarà necessario collegare un gateway di pagamento e un backend per la gestione degli ordini.",
-    confirmOrder:"Conferma ordine", orderThanks:"Grazie per il tuo ordine.", orderDemo:"Il tuo ordine è stato ricevuto nel demo shop. Per le vendite reali è necessario collegare un backend e un gateway di pagamento.", backToShop:"Torna allo shop",
-    contactEyebrow:"04 / CONTATTI", contactTitle:"sta arrivando.", contactText:"Segui lo sviluppo del brand, la distribuzione e i primi prodotti AQUVA.", footerText:"Natural Spring Water · Croazia",
-    emptyCart:"Il tuo carrello è vuoto.", added:"Aggiunto al carrello", emptyCartToast:"Il tuo carrello è vuoto.", remove:"Rimuovi", each:"/ pz.", free:"Gratuita"
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AQUVA",
+    "url": "https://www.aquva-test.com/",
+    "logo": "https://www.aquva-test.com/assets/favicon/favicon-512.png",
+    "email": "aquva@info.hr",
+    "slogan": "Water, reimagined."
   }
-};
+  </script>
+</head>
+<body>
 
-let currentLang = localStorage.getItem("aquvaLang") || "hr";
+  <!-- ============ SIGNATURE LOADER: a drop falls from the can ============ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__surface"></div>
+    <div class="loader__pour"><img src="assets/img/can-still-420.webp" alt="" width="420" height="840"></div>
+    <svg class="loader__drop" viewBox="0 0 20 28" aria-hidden="true">
+      <defs>
+        <radialGradient id="dropGrad" cx="38%" cy="62%" r="70%">
+          <stop offset="0" stop-color="#7DBBF5"/>
+          <stop offset=".55" stop-color="#0B72E0"/>
+          <stop offset="1" stop-color="#0A2A6B"/>
+        </radialGradient>
+      </defs>
+      <path d="M10 0C10 0 0 12.6 0 18a10 10 0 0 0 20 0C20 12.6 10 0 10 0Z" fill="url(#dropGrad)"/>
+      <ellipse cx="6.6" cy="17" rx="1.6" ry="3" fill="#fff" opacity=".55"/>
+    </svg>
+    <span class="loader__ripple" style="--i:0"></span>
+    <span class="loader__ripple" style="--i:1"></span>
+    <span class="loader__ripple" style="--i:2"></span>
+    <div class="loader__splash">
+      <i style="--x:-34px;--y:-38px"></i><i style="--x:-16px;--y:-56px"></i><i style="--x:4px;--y:-64px"></i>
+      <i style="--x:20px;--y:-50px"></i><i style="--x:36px;--y:-30px"></i>
+    </div>
+    <div class="loader__brand">
+      <img src="assets/img/aquva-mark-320.webp" alt="" width="320" height="256">
+      <span class="wordmark">AQUVA</span>
+    </div>
+  </div>
 
-function t(key){
-  return translations[currentLang][key] || translations.hr[key] || key;
-}
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Preskoči na sadržaj</a>
 
-function applyLanguage(lang){
-  currentLang = lang;
-  localStorage.setItem("aquvaLang", lang);
-  document.documentElement.lang = lang;
-  document.title = lang === "it" ? "AQUVA — Acqua Naturale di Sorgente" : "AQUVA — Natural Spring Water";
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    const key = el.dataset.i18n;
-    if (translations[lang][key]) el.textContent = translations[lang][key];
-  });
-  const langSwitcher = document.querySelector(".language-switcher");
-  const langButtons = [...document.querySelectorAll(".lang-btn")];
-  langButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.lang === lang));
-  langButtons.sort((a,b) => (a.dataset.lang === lang ? -1 : b.dataset.lang === lang ? 1 : 0));
-  langButtons.forEach(btn => langSwitcher.appendChild(btn));
-  renderProducts();
-  renderCart();
-}
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a class="brand" href="#home" aria-label="AQUVA">
+        <img class="brand__mark" src="assets/img/aquva-mark-320.webp" alt="" width="320" height="256">
+        <span class="wordmark">AQUVA</span>
+      </a>
 
-document.querySelectorAll(".lang-btn").forEach(btn => {
-  btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
-});
+      <nav class="nav" aria-label="Main">
+        <a class="nav__link" href="#home" data-i18n="nav.home">Početna</a>
+        <a class="nav__link" href="#products" data-i18n="nav.products">Proizvodi</a>
+        <a class="nav__link" href="#philosophy" data-i18n="nav.philosophy">Naša filozofija</a>
+        <a class="nav__link" href="#sustainability" data-i18n="nav.sustainability">Održivost</a>
+        <a class="nav__link" href="#contact" data-i18n="nav.contact">Kontakt</a>
+      </nav>
 
-const products = [
-  {id:"aquva-330", name:{hr:"AQUVA 330 ml",en:"AQUVA 330 ml",it:"AQUVA 330 ml"}, tag:{hr:"NATURAL SPRING WATER",en:"NATURAL SPRING WATER",it:"ACQUA NATURALE DI SORGENTE"}, description:{hr:"Prirodna izvorska voda u slim aluminijskoj limenci.",en:"Natural spring water in a slim aluminium can.",it:"Acqua naturale di sorgente in una sottile lattina di alluminio."}, price:0.99, image:"assets/aquva-can-prototype.jpg"},
-  {id:"aquva-pack-6", name:{hr:"AQUVA 6 × 330 ml",en:"AQUVA 6 × 330 ml",it:"AQUVA 6 × 330 ml"}, tag:{hr:"SIX PACK",en:"SIX PACK",it:"CONFEZIONE DA SEI"}, description:{hr:"Pakiranje od šest AQUVA limenki za svaki dan.",en:"A six-can AQUVA pack for every day.",it:"Confezione da sei lattine AQUVA per ogni giorno."}, price:4.99, image:"assets/aquva-can-prototype.jpg"},
-  {id:"aquva-pack-24", name:{hr:"AQUVA 24 × 330 ml",en:"AQUVA 24 × 330 ml",it:"AQUVA 24 × 330 ml"}, tag:{hr:"CASE",en:"CASE",it:"CARTONE"}, description:{hr:"Cijelo pakiranje za ured, evente ili ugostiteljstvo.",en:"A full case for offices, events or hospitality.",it:"Un intero cartone per uffici, eventi o settore hospitality."}, price:19.99, image:"assets/aquva-can-prototype.jpg"}
-];
+      <div class="lang" role="group" aria-label="Language" data-i18n-attr="aria-label:a11y.language">
+        <button type="button" class="lang__btn" data-lang="hr" aria-pressed="true" lang="hr" title="Hrvatski">HR</button>
+        <button type="button" class="lang__btn" data-lang="en" aria-pressed="false" lang="en" title="English">EN</button>
+        <button type="button" class="lang__btn" data-lang="it" aria-pressed="false" lang="it" title="Italiano">IT</button>
+        <button type="button" class="lang__btn" data-lang="de" aria-pressed="false" lang="de" title="Deutsch">DE</button>
+      </div>
 
-let cart = JSON.parse(localStorage.getItem("aquvaCart") || "[]");
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu"
+              aria-label="Otvori izbornik" data-i18n-attr="aria-label:a11y.menuOpen">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-const euro = value => new Intl.NumberFormat(currentLang === "it" ? "it-IT" : currentLang === "en" ? "en-GB" : "hr-HR",{style:"currency",currency:"EUR"}).format(value);
+  <!-- ============ MOBILE MENU ============ -->
+  <div class="menu" id="menu" hidden>
+    <nav class="menu__nav" aria-label="Mobile">
+      <a class="menu__link" href="#home" style="--i:0"><span data-i18n="nav.home">Početna</span></a>
+      <a class="menu__link" href="#products" style="--i:1"><span data-i18n="nav.products">Proizvodi</span></a>
+      <a class="menu__link" href="#philosophy" style="--i:2"><span data-i18n="nav.philosophy">Naša filozofija</span></a>
+      <a class="menu__link" href="#sustainability" style="--i:3"><span data-i18n="nav.sustainability">Održivost</span></a>
+      <a class="menu__link" href="#contact" style="--i:4"><span data-i18n="nav.contact">Kontakt</span></a>
+    </nav>
+    <div class="menu__foot">
+      <div class="lang lang--menu" role="group" aria-label="Language" data-i18n-attr="aria-label:a11y.language">
+        <button type="button" class="lang__btn" data-lang="hr" aria-pressed="true" lang="hr">HR</button>
+        <button type="button" class="lang__btn" data-lang="en" aria-pressed="false" lang="en">EN</button>
+        <button type="button" class="lang__btn" data-lang="it" aria-pressed="false" lang="it">IT</button>
+        <button type="button" class="lang__btn" data-lang="de" aria-pressed="false" lang="de">DE</button>
+      </div>
+      <a class="menu__mail" href="mailto:aquva@info.hr">aquva@info.hr</a>
+    </div>
+  </div>
 
-function saveCart(){
-  localStorage.setItem("aquvaCart",JSON.stringify(cart));
-  renderCart();
-}
+  <main id="main">
 
-function addToCart(id){
-  const item = cart.find(x=>x.id===id);
-  if(item) item.qty++;
-  else cart.push({id,qty:1});
-  saveCart();
-  showToast(t("added"));
-}
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__glow hero__glow--a"></div>
+        <div class="hero__glow hero__glow--b"></div>
+        <div class="hero__word" data-parallax="0.25">AQUVA</div>
+      </div>
 
-function changeQty(id, delta){
-  const item = cart.find(x=>x.id===id);
-  if(!item) return;
-  item.qty += delta;
-  if(item.qty <= 0) cart = cart.filter(x=>x.id!==id);
-  saveCart();
-}
+      <div class="hero__inner container">
+        <div class="hero__copy">
+          <p class="eyebrow hero__eyebrow" data-hero="0" data-i18n="hero.eyebrow">Voda u aluminijskoj limenci</p>
+          <h1 class="hero__title" id="hero-title">
+            <span class="line"><span class="line__in" data-hero="1" data-i18n="hero.title1">Čista voda.</span></span>
+            <span class="line"><span class="line__in hero__title-accent" data-hero="2" data-i18n="hero.title2">Bolji izbor.</span></span>
+          </h1>
+          <p class="hero__sub" data-hero="3" data-i18n="hero.sub">Osvježavajuća voda. Iznova osmišljena u aluminiju.</p>
+          <div class="hero__actions" data-hero="4">
+            <a class="btn btn--primary" href="#products">
+              <span data-i18n="hero.cta">Otkrij AQUVU</span>
+              <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <ul class="hero__meta" aria-label="AQUVA">
+              <li>Still</li><li>Sparkling</li><li>330 ml</li>
+            </ul>
+          </div>
+        </div>
 
-function removeFromCart(id){
-  cart = cart.filter(x=>x.id!==id);
-  saveCart();
-}
-
-function totals(){
-  const subtotal = cart.reduce((sum,item)=>{
-    const p=products.find(x=>x.id===item.id);
-    return sum + (p ? p.price*item.qty : 0);
-  },0);
-  const shipping = subtotal === 0 ? 0 : (subtotal >= 40 ? 0 : 4.90);
-  return {subtotal,shipping,total:subtotal+shipping,items:cart.reduce((s,x)=>s+x.qty,0)};
-}
-
-function renderProducts(){
-  document.getElementById("products").innerHTML = products.map(p=>`
-    <article class="product-card">
-      <div class="product-image"><img src="${p.image}" alt="${(p.name[currentLang] || p.name.hr)}"></div>
-      <div class="product-info">
-        <span class="product-tag">${(p.tag[currentLang] || p.tag.hr)}</span>
-        <h3>${(p.name[currentLang] || p.name.hr)}</h3>
-        <p>${(p.description[currentLang] || p.description.hr)}</p>
-        <div class="product-buy">
-          <span class="product-price">${euro(p.price)}</span>
-          <button class="btn" type="button" onclick="addToCart('${p.id}')">${currentLang==="en" ? "Add" : currentLang==="it" ? "Aggiungi" : "Dodaj"}</button>
+        <div class="hero__visual" data-hero="5">
+          <div class="hero__halo" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="bubbles bubbles--hero" data-bubbles="14" aria-hidden="true"></div>
+          <div class="hero__can hero__can--back" data-depth="14">
+            <div class="hero__can-float" style="--float-d:-2.5s">
+              <img src="assets/img/can-sparkling-760.webp"
+                   srcset="assets/img/can-sparkling-420.webp 420w, assets/img/can-sparkling-760.webp 760w"
+                   sizes="(max-width: 760px) 30vw, 300px" width="760" height="1520"
+                   alt="AQUVA Sparkling — gazirana voda u aluminijskoj limenci od 330 ml"
+                   data-i18n-attr="alt:alt.sparkling" fetchpriority="high">
+            </div>
+          </div>
+          <div class="hero__can hero__can--front" data-depth="26">
+            <div class="hero__can-float">
+              <img src="assets/img/can-still-760.webp"
+                   srcset="assets/img/can-still-420.webp 420w, assets/img/can-still-760.webp 760w"
+                   sizes="(max-width: 760px) 36vw, 340px" width="760" height="1520"
+                   alt="AQUVA Still — negazirana voda u aluminijskoj limenci od 330 ml"
+                   data-i18n-attr="alt:alt.still" fetchpriority="high">
+            </div>
+          </div>
         </div>
       </div>
-    </article>
-  `).join("");
-}
 
-function renderCart(){
-  const totalsData=totals();
-  document.getElementById("cartCount").textContent=totalsData.items;
-  document.getElementById("cartTotalItems").textContent=totalsData.items;
-  document.getElementById("cartSubtotal").textContent=euro(totalsData.subtotal);
-  document.getElementById("cartShipping").textContent=totalsData.subtotal===0 ? "—" : (totalsData.shipping===0 ? t("free") : euro(totalsData.shipping));
-  document.getElementById("cartGrandTotal").textContent=euro(totalsData.total);
-  document.getElementById("checkoutTotal").textContent=euro(totalsData.total);
+      <a class="scroll-cue" href="#products" data-hero="6">
+        <span data-i18n="hero.scroll">Istraži</span>
+        <span class="scroll-cue__line" aria-hidden="true"></span>
+      </a>
+    </section>
 
-  const box=document.getElementById("cartItems");
-  if(!cart.length){
-    box.innerHTML=`<p style="color:#657a90;line-height:1.7">${t("emptyCart")}</p>`;
-    return;
-  }
-  box.innerHTML=cart.map(item=>{
-    const p=products.find(x=>x.id===item.id);
-    return `<div class="cart-row">
-      <img src="${p.image}" alt="${(p.name[currentLang] || p.name.hr)}">
-      <div>
-        <h4>${(p.name[currentLang] || p.name.hr)}</h4>
-        <p>${euro(p.price)} ${t("each")}</p>
-        <div class="qty">
-          <button onclick="changeQty('${p.id}',-1)">−</button>
-          <strong>${item.qty}</strong>
-          <button onclick="changeQty('${p.id}',1)">+</button>
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <div class="marquee__group">
+          <span data-i18n="marquee.1">Voda u limenci</span><i></i>
+          <span>Still</span><i></i>
+          <span>Sparkling</span><i></i>
+          <span>330 ml</span><i></i>
+          <span data-i18n="marquee.2">Manje plastike</span><i></i>
+          <span data-i18n="marquee.3">Aluminij</span><i></i>
         </div>
-        <button class="cart-remove" onclick="removeFromCart('${p.id}')">${t("remove")}</button>
+        <div class="marquee__group">
+          <span data-i18n="marquee.1">Voda u limenci</span><i></i>
+          <span>Still</span><i></i>
+          <span>Sparkling</span><i></i>
+          <span>330 ml</span><i></i>
+          <span data-i18n="marquee.2">Manje plastike</span><i></i>
+          <span data-i18n="marquee.3">Aluminij</span><i></i>
+        </div>
       </div>
-      <strong>${euro(p.price*item.qty)}</strong>
-    </div>`;
-  }).join("");
-}
+    </div>
 
+    <!-- ============ PRODUCTS ============ -->
+    <section class="section products" id="products" aria-labelledby="products-title">
+      <div class="container">
+        <header class="section-head">
+          <div>
+            <p class="eyebrow" data-reveal data-i18n="products.eyebrow">01 — Proizvodi</p>
+            <h2 class="title" id="products-title" data-reveal style="--d:.08s">
+              <span data-i18n="products.title1">Dvije vode.</span>
+              <span class="serif" data-i18n="products.title2">Jedna filozofija.</span>
+            </h2>
+          </div>
+          <p class="section-head__lead" data-reveal style="--d:.16s" data-i18n="products.lead">Obje dolaze u elegantnoj aluminijskoj limenci od 330 ml — laganoj u ruci, stvorenoj za svaki dan.</p>
+        </header>
 
-function openShop(event){
-  if(event) event.preventDefault();
-  const shop=document.getElementById("shop");
-  shop.classList.add("shop-open");
-  document.body.classList.add("shop-modal-open");
-  history.replaceState(null,"","#shop");
-  renderCart();
-}
-function closeShop(){
-  const shop=document.getElementById("shop");
-  shop.classList.remove("shop-open");
-  document.body.classList.remove("shop-modal-open");
-  history.replaceState(null,"",window.location.pathname+window.location.search);
-}
+        <div class="product-grid">
+          <!-- data-viewer-slot: reserved mount point for the future interactive 360° can viewer -->
+          <article class="product product--still" data-reveal data-tilt aria-labelledby="still-name">
+            <div class="product__stage" data-viewer-slot="still">
+              <span class="product__word" aria-hidden="true">STILL</span>
+              <div class="product__rings" aria-hidden="true"><span></span><span></span><span></span></div>
+              <img class="product__can" src="assets/img/can-still-760.webp"
+                   srcset="assets/img/can-still-420.webp 420w, assets/img/can-still-760.webp 760w"
+                   sizes="(max-width: 860px) 46vw, 260px" width="760" height="1520" loading="lazy" decoding="async"
+                   alt="AQUVA Still — negazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.still">
+              <span class="product__shadow" aria-hidden="true"></span>
+            </div>
+            <div class="product__info">
+              <p class="product__index"><span>01</span> <span data-i18n="still.type">Negazirana</span></p>
+              <h3 class="product__name" id="still-name">AQUVA <strong>STILL</strong></h3>
+              <p class="product__tagline" data-i18n="still.tagline">Prirodna negazirana voda.</p>
+              <p class="product__desc" data-i18n="still.desc">Mirna, čista i nenametljivo osvježavajuća — za trenutke kada vam ne treba ništa osim vode.</p>
+              <ul class="tags">
+                <li>330 ml</li>
+                <li data-i18n="tags.can">Aluminijska limenka</li>
+                <li data-i18n="still.type">Negazirana</li>
+              </ul>
+            </div>
+          </article>
 
-function openCart(){
-  document.getElementById("cartOverlay").classList.add("open");
-  document.getElementById("cartOverlay").setAttribute("aria-hidden","false");
-  renderCart();
-}
-function closeCart(){
-  document.getElementById("cartOverlay").classList.remove("open");
-  document.getElementById("cartOverlay").setAttribute("aria-hidden","true");
-}
-function openCheckout(){
-  if(!cart.length){showToast(t("emptyCartToast"));return;}
-  closeCart();
-  document.getElementById("checkoutOverlay").classList.add("open");
-  document.getElementById("checkoutOverlay").setAttribute("aria-hidden","false");
-  renderCart();
-}
-function closeCheckout(){
-  document.getElementById("checkoutOverlay").classList.remove("open");
-  document.getElementById("checkoutOverlay").setAttribute("aria-hidden","true");
-}
-function showToast(text){
-  const el=document.getElementById("toast");
-  el.textContent=text;
-  el.classList.add("show");
-  setTimeout(()=>el.classList.remove("show"),1800);
-}
+          <article class="product product--sparkling" data-reveal data-tilt style="--d:.12s" aria-labelledby="sparkling-name">
+            <div class="product__stage" data-viewer-slot="sparkling">
+              <span class="product__word" aria-hidden="true">SPARKLING</span>
+              <div class="bubbles bubbles--card" data-bubbles="22" aria-hidden="true"></div>
+              <img class="product__can" src="assets/img/can-sparkling-760.webp"
+                   srcset="assets/img/can-sparkling-420.webp 420w, assets/img/can-sparkling-760.webp 760w"
+                   sizes="(max-width: 860px) 46vw, 260px" width="760" height="1520" loading="lazy" decoding="async"
+                   alt="AQUVA Sparkling — gazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.sparkling">
+              <span class="product__shadow" aria-hidden="true"></span>
+            </div>
+            <div class="product__info">
+              <p class="product__index"><span>02</span> <span data-i18n="sparkling.type">Gazirana</span></p>
+              <h3 class="product__name" id="sparkling-name">AQUVA <strong>SPARKLING</strong></h3>
+              <p class="product__tagline" data-i18n="sparkling.tagline">Gazirana voda.</p>
+              <p class="product__desc" data-i18n="sparkling.desc">Živahni, svježi mjehurići koji bude svaki gutljaj — ista AQUVA filozofija, s malo više energije.</p>
+              <ul class="tags">
+                <li>330 ml</li>
+                <li data-i18n="tags.can">Aluminijska limenka</li>
+                <li data-i18n="sparkling.type">Gazirana</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-document.getElementById("checkoutForm").addEventListener("submit",e=>{
-  e.preventDefault();
-  document.getElementById("checkoutForm").hidden=true;
-  document.getElementById("orderSuccess").hidden=false;
-  cart=[];
-  saveCart();
-});
+    <!-- ============ SUSTAINABILITY — SAY NO TO PLASTIC ============ -->
+    <section class="sustain" id="sustainability" aria-labelledby="sustain-title">
+      <svg class="wave wave--top" viewBox="0 0 2880 80" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 40Q360 0 720 40T1440 40T2160 40T2880 40V80H0Z"/>
+      </svg>
 
-applyLanguage(currentLang);
-document.addEventListener("keydown",e=>{
-  if(e.key==="Escape"){
-    closeCart();
-    closeCheckout();
-    closeShop();
-  }
-});
-</script>
+      <div class="container sustain__intro">
+        <p class="eyebrow eyebrow--light" data-reveal data-i18n="sustain.eyebrow">02 — Održivost</p>
+        <h2 class="sustain__title" id="sustain-title" data-reveal style="--d:.08s">
+          <span class="sustain__title-a" data-i18n="sustain.title1">Budućnost nije</span>
+          <span class="strike"><span data-i18n="sustain.title2">plastika.</span></span>
+        </h2>
+        <p class="sustain__lead" data-reveal style="--d:.2s" data-i18n="sustain.lead">Umjesto tradicionalnih plastičnih boca odabrali smo aluminij — jer vjerujemo da ambalaža zaslužuje jednako pažnje kao i ono što je u njoj.</p>
+      </div>
 
-</body></html>
+      <div class="container">
+        <ol class="points">
+          <li class="point" data-reveal>
+            <span class="point__num">01</span>
+            <h3 class="point__title" data-i18n="sustain.p1t">Široko reciklabilan</h3>
+            <p class="point__text" data-i18n="sustain.p1">Aluminij je materijal koji se široko reciklira i prikuplja kroz sustave recikliranja u mnogim zemljama.</p>
+          </li>
+          <li class="point" data-reveal style="--d:.1s">
+            <span class="point__num">02</span>
+            <h3 class="point__title" data-i18n="sustain.p2t">Uvijek iznova</h3>
+            <p class="point__text" data-i18n="sustain.p2">Reciklirani aluminij može se ponovno preraditi uvijek iznova. Današnja limenka može postati sutrašnja.</p>
+          </li>
+          <li class="point" data-reveal style="--d:.2s">
+            <span class="point__num">03</span>
+            <h3 class="point__title" data-i18n="sustain.p3t">Alternativa plastici</h3>
+            <p class="point__text" data-i18n="sustain.p3">Odabrati limenku znači odabrati alternativu jednokratnoj plastičnoj boci.</p>
+          </li>
+          <li class="point" data-reveal style="--d:.3s">
+            <span class="point__num">04</span>
+            <h3 class="point__title" data-i18n="sustain.p4t">Svjesniji izbor</h3>
+            <p class="point__text" data-i18n="sustain.p4">Svjesniji pristup svakodnevnoj hidrataciji — počevši od onoga što držimo u ruci.</p>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Scroll-driven scene -->
+      <div class="pin" id="pin">
+        <div class="pin__sticky">
+          <div class="bubbles bubbles--pin" data-bubbles="18" aria-hidden="true"></div>
+          <p class="pin__word pin__word--a" data-i18n="sustain.less">Manje plastike.</p>
+          <div class="pin__can">
+            <img src="assets/img/can-still-760.webp"
+                 srcset="assets/img/can-still-420.webp 420w, assets/img/can-still-760.webp 760w"
+                 sizes="(max-width: 760px) 40vw, 280px" width="760" height="1520" loading="lazy" decoding="async"
+                 alt="AQUVA Still — negazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.still">
+          </div>
+          <p class="pin__word pin__word--b" data-i18n="sustain.more">Više budućnosti.</p>
+          <p class="pin__note" data-i18n="sustain.note">Uživaj. Zatim recikliraj.</p>
+        </div>
+      </div>
+
+      <svg class="wave wave--bottom" viewBox="0 0 2880 80" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 40Q360 0 720 40T1440 40T2160 40T2880 40V80H0Z"/>
+      </svg>
+    </section>
+
+    <!-- ============ PHILOSOPHY ============ -->
+    <section class="section philosophy" id="philosophy" aria-labelledby="philosophy-title">
+      <div class="container philosophy__grid">
+        <div class="philosophy__head">
+          <p class="eyebrow" data-reveal data-i18n="phil.eyebrow">03 — Naša filozofija</p>
+          <h2 class="title" id="philosophy-title" data-reveal style="--d:.08s">
+            <span data-i18n="phil.title1">Voda zaslužuje</span>
+            <span class="serif" data-i18n="phil.title2">bolje.</span>
+          </h2>
+        </div>
+        <div class="philosophy__body">
+          <p class="philosophy__text" data-words data-i18n="phil.text">AQUVA je nastala oko jednostavnog uvjerenja: odlična voda zaslužuje bolju ambalažu. Spajamo osvježenje, suvremeni dizajn i aluminij kako bismo iznova osmislili način na koji se voda predstavlja — i doživljava.</p>
+          <ul class="pillars">
+            <li class="pillar" data-reveal>
+              <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5s-11 13-11 20a11 11 0 0 0 22 0C31 18 20 5 20 5Z"/></svg>
+              <h3 data-i18n="phil.p1t">Osvježenje</h3>
+              <p data-i18n="phil.p1">Voda u svom najjednostavnijem obliku. Ništa više nije potrebno.</p>
+            </li>
+            <li class="pillar" data-reveal style="--d:.1s">
+              <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 32 20 8l12 24"/><path d="M6 27c5-4 9-4 14 0s9 4 14 0"/></svg>
+              <h3 data-i18n="phil.p2t">Dizajn</h3>
+              <p data-i18n="phil.p2">Minimalistička forma, stvorena da bude primijećena.</p>
+            </li>
+            <li class="pillar" data-reveal style="--d:.2s">
+              <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="12" y="5" width="16" height="30" rx="4"/><path d="M14 10h12M14 30h12"/></svg>
+              <h3 data-i18n="phil.p3t">Aluminij</h3>
+              <p data-i18n="phil.p3">Izbor ambalaže u koji vjerujemo.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BRAND MOMENT ============ -->
+    <section class="moment" aria-label="AQUVA Still & Sparkling">
+      <div class="moment__inner container">
+        <p class="moment__quote" data-reveal>
+          <span class="wordmark">AQUVA</span>
+          <span class="serif" data-i18n="footer.tagline">Voda, iznova zamišljena.</span>
+        </p>
+        <!-- data-viewer-slot: the future 360° experience can replace this static line-up -->
+        <div class="moment__stage" data-viewer-slot="lineup">
+          <figure class="moment__can" data-reveal style="--d:.1s">
+            <img src="assets/img/can-still-760.webp"
+                 srcset="assets/img/can-still-420.webp 420w, assets/img/can-still-760.webp 760w"
+                 sizes="(max-width: 760px) 34vw, 220px" width="760" height="1520" loading="lazy" decoding="async"
+                 alt="AQUVA Still — negazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.still">
+            <img class="moment__reflection" src="assets/img/can-still-420.webp" width="420" height="840" loading="lazy" decoding="async" alt="">
+            <figcaption>AQUVA Still</figcaption>
+          </figure>
+          <figure class="moment__can" data-reveal style="--d:.22s">
+            <img src="assets/img/can-sparkling-760.webp"
+                 srcset="assets/img/can-sparkling-420.webp 420w, assets/img/can-sparkling-760.webp 760w"
+                 sizes="(max-width: 760px) 34vw, 220px" width="760" height="1520" loading="lazy" decoding="async"
+                 alt="AQUVA Sparkling — gazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.sparkling">
+            <img class="moment__reflection" src="assets/img/can-sparkling-420.webp" width="420" height="840" loading="lazy" decoding="async" alt="">
+            <figcaption>AQUVA Sparkling</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact__inner">
+        <p class="eyebrow" data-reveal data-i18n="contact.eyebrow">04 — Kontakt</p>
+        <h2 class="title" id="contact-title" data-reveal style="--d:.08s">
+          <span data-i18n="contact.title1">Razgovarajmo.</span>
+        </h2>
+        <p class="contact__text" data-reveal style="--d:.16s" data-i18n="contact.text">Pitanja, suradnje ili samo pozdrav — pišite nam.</p>
+        <a class="contact__email" href="mailto:aquva@info.hr" data-reveal style="--d:.24s">aquva@info.hr</a>
+        <div class="contact__actions" data-reveal style="--d:.32s">
+          <a class="btn btn--primary" href="mailto:aquva@info.hr">
+            <span data-i18n="contact.write">Pošaljite e-mail</span>
+            <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <button class="btn btn--ghost" type="button" id="copyEmail" data-email="aquva@info.hr">
+            <span class="copy-label" data-i18n="contact.copy">Kopiraj adresu</span>
+          </button>
+          <span class="copy-status" role="status" aria-live="polite"></span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a class="brand" href="#home" aria-label="AQUVA">
+            <img class="brand__mark" src="assets/img/aquva-mark-320.webp" alt="" width="320" height="256" loading="lazy">
+            <span class="wordmark">AQUVA</span>
+          </a>
+          <p class="footer__tagline" data-i18n="footer.tagline">Voda, iznova zamišljena.</p>
+        </div>
+        <nav class="footer__nav" aria-label="Footer">
+          <a href="#home" data-i18n="nav.home">Početna</a>
+          <a href="#products" data-i18n="nav.products">Proizvodi</a>
+          <a href="#philosophy" data-i18n="nav.philosophy">Naša filozofija</a>
+          <a href="#sustainability" data-i18n="nav.sustainability">Održivost</a>
+          <a href="#contact" data-i18n="nav.contact">Kontakt</a>
+        </nav>
+        <div class="footer__contact">
+          <p class="footer__label" data-i18n="nav.contact">Kontakt</p>
+          <a href="mailto:aquva@info.hr">aquva@info.hr</a>
+        </div>
+      </div>
+      <div class="footer__giant" aria-hidden="true">AQUVA</div>
+      <div class="footer__bottom">
+        <p>© <span id="year">2026</span> AQUVA. <span data-i18n="footer.rights">Sva prava pridržana.</span></p>
+        <div class="footer__links">
+          <button type="button" class="link-btn" id="privacyOpen" data-i18n="footer.privacy">Privatnost</button>
+          <a href="#home" data-i18n="footer.top">Natrag na vrh</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ PRIVACY ============ -->
+  <dialog class="dialog" id="privacy" aria-labelledby="privacy-title">
+    <div class="dialog__inner">
+      <button class="dialog__close" type="button" id="privacyClose" aria-label="Zatvori" data-i18n-attr="aria-label:a11y.close">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <p class="eyebrow" data-i18n="footer.privacy">Privatnost</p>
+      <h2 id="privacy-title" data-i18n="privacy.title">Vaša privatnost</h2>
+      <p data-i18n="privacy.p1">Ova web stranica ne koristi kolačiće, analitiku ni praćenje. Vaš odabir jezika sprema se samo u vašem pregledniku kako bi ga stranica zapamtila.</p>
+      <p data-i18n="privacy.p2">Fontovi i slike poslužuju se izravno s ove stranice. Naš pružatelj hostinga (GitHub Pages) može obrađivati tehničke podatke, poput IP adrese, kako bi isporučio stranicu.</p>
+      <p data-i18n="privacy.p3">Ako nam pišete e-poštom, vašu poruku koristimo isključivo kako bismo vam odgovorili. Za sva pitanja o privatnosti javite nam se na aquva@info.hr.</p>
+    </div>
+  </dialog>
+
+  <noscript><style>.loader{display:none!important}</style></noscript>
+</body>
+</html>
