@@ -44,47 +44,103 @@
     if (el && value) el.setAttribute(attr, value);
   }
 
-  function applyLang(lang, persist) {
-    if (LANGS.indexOf(lang) < 0) lang = DEFAULT_LANG;
-    currentLang = lang;
-    doc.lang = lang;
+  var LOCALES = { hr: "hr-HR", en: "en-GB", it: "it-IT", de: "de-DE" };
+  var LANG_NAMES = { hr: "Hrvatski", en: "English", it: "Italiano", de: "Deutsch" };
 
-    $$("[data-i18n]").forEach(function (el) {
+  /* Translate every [data-i18n] / [data-i18n-attr] inside root (used for dynamic views too) */
+  function translate(root) {
+    root = root || document;
+    $$("[data-i18n]", root).forEach(function (el) {
       var v = t(el.getAttribute("data-i18n"));
       if (v != null) el.textContent = v;
     });
-    $$("[data-i18n-attr]").forEach(function (el) {
+    $$("[data-i18n-attr]", root).forEach(function (el) {
       el.getAttribute("data-i18n-attr").split(";").forEach(function (pair) {
         var p = pair.split(":");
         var v = t((p[1] || "").trim());
         if (p[0] && v != null) el.setAttribute(p[0].trim(), v);
       });
     });
+  }
 
-    document.title = t("meta.title");
-    setMeta('meta[name="description"]', "content", t("meta.description"));
-    setMeta('meta[property="og:title"]', "content", t("meta.title"));
-    setMeta('meta[property="og:description"]', "content", t("meta.description"));
+  function applyLang(lang, persist) {
+    if (LANGS.indexOf(lang) < 0) lang = DEFAULT_LANG;
+    currentLang = lang;
+    doc.lang = lang;
+
+    translate(document);
+
+    // Page-specific title/description keys (e.g. the shop page)
+    var titleKey = document.body.getAttribute("data-title-key") || "meta.title";
+    var descKey = document.body.getAttribute("data-desc-key") || "meta.description";
+    document.title = t(titleKey);
+    setMeta('meta[name="description"]', "content", t(descKey));
+    setMeta('meta[property="og:title"]', "content", t(titleKey));
+    setMeta('meta[property="og:description"]', "content", t(descKey));
     setMeta('meta[property="og:locale"]', "content", t("meta.ogLocale"));
 
-    $$(".lang__btn").forEach(function (b) {
-      b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang));
-    });
+    syncGlobe();
     syncBurgerLabel();
     splitWords();
     if (persist) store.set("aquva-lang", lang);
     doc.classList.remove("i18n-pending");
     requestTick();
+    document.dispatchEvent(new CustomEvent("aquva:langchange", { detail: { lang: lang } }));
   }
 
-  $$(".lang__btn").forEach(function (b) {
-    b.addEventListener("click", function () {
-      applyLang(b.getAttribute("data-lang"), true);
-      // Keep the URL clean once a choice is made explicitly
-      if (location.search.indexOf("lang=") > -1 && history.replaceState) {
-        history.replaceState(null, "", location.pathname + location.hash);
-      }
+  /* ---------------------------------------------------------------------
+     Globe language selector (disclosure pattern)
+     --------------------------------------------------------------------- */
+  var globes = $$("[data-globe]");
+
+  function syncGlobe() {
+    globes.forEach(function (g) {
+      var btn = $(".globe__btn", g), code = $(".globe__code", g);
+      if (code) code.textContent = currentLang.toUpperCase();
+      if (btn) btn.setAttribute("aria-label", (t("a11y.language") || "Language") + ": " + LANG_NAMES[currentLang]);
+      $$("[data-lang]", g).forEach(function (o) {
+        o.setAttribute("aria-pressed", String(o.getAttribute("data-lang") === currentLang));
+      });
     });
+  }
+  function closeGlobes(except, returnFocus) {
+    globes.forEach(function (g) {
+      if (g === except || !g.classList.contains("is-open")) return;
+      g.classList.remove("is-open");
+      var btn = $(".globe__btn", g);
+      btn.setAttribute("aria-expanded", "false");
+      if (returnFocus) btn.focus();
+    });
+  }
+  globes.forEach(function (g) {
+    var btn = $(".globe__btn", g);
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var open = !g.classList.contains("is-open");
+      closeGlobes(g);
+      g.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", String(open));
+      if (open) { var cur = $('[aria-pressed="true"]', g); if (cur) setTimeout(function () { cur.focus({ preventScroll: true }); }, 60); }
+    });
+    $$("[data-lang]", g).forEach(function (o) {
+      o.addEventListener("click", function () {
+        applyLang(o.getAttribute("data-lang"), true);
+        closeGlobes(null, true);
+        // Keep the URL clean once a choice is made explicitly
+        if (location.search.indexOf("lang=") > -1 && history.replaceState) {
+          history.replaceState(null, "", location.pathname + location.hash);
+        }
+      });
+    });
+  });
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest || !e.target.closest("[data-globe]")) closeGlobes(null, false);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && $("[data-globe].is-open")) { e.stopImmediatePropagation(); closeGlobes(null, true); }
+  }, true);
+  document.addEventListener("focusin", function (e) {
+    if (!e.target.closest("[data-globe]")) closeGlobes(null, false);
   });
 
   /* ---------------------------------------------------------------------
@@ -160,7 +216,10 @@
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         var id = entry.target.id;
-        navLinks.forEach(function (a) { a.classList.toggle("is-active", a.getAttribute("href") === "#" + id); });
+        navLinks.forEach(function (a) {
+          var href = a.getAttribute("href");
+          if (href.charAt(0) === "#") a.classList.toggle("is-active", href === "#" + id);
+        });
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
     $$("main section[id]").forEach(function (s) { sectionObserver.observe(s); });
@@ -229,9 +288,9 @@
   /* ---------------------------------------------------------------------
      Scroll reveals
      --------------------------------------------------------------------- */
-  var reveals = $$("[data-reveal]");
+  var revealObserver = null;
   if ("IntersectionObserver" in window && !reduceMotion) {
-    var revealObserver = new IntersectionObserver(function (entries) {
+    revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-in");
@@ -239,17 +298,21 @@
         }
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
-    reveals.forEach(function (el) { revealObserver.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add("is-in"); });
   }
+  function observeReveals(root) {
+    $$("[data-reveal]", root).forEach(function (el) {
+      if (el.classList.contains("is-in")) return;
+      if (revealObserver) revealObserver.observe(el); else el.classList.add("is-in");
+    });
+  }
+  observeReveals(document);
 
   /* ---------------------------------------------------------------------
      Bubbles (sparkling card, hero, pinned scene)
      --------------------------------------------------------------------- */
-  function makeBubbles() {
+  function makeBubbles(root) {
     if (reduceMotion) return;
-    $$("[data-bubbles]").forEach(function (box) {
+    $$("[data-bubbles]", root).forEach(function (box) {
       var n = parseInt(box.getAttribute("data-bubbles"), 10) || 12;
       if (window.innerWidth < 700) n = Math.ceil(n * 0.6);
       box.innerHTML = "";
@@ -348,9 +411,12 @@
   }
 
   // Subtle 3D tilt on product stages (desktop only)
-  if (finePointer && !reduceMotion) {
-    $$("[data-tilt]").forEach(function (card) {
+  function bindTilt(root) {
+    if (!finePointer || reduceMotion) return;
+    $$("[data-tilt]", root).forEach(function (card) {
+      if (card._tilt) return; card._tilt = true;
       var stage = $(".product__stage", card);
+      if (!stage) return;
       card.addEventListener("pointermove", function (e) {
         var r = stage.getBoundingClientRect();
         var px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
@@ -363,6 +429,7 @@
       });
     });
   }
+  bindTilt(document);
 
   /* ---------------------------------------------------------------------
      Contact: copy email
@@ -419,7 +486,25 @@
      --------------------------------------------------------------------- */
   window.AQUVA = {
     lang: function () { return currentLang; },
+    locale: function () { return LOCALES[currentLang]; },
     setLang: function (l) { applyLang(l, true); },
+    t: t,
+    /* Plural-aware lookup: key.one / key.few / key.other (falls back to .other) */
+    tp: function (key, n) {
+      var cat = "other";
+      try { cat = new Intl.PluralRules(LOCALES[currentLang]).select(n); } catch (e) {}
+      var v = t(key + "." + cat);
+      return v != null ? v : t(key + ".other");
+    },
+    translate: translate,
+    /* Bring dynamically rendered markup (shop views, cart) up to the site's standard */
+    enhance: function (root) {
+      translate(root);
+      observeReveals(root);
+      makeBubbles(root);
+      bindTilt(root);
+    },
+    reduceMotion: reduceMotion,
     viewerSlots: function () { return $$("[data-viewer-slot]"); }
   };
 
@@ -427,7 +512,7 @@
      Boot
      --------------------------------------------------------------------- */
   applyLang(resolveLang(), false);
-  makeBubbles();
+  makeBubbles(document);
   var resizeTimer, lastW = window.innerWidth;
   window.addEventListener("resize", function () {
     if (window.innerWidth === lastW) return; // ignore mobile URL-bar height changes
