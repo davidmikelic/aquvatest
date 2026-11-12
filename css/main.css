@@ -32,13 +32,14 @@
   --navy: #0A2A6B;            /* AQUVA Blue */
   --navy-deep: #071F52;
   --blue: #0B72E0;            /* bright shade of AQUVA Blue (logo droplet) */
+  --blue-text: #0A68D0;       /* text blue ≥ 4.5:1 on white and --sky */
   --sky: #EAF3FD;             /* Light Blue */
   --sky-2: #D6E8FB;
   --sky-3: #B9D7F7;
 
   --ink: var(--navy);
-  --ink-soft: rgba(10, 42, 107, .66);
-  --ink-faint: rgba(10, 42, 107, .64); /* ≥ 4.5:1 on white (WCAG AA) */
+  --ink-soft: rgba(10, 42, 107, .66);   /* ≥ 4.5:1 on white (WCAG AA) */
+  --ink-faint: rgba(10, 42, 107, .64);  /* ≥ 4.5:1 on white (WCAG AA) */
   --line: rgba(10, 42, 107, .12);
 
   --font: "Jost", "Helvetica Neue", Arial, sans-serif;
@@ -91,7 +92,7 @@ html.intro-playing:not(.intro-done) body { overflow: hidden; }
 
 .eyebrow {
   display: inline-flex; align-items: center; gap: 14px;
-  font-size: 12.5px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: var(--blue);
+  font-size: 12.5px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: var(--blue-text);
 }
 .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; opacity: .6; }
 .eyebrow--light { color: var(--sky-3); }
@@ -292,7 +293,7 @@ html.menu-open .menu__link span { transform: none; transition-delay: calc(.18s +
 .menu__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; margin-top: 32px;
   opacity: 0; transform: translateY(12px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
 html.menu-open .menu__foot { opacity: 1; transform: none; transition-delay: .5s; }
-.menu__mail { font-size: 16px; color: var(--blue); }
+.menu__mail { font-size: 16px; color: var(--blue-text); }
 html.menu-open body { overflow: hidden; }
 
 /* =========================================================================
@@ -452,11 +453,11 @@ html.js.ready .hero [data-hero="6"][data-hero] { transition-delay: .9s; transfor
 }
 
 .product__info { padding-inline: 4px; }
-.product__index { display: flex; gap: 14px; font-size: 12.5px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--blue); }
+.product__index { display: flex; gap: 14px; font-size: 12.5px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--blue-text); }
 .product__index span:first-child { color: var(--ink-faint); }
 .product__name { margin-top: 14px; font-size: clamp(30px, 3.2vw, 46px); font-weight: 300; letter-spacing: .02em; line-height: 1.05; }
 .product__name strong { font-weight: 500; }
-.product__tagline { margin-top: 10px; font-family: var(--serif); font-style: italic; font-size: clamp(22px, 2vw, 28px); color: var(--blue); line-height: 1.2; }
+.product__tagline { margin-top: 10px; font-family: var(--serif); font-style: italic; font-size: clamp(22px, 2vw, 28px); color: var(--blue-text); line-height: 1.2; }
 .product__desc { margin-top: 14px; color: var(--ink-soft); font-weight: 300; max-width: 44ch; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
 .tags li { padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
@@ -565,9 +566,10 @@ html.js .point.is-in::before { transform: scaleX(1); }
 .philosophy__grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(40px, 6vw, 110px); align-items: start; }
 .philosophy__head { position: sticky; top: calc(var(--header-h) + 40px); }
 .philosophy__text { font-size: clamp(24px, 2.5vw, 38px); line-height: 1.32; font-weight: 300; letter-spacing: -.01em; }
-.philosophy__text .w { color: var(--navy); opacity: .16; transition: opacity .5s var(--ease); }
-.philosophy__text .w.on { opacity: 1; }
-html:not(.js) .philosophy__text .w { opacity: 1; }
+/* Unlit words use solid ink-soft (≥ 4.5:1) instead of low opacity — preserves reveal without failing contrast */
+.philosophy__text .w { color: var(--ink-soft); transition: color .5s var(--ease); }
+.philosophy__text .w.on { color: var(--navy); }
+html:not(.js) .philosophy__text .w { color: var(--navy); }
 .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: clamp(56px, 7vw, 96px); }
 .pillar { padding-top: 22px; border-top: 1px solid var(--line); }
 .pillar svg { width: 36px; height: 36px; fill: none; stroke: var(--blue); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
@@ -588,7 +590,7 @@ html:not(.js) .philosophy__text .w { opacity: 1; }
 .moment { position: relative; overflow: hidden; background: linear-gradient(180deg, var(--white) 0%, var(--sky) 38%, var(--sky-2) 100%); padding: clamp(80px, 10vw, 140px) 0 0; }
 .moment__inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .moment__quote { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.moment__quote .wordmark { font-size: 14px; color: var(--blue); }
+.moment__quote .wordmark { font-size: 14px; color: var(--blue-text); }
 .moment__quote .serif { font-size: clamp(38px, 6vw, 92px); line-height: 1.02; color: var(--navy); }
 .moment__stage { display: flex; justify-content: center; align-items: flex-end; gap: clamp(28px, 6vw, 96px); margin-top: clamp(48px, 6vw, 80px); position: relative; }
 .moment__stage::after { /* water surface */
@@ -624,18 +626,18 @@ html:not(.js) .philosophy__text .w { opacity: 1; }
 .contact__email:hover { color: var(--blue); }
 .contact__email:hover::after, .contact__email:focus-visible::after { transform: scaleX(1); }
 .contact__actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px; margin-top: clamp(40px, 5vw, 60px); position: relative; }
-.copy-status { position: absolute; left: 50%; top: calc(100% + 14px); transform: translateX(-50%); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); white-space: nowrap; }
+.copy-status { position: absolute; left: 50%; top: calc(100% + 14px); transform: translateX(-50%); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--blue-text); white-space: nowrap; }
 
 /* =========================================================================
    FOOTER
    ========================================================================= */
 .footer { position: relative; overflow: hidden; border-top: 1px solid var(--line); padding-top: clamp(64px, 8vw, 100px); background: linear-gradient(180deg, var(--white), var(--sky)); }
 .footer__top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; align-items: start; }
-.footer__tagline { margin-top: 18px; font-family: var(--serif); font-style: italic; font-size: 24px; color: var(--blue); }
+.footer__tagline { margin-top: 18px; font-family: var(--serif); font-style: italic; font-size: 24px; color: var(--blue-text); }
 .footer__nav { display: grid; gap: 10px; }
 .footer__nav a, .footer__contact a { position: relative; width: fit-content; color: var(--ink-soft); transition: color .3s var(--ease); }
 .footer__nav a:hover, .footer__contact a:hover { color: var(--navy); }
-.footer__label { font-size: 12px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+.footer__label { font-size: 12px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--blue-text); margin-bottom: 12px; }
 .footer__giant {
   margin-top: clamp(48px, 7vw, 96px); font-size: 23.5vw; font-weight: 500; line-height: .74; letter-spacing: .02em; text-align: center; white-space: nowrap;
   color: transparent; -webkit-text-stroke: 1px rgba(11, 114, 224, .2); user-select: none; margin-inline: calc(var(--gutter) * -1);
@@ -684,7 +686,7 @@ html.js [data-reveal].is-in { opacity: 1; transform: none; }
   .pin__sticky { position: relative; height: auto; min-height: 80vh; padding: 80px 0; --a: 1; --b: 1; --c: 1; }
   .pin__can { transform: none; }
   .pin__word--a, .pin__word--b { transform: none; }
-  .philosophy__text .w { opacity: 1; }
+  .philosophy__text .w { color: var(--navy); }
   html.js [data-reveal], html.js [data-hero] { opacity: 1 !important; transform: none !important; filter: none !important; }
   html.js .scroll-cue[data-hero] { transform: translateX(-50%) !important; }
 }
