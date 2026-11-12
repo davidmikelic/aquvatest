@@ -188,6 +188,12 @@
   });
   function refocus(sel) { var n = $(sel, drawer); if (n) n.focus(); }
 
+  function setExpanded(open) {
+    $$("[data-cart-open]").forEach(function (btn) {
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  }
+
   function open(opener) {
     clearTimeout(closeTimer);
     lastFocus = opener || document.activeElement;
@@ -195,11 +201,13 @@
     drawer.hidden = false;
     void drawer.offsetWidth;
     document.documentElement.classList.add("drawer-open");
+    setExpanded(true);
     setTimeout(function () { var c = $(".drawer__close", drawer); if (c) c.focus({ preventScroll: true }); }, 80);
   }
   function close(skipFocus) {
     if (!document.documentElement.classList.contains("drawer-open")) return;
     document.documentElement.classList.remove("drawer-open");
+    setExpanded(false);
     closeTimer = setTimeout(function () { drawer.hidden = true; }, 520);
     if (!skipFocus && lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   }
@@ -217,6 +225,7 @@
   });
 
   $$("[data-cart-open]").forEach(function (b) {
+    b.setAttribute("aria-expanded", "false");
     b.addEventListener("click", function () { open(b); });
   });
 

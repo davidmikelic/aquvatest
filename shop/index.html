@@ -18,8 +18,19 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="AQUVA Still i AQUVA Sparkling u aluminijskim limenkama od 330 ml">
   <meta property="og:locale" content="hr_HR">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta property="og:locale:alternate" content="de_DE">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AQUVA Trgovina — Still i Sparkling u limenci od 330 ml">
+  <meta name="twitter:description" content="Odaberite AQUVA Still ili AQUVA Sparkling u aluminijskoj limenci od 330 ml — kao jednu limenku, paket od 6 ili paket od 24.">
   <meta name="twitter:image" content="https://www.aquva-test.com/assets/img/og-image.jpg">
+
+  <link rel="alternate" hreflang="hr" href="https://www.aquva-test.com/shop/">
+  <link rel="alternate" hreflang="en" href="https://www.aquva-test.com/shop/?lang=en">
+  <link rel="alternate" hreflang="it" href="https://www.aquva-test.com/shop/?lang=it">
+  <link rel="alternate" hreflang="de" href="https://www.aquva-test.com/shop/?lang=de">
+  <link rel="alternate" hreflang="x-default" href="https://www.aquva-test.com/shop/">
 
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32.png">
@@ -30,8 +41,8 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <link rel="preload" href="/assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/css/main.css?v=20261112b">
-  <link rel="stylesheet" href="/css/shop.css?v=20261112b">
+  <link rel="stylesheet" href="/css/main.css?v=20261112d">
+  <link rel="stylesheet" href="/css/shop.css?v=20261112d">
 
   <script>
     /* Same pre-paint setup as the home page; the intro loader only plays on the home page */
@@ -42,11 +53,65 @@
       d.className = c.join(' ');
     })();
   </script>
-  <script src="/js/i18n.js?v=20261112b" defer></script>
-  <script src="/js/shop-data.js?v=20261112b" defer></script>
-  <script src="/js/main.js?v=20261112b" defer></script>
-  <script src="/js/cart.js?v=20261112c" defer></script>
-  <script src="/js/shop.js?v=20261112b" defer></script>
+  <script src="/js/i18n.js?v=20261112d" defer></script>
+  <script src="/js/shop-data.js?v=20261112d" defer></script>
+  <script src="/js/main.js?v=20261112d" defer></script>
+  <script src="/js/cart.js?v=20261112d" defer></script>
+  <script src="/js/shop.js?v=20261112d" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.aquva-test.com/#organization",
+        "name": "AQUVA",
+        "url": "https://www.aquva-test.com/",
+        "logo": "https://www.aquva-test.com/assets/favicon/favicon-512.png",
+        "email": "aquva@info.hr"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.aquva-test.com/shop/#webpage",
+        "url": "https://www.aquva-test.com/shop/",
+        "name": "AQUVA Trgovina — Still i Sparkling u limenci od 330 ml",
+        "isPartOf": { "@id": "https://www.aquva-test.com/#website" },
+        "inLanguage": "hr"
+      },
+      {
+        "@type": "Product",
+        "name": "AQUVA Still",
+        "description": "AQUVA Still — still water in a 330 ml aluminium can.",
+        "image": "https://www.aquva-test.com/assets/img/can-still-760.webp",
+        "brand": { "@type": "Brand", "name": "AQUVA" },
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "EUR",
+          "lowPrice": "0.99",
+          "highPrice": "21.99",
+          "offerCount": "3",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "Product",
+        "name": "AQUVA Sparkling",
+        "description": "AQUVA Sparkling — sparkling water in a 330 ml aluminium can.",
+        "image": "https://www.aquva-test.com/assets/img/can-sparkling-760.webp",
+        "brand": { "@type": "Brand", "name": "AQUVA" },
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "EUR",
+          "lowPrice": "0.99",
+          "highPrice": "21.99",
+          "offerCount": "3",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="page-shop" data-title-key="shop.meta.title" data-desc-key="shop.meta.description">
 

@@ -78,6 +78,8 @@
     setMeta('meta[property="og:title"]', "content", t(titleKey));
     setMeta('meta[property="og:description"]', "content", t(descKey));
     setMeta('meta[property="og:locale"]', "content", t("meta.ogLocale"));
+    setMeta('meta[name="twitter:title"]', "content", t(titleKey));
+    setMeta('meta[name="twitter:description"]', "content", t(descKey));
 
     syncGlobe();
     syncBurgerLabel();
