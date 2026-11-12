@@ -82,8 +82,7 @@
   function summaryRows(t) {
     return '' +
       '<div class="sum-row"><span data-i18n="cart.packages"></span><strong>' + SHOP.formatNumber(t.packages) + '</strong></div>' +
-      '<div class="sum-row"><span data-i18n="cart.cans"></span><strong>' + SHOP.formatNumber(t.cans) + '</strong></div>' +
-      '<div class="sum-row"><span data-i18n="cart.volume"></span><strong>' + SHOP.formatLitres(t.volumeMl) + '</strong></div>';
+      '<div class="sum-row"><span data-i18n="cart.cans"></span><strong>' + SHOP.formatNumber(t.cans) + '</strong></div>';
   }
 
   Cart.ui = { esc: esc, packLabel: packLabel, summaryRows: summaryRows };
