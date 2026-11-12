@@ -200,9 +200,13 @@
      Header: scrolled state, hide on scroll down, active section
      --------------------------------------------------------------------- */
   var header = $("#header");
-  var lastY = window.scrollY;
+  /* Defer reading scrollY until the first rAF frame so we don't force layout
+     while the stylesheet is still settling after parse. */
+  var lastY = 0;
+  var headerReady = false;
 
   function updateHeader(y) {
+    if (!headerReady) { lastY = y; headerReady = true; }
     header.classList.toggle("is-scrolled", y > 12);
     var goingDown = y > lastY + 4, goingUp = y < lastY - 4;
     if (!doc.classList.contains("menu-open")) {
@@ -314,14 +318,26 @@
      --------------------------------------------------------------------- */
   function makeBubbles(root) {
     if (reduceMotion) return;
-    $$("[data-bubbles]", root).forEach(function (box) {
-      var n = parseInt(box.getAttribute("data-bubbles"), 10) || 12;
-      if (window.innerWidth < 700) n = Math.ceil(n * 0.6);
-      box.innerHTML = "";
-      var h = box.clientHeight || 600;
+    var boxes = $$("[data-bubbles]", root);
+    if (!boxes.length) return;
+    /* Batch geometry reads before any DOM writes to avoid forced reflow. */
+    var vw = window.innerWidth;
+    var meta = boxes.map(function (box) {
+      return {
+        box: box,
+        h: box.clientHeight || 600,
+        n: parseInt(box.getAttribute("data-bubbles"), 10) || 12,
+        pin: box.classList.contains("bubbles--pin")
+      };
+    });
+    meta.forEach(function (m) {
+      var n = vw < 700 ? Math.ceil(m.n * 0.6) : m.n;
+      var h = m.h;
+      var box = m.box;
+      var frag = document.createDocumentFragment();
       for (var i = 0; i < n; i++) {
         var b = document.createElement("span");
-        var s = 3 + Math.random() * (box.classList.contains("bubbles--pin") ? 9 : 11);
+        var s = 3 + Math.random() * (m.pin ? 9 : 11);
         b.className = "bubble";
         b.style.setProperty("--x", (Math.random() * 100).toFixed(1) + "%");
         b.style.setProperty("--s", s.toFixed(1) + "px");
@@ -329,8 +345,10 @@
         b.style.setProperty("--dl", (-Math.random() * 14).toFixed(2) + "s");
         b.style.setProperty("--dx", ((Math.random() - 0.5) * 60).toFixed(0) + "px");
         b.style.setProperty("--rise", -(h + 40) + "px");
-        box.appendChild(b);
+        frag.appendChild(b);
       }
+      box.textContent = "";
+      box.appendChild(frag);
     });
   }
 
@@ -350,9 +368,22 @@
 
   function frame() {
     ticking = false;
+    /* Phase 1 — geometry reads (no style writes yet). */
     var y = window.scrollY, vh = window.innerHeight;
+    var pinRect = null, pinH = 0, pinVisible = false;
+    if (pin && !reduceMotion) {
+      pinRect = pin.getBoundingClientRect();
+      pinH = pin.offsetHeight;
+      pinVisible = pinRect.bottom > 0 && pinRect.top < vh;
+    }
+    var wordRects = null;
+    if (wordBlocks.length) {
+      wordRects = wordBlocks.map(function (b) { return b.el.getBoundingClientRect(); });
+    }
+
+    /* Phase 2 — style / class writes. */
     updateHeader(y);
-    if (reduceMotion) { updateWords(vh, true); return; }
+    if (reduceMotion) { updateWords(vh, true, wordRects); return; }
 
     // Background parallax
     parallaxEls.forEach(function (el) {
@@ -373,21 +404,18 @@
     }
 
     // Pinned "less plastic / more future" scene
-    if (pin) {
-      var r = pin.getBoundingClientRect();
-      var total = pin.offsetHeight - vh;
-      if (r.bottom > 0 && r.top < vh) {
-        var p = total > 0 ? clamp(-r.top / total, 0, 1) : 1;
-        pin.style.setProperty("--p", p.toFixed(4));
-      }
+    if (pin && pinVisible) {
+      var total = pinH - vh;
+      var p = total > 0 ? clamp(-pinRect.top / total, 0, 1) : 1;
+      pin.style.setProperty("--p", p.toFixed(4));
     }
 
-    updateWords(vh, false);
+    updateWords(vh, false, wordRects);
   }
 
-  function updateWords(vh, all) {
-    wordBlocks.forEach(function (b) {
-      var r = b.el.getBoundingClientRect();
+  function updateWords(vh, all, rects) {
+    wordBlocks.forEach(function (b, idx) {
+      var r = rects ? rects[idx] : b.el.getBoundingClientRect();
       var lit;
       if (all) lit = b.words.length;
       else {
@@ -513,14 +541,16 @@
   /* ---------------------------------------------------------------------
      Boot
      --------------------------------------------------------------------- */
+  /* Capture viewport width before applyLang/makeBubbles mutate the DOM. */
+  var resizeTimer, lastW = window.innerWidth;
   applyLang(resolveLang(), false);
   makeBubbles(document);
-  var resizeTimer, lastW = window.innerWidth;
   window.addEventListener("resize", function () {
-    if (window.innerWidth === lastW) return; // ignore mobile URL-bar height changes
-    lastW = window.innerWidth;
+    var w = window.innerWidth;
+    if (w === lastW) return; // ignore mobile URL-bar height changes
+    lastW = w;
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(makeBubbles, 250);
+    resizeTimer = setTimeout(function () { makeBubbles(document); }, 250);
   });
   runIntro();
   requestTick();
