@@ -209,8 +209,18 @@
     document.documentElement.classList.remove("drawer-open");
     setExpanded(false);
     closeTimer = setTimeout(function () { drawer.hidden = true; }, 520);
-    if (!skipFocus && lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+    if (!skipFocus && lastFocus && lastFocus.focus) {
+      // Return focus for accessibility, but only show the focus ring to keyboard users
+      if (!usingKeyboard) {
+        lastFocus.classList.add("no-ring");
+        lastFocus.addEventListener("blur", function rm() { lastFocus.classList.remove("no-ring"); lastFocus.removeEventListener("blur", rm); });
+      }
+      lastFocus.focus({ preventScroll: true, focusVisible: usingKeyboard });
+    }
   }
+  var usingKeyboard = false;
+  document.addEventListener("keydown", function (e) { if (e.key === "Tab" || e.key === "Escape" || e.key === "Enter" || e.key === " ") usingKeyboard = true; }, true);
+  document.addEventListener("pointerdown", function () { usingKeyboard = false; }, true);
 
   document.addEventListener("keydown", function (e) {
     if (!document.documentElement.classList.contains("drawer-open")) return;
