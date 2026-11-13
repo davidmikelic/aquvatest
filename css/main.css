@@ -447,7 +447,12 @@ html.js.ready .hero [data-hero="6"][data-hero] { transition-delay: .9s; transfor
   .product--sparkling:hover .bubble { animation-duration: calc(var(--t) * .55); }
 }
 
-.product__info { padding-inline: 4px; }
+/* Card content below the image (home product cards + shop cards): centred column.
+   flex:1 lets the last row (tags / button + price) sit at the same height in both cards. */
+.product__info { padding-inline: 4px; flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.product__info .product__index { justify-content: center; }
+.product__info .product__desc { margin-inline: auto; }
+.product__info .tags { justify-content: center; margin-top: auto; padding-top: 22px; }
 .product__index { display: flex; gap: 14px; font-size: 12.5px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--blue-text); }
 .product__index span:first-child { color: var(--ink-faint); }
 .product__name { margin-top: 14px; font-size: clamp(30px, 3.2vw, 46px); font-weight: 300; letter-spacing: .02em; line-height: 1.05; }
@@ -509,8 +514,12 @@ html.js.ready .hero [data-hero="6"][data-hero] { transition-delay: .9s; transfor
 .sustain__lead { margin-top: clamp(32px, 4vw, 52px); margin-left: auto; max-width: 46ch; font-size: clamp(18px, 1.6vw, 23px); font-weight: 300; line-height: 1.5; color: rgba(255, 255, 255, .78); }
 
 .points { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(24px, 3vw, 44px); margin-top: clamp(44px, 6vw, 88px); counter-reset: p; }
-.point { position: relative; padding-top: 28px; }
-.point::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgba(255, 255, 255, .22); transform-origin: left; }
+/* Centred info columns: shared rules for the four sustainability points and the three pillars */
+.point, .pillar { position: relative; text-align: center; }
+.point::before, .pillar::before { content: ""; position: absolute; left: 10%; right: 10%; top: 0; height: 1px; transform-origin: center; }
+.point__text, .pillar p { max-width: 30ch; margin-inline: auto; }
+.point { padding-top: 28px; }
+.point::before { background: rgba(255, 255, 255, .22); }
 html.js .point[data-reveal]::before { transform: scaleX(0); transition: transform 1.2s var(--ease) var(--d, 0s); }
 html.js .point.is-in::before { transform: scaleX(1); }
 .point__num { font-size: 13px; font-weight: 500; letter-spacing: .2em; color: var(--sky-3); }
@@ -575,8 +584,9 @@ html.js .point.is-in::before { transform: scaleX(1); }
 .philosophy__text .w.on { color: var(--navy); }
 html:not(.js) .philosophy__text .w { color: var(--navy); }
 .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: clamp(36px, 5vw, 72px); }
-.pillar { padding-top: 22px; border-top: 1px solid var(--line); }
-.pillar svg { width: 36px; height: 36px; fill: none; stroke: var(--blue); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.pillar { padding-top: 22px; }
+.pillar::before { background: var(--line); }
+.pillar svg { display: block; margin-inline: auto; width: 36px; height: 36px; fill: none; stroke: var(--blue); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
 .pillar h3 { margin-top: 18px; font-size: 20px; font-weight: 500; letter-spacing: .02em; }
 .pillar p { margin-top: 8px; font-size: 15.5px; color: var(--ink-soft); font-weight: 300; }
 @media (max-width: 1100px) and (min-width: 861px) {
@@ -588,9 +598,8 @@ html:not(.js) .philosophy__text .w { color: var(--navy); }
   .philosophy__grid { grid-template-columns: 1fr; }
   .philosophy__head { position: static; }
   .pillars { grid-template-columns: 1fr; gap: 0; }
-  .pillar { display: grid; grid-template-columns: 44px 1fr; column-gap: 16px; padding: 22px 0; }
-  .pillar svg { grid-row: span 2; }
-  .pillar h3 { margin-top: 2px; }
+  .pillar { padding: 26px 0; }
+  .pillar h3 { margin-top: 14px; }
 }
 
 /* =========================================================================
