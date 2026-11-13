@@ -374,6 +374,20 @@
     return { name: "home" };
   }
 
+  function syncDocumentMeta(r) {
+    var titleKey = "shop.meta.title", descKey = "shop.meta.description";
+    if (r.name === "product" && r.product) {
+      document.title = r.product.name + " — AQUVA";
+      return;
+    }
+    if (r.name === "checkout") titleKey = "checkout.title";
+    if (r.name === "confirmation") titleKey = "confirm.eyebrow";
+    var title = A.t(titleKey), desc = A.t(descKey);
+    if (title) document.title = r.name === "checkout" || r.name === "confirmation" ? (title + " — AQUVA") : title;
+    var meta = document.querySelector('meta[name="description"]');
+    if (meta && desc) meta.setAttribute("content", desc);
+  }
+
   function render(opts) {
     opts = opts || {};
     var r = parse();
@@ -385,6 +399,7 @@
     view.innerHTML = html;
     view.setAttribute("data-route", r.name);
     A.enhance(view);
+    syncDocumentMeta(r);
     if (r.name === "product") bindProduct(r.product);
     if (r.name === "checkout") bindCheckout();
     if (!opts.keepScroll) window.scrollTo(0, 0);

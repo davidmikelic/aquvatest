@@ -206,6 +206,7 @@
   var headerReady = false;
 
   function updateHeader(y) {
+    if (!header) return;
     if (!headerReady) { lastY = y; headerReady = true; }
     header.classList.toggle("is-scrolled", y > 12);
     var goingDown = y > lastY + 4, goingUp = y < lastY - 4;
@@ -243,12 +244,16 @@
     if (label) burger.setAttribute("aria-label", label);
   }
 
+  function menuFocusables() {
+    return [burger].concat($$("a, button", menu)).filter(Boolean);
+  }
+
   function openMenu() {
     clearTimeout(menuTimer);
     menu.hidden = false;
     void menu.offsetWidth; // commit the closed state before animating
     doc.classList.add("menu-open");
-    header.classList.remove("is-hidden");
+    if (header) header.classList.remove("is-hidden");
     burger.setAttribute("aria-expanded", "true");
     syncBurgerLabel();
     var first = $(".menu__link", menu);
@@ -270,13 +275,20 @@
     $$("a", menu).forEach(function (a) { a.addEventListener("click", function () { closeMenu(false); }); });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") closeMenu(true);
-      // Simple focus trap while the menu is open
+      // Keep focus inside burger + menu while open (header chrome stays visible above the panel)
       if (e.key === "Tab" && doc.classList.contains("menu-open")) {
-        var f = [burger].concat($$("a, button", menu));
+        var f = menuFocusables();
+        if (!f.length) return;
         var i = f.indexOf(document.activeElement);
-        if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
-        else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+        if (e.shiftKey && (i <= 0 || i < 0)) { e.preventDefault(); f[f.length - 1].focus(); }
+        else if (!e.shiftKey && (i === f.length - 1 || i < 0)) { e.preventDefault(); f[0].focus(); }
       }
+    });
+    document.addEventListener("focusin", function (e) {
+      if (!doc.classList.contains("menu-open")) return;
+      if (e.target === burger || (menu.contains && menu.contains(e.target))) return;
+      var f = menuFocusables();
+      if (f[0]) f[0].focus({ preventScroll: true });
     });
     window.addEventListener("resize", function () { if (window.innerWidth > 1199) closeMenu(false); });
   }
@@ -360,7 +372,7 @@
   var heroCans = $$(".hero__can");
   var hero = $(".hero");
   var pointer = { x: 0, y: 0, tx: 0, ty: 0 };
-  var ticking = false, pointerLoop = false;
+  var ticking = false;
 
   function requestTick() {
     if (!ticking) { ticking = true; requestAnimationFrame(frame); }
@@ -492,12 +504,14 @@
      Privacy dialog
      --------------------------------------------------------------------- */
   var dialog = $("#privacy");
+  var privacyOpen = $("#privacyOpen");
+  var privacyClose = $("#privacyClose");
   if (dialog) {
-    $("#privacyOpen").addEventListener("click", function () {
+    if (privacyOpen) privacyOpen.addEventListener("click", function () {
       if (typeof dialog.showModal === "function") dialog.showModal();
       else dialog.setAttribute("open", "");
     });
-    $("#privacyClose").addEventListener("click", function () {
+    if (privacyClose) privacyClose.addEventListener("click", function () {
       if (typeof dialog.close === "function") dialog.close(); else dialog.removeAttribute("open");
     });
     dialog.addEventListener("click", function (e) {

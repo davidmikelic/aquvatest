@@ -133,7 +133,7 @@
 
   function stepper(id, qty, name) {
     return '<div class="stepper stepper--sm" role="group" aria-label="' + esc(name) + '">' +
-      '<button type="button" class="stepper__btn" data-cart-dec="' + id + '" data-i18n-attr="aria-label:qty.decrease"' + (qty <= 1 ? "" : "") + '><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg></button>' +
+      '<button type="button" class="stepper__btn" data-cart-dec="' + id + '" data-i18n-attr="aria-label:qty.decrease"' + (qty <= 1 ? ' aria-label="' + esc(AQUVA.t("cart.remove") || "Remove") + '"' : "") + '><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg></button>' +
       '<span class="stepper__val" aria-live="polite">' + qty + '</span>' +
       '<button type="button" class="stepper__btn" data-cart-inc="' + id + '" data-i18n-attr="aria-label:qty.increase"' + (qty >= MAX_QTY ? " disabled" : "") + '><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12M12 6v12"/></svg></button>' +
     '</div>';
