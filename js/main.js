@@ -278,7 +278,7 @@
         else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
       }
     });
-    window.addEventListener("resize", function () { if (window.innerWidth > 1080) closeMenu(false); });
+    window.addEventListener("resize", function () { if (window.innerWidth > 1199) closeMenu(false); });
   }
 
   // Brand / "back to top" links scroll to the very top

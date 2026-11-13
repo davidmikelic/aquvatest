@@ -20,7 +20,7 @@
 /* =========================================================================
    SHOP PAGE
    ========================================================================= */
-.shop-hero { position: relative; overflow: hidden; isolation: isolate; padding: calc(var(--header-h) + clamp(56px, 8vw, 110px)) 0 clamp(48px, 6vw, 84px); }
+.shop-hero { position: relative; overflow: hidden; isolation: isolate; padding: calc(var(--header-h) + clamp(36px, 6vw, 88px)) 0 clamp(36px, 5vw, 68px); }
 .shop-hero__bg { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, var(--white) 0%, var(--sky) 100%); }
 .shop-hero__word {
   position: absolute; right: -2vw; bottom: -5vw; font-size: 27vw; font-weight: 500; line-height: .8; letter-spacing: .02em; white-space: nowrap;
@@ -32,8 +32,8 @@
 .shop-hero__facts { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 32px; font-size: 12.5px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-faint); }
 .shop-hero__facts li + li::before { content: ""; display: inline-block; width: 4px; height: 4px; margin: 0 18px 2px 0; border-radius: 50%; background: var(--sky-3); vertical-align: middle; }
 
-.shop-products { padding: clamp(56px, 7vw, 100px) 0 var(--section-y); }
-.shop-products__note { margin-top: clamp(48px, 6vw, 80px); max-width: 760px; }
+.shop-products { padding: clamp(36px, 5vw, 72px) 0 var(--section-y); }
+.shop-products__note { margin-top: clamp(36px, 5vw, 64px); max-width: 760px; }
 .product--link { color: inherit; border-radius: var(--radius); }
 .product--link:focus-visible { outline: 2px solid var(--blue); outline-offset: 8px; }
 .product__buyrow { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 26px; }
@@ -203,7 +203,7 @@
 .confirm__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 40px; }
 @media (max-width: 860px) { .confirm__grid { grid-template-columns: 1fr; } }
 
-.shop-state { padding: calc(var(--header-h) + 96px) 0 var(--section-y); text-align: center; }
+.shop-state { padding: calc(var(--header-h) + 64px) 0 var(--section-y); text-align: center; }
 .shop-state__inner { display: flex; flex-direction: column; align-items: center; gap: 18px; }
 .shop-state__inner .cart-empty__icon { margin: 0; }
 .shop-state__title { font-size: clamp(28px, 3.4vw, 44px); font-weight: 400; letter-spacing: -.02em; }
