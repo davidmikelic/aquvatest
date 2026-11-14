@@ -89,7 +89,6 @@
     }).join("") + '</ul>' +
     '<div class="sum">' +
       Cart.ui.summaryRows(t) +
-      '<div class="sum-row"><span data-i18n="cart.volume"></span><strong>' + litres(t.volumeMl) + '</strong></div>' +
       (P ? '<div class="sum-row sum-row--sep"><span data-i18n="cart.subtotal"></span><strong>' + price(t.subtotalCents) + '</strong></div>' +
         '<div class="sum-row"><span data-i18n="checkout.delivery"></span><strong class="sum-muted" data-i18n="checkout.notConfigured"></strong></div>' +
         '<div class="sum-row sum-row--total"><span><span data-i18n="checkout.total"></span><small data-i18n="checkout.totalNote"></small></span><strong>' + price(t.subtotalCents) + '</strong></div>' : '') +
