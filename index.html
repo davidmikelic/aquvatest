@@ -3,34 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>AQUVA — Voda u aluminijskoj limenci</title>
-  <meta name="description" content="AQUVA negazirana i gazirana voda u aluminijskoj limenci od 330 ml.">
+  <title>AQUVA D.P. d.o.o. | Voda u aluminijskoj limenci</title>
+  <meta name="description" content="AQUVA negazirana i gazirana voda u vitkoj aluminijskoj limenci od 330 ml. Upoznajte proizvode, zašto smo odabrali aluminij i AQUVA trgovinu.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="AQUVA D.P. d.o.o.">
+  <meta name="application-name" content="AQUVA">
+  <meta name="apple-mobile-web-app-title" content="AQUVA">
   <meta name="theme-color" content="#FFFFFF">
-  <link rel="canonical" href="https://www.aquva-test.com/">
+  <!-- Google Search Console: paste the verification tag from Search Console here, e.g.
+       <meta name="google-site-verification" content="..."> (do not invent a value). -->
 
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="AQUVA">
-  <meta property="og:url" content="https://www.aquva-test.com/">
-  <meta property="og:title" content="AQUVA — Voda u aluminijskoj limenci">
-  <meta property="og:description" content="AQUVA Still i AQUVA Sparkling — čista voda u aluminijskoj limenci od 330 ml.">
-  <meta property="og:image" content="https://www.aquva-test.com/assets/img/og-image.jpg">
+  <meta property="og:site_name" content="AQUVA D.P. d.o.o.">
+  <meta property="og:url" content="https://www.aquva.hr/">
+  <meta property="og:title" content="AQUVA D.P. d.o.o. | Voda u aluminijskoj limenci">
+  <meta property="og:description" content="AQUVA negazirana i gazirana voda u vitkoj aluminijskoj limenci od 330 ml. Upoznajte proizvode, zašto smo odabrali aluminij i AQUVA trgovinu.">
+  <meta property="og:image" content="https://www.aquva.hr/assets/img/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="AQUVA Still i AQUVA Sparkling u aluminijskim limenkama od 330 ml">
-  <meta name="twitter:image" content="https://www.aquva-test.com/assets/img/og-image.jpg">
+  <meta name="twitter:image" content="https://www.aquva.hr/assets/img/og-image.jpg">
   <meta property="og:locale" content="hr_HR">
   <meta property="og:locale:alternate" content="en_GB">
   <meta property="og:locale:alternate" content="it_IT">
   <meta property="og:locale:alternate" content="de_DE">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="AQUVA — Voda u aluminijskoj limenci">
-  <meta name="twitter:description" content="AQUVA Still i AQUVA Sparkling — čista voda u aluminijskoj limenci od 330 ml.">
+  <meta name="twitter:title" content="AQUVA D.P. d.o.o. | Voda u aluminijskoj limenci">
+  <meta name="twitter:description" content="AQUVA negazirana i gazirana voda u vitkoj aluminijskoj limenci od 330 ml. Upoznajte proizvode, zašto smo odabrali aluminij i AQUVA trgovinu.">
 
-  <link rel="alternate" hreflang="hr" href="https://www.aquva-test.com/">
-  <link rel="alternate" hreflang="en" href="https://www.aquva-test.com/?lang=en">
-  <link rel="alternate" hreflang="it" href="https://www.aquva-test.com/?lang=it">
-  <link rel="alternate" hreflang="de" href="https://www.aquva-test.com/?lang=de">
-  <link rel="alternate" hreflang="x-default" href="https://www.aquva-test.com/">
+  <link rel="alternate" hreflang="hr" href="https://www.aquva.hr/">
+  <link rel="alternate" hreflang="en" href="https://www.aquva.hr/?lang=en">
+  <link rel="alternate" hreflang="it" href="https://www.aquva.hr/?lang=it">
+  <link rel="alternate" hreflang="de" href="https://www.aquva.hr/?lang=de">
+  <link rel="alternate" hreflang="x-default" href="https://www.aquva.hr/">
 
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
@@ -45,29 +50,53 @@
   <link rel="preload" as="image" type="image/webp" href="assets/img/can-still-760.webp"
         imagesrcset="assets/img/can-still-420.webp 420w, assets/img/can-still-760.webp 760w"
         imagesizes="(max-width: 760px) 36vw, 340px">
-  <link rel="stylesheet" href="css/main.css?v=20261113d">
+  <link rel="stylesheet" href="css/main.css?v=20261114c">
   <!-- Instrument Serif is below-the-fold only; load after first paint (font-face only, no layout FOUC). -->
-  <link rel="stylesheet" href="css/fonts-serif.css?v=20261113d" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="css/fonts-serif.css?v=20261113d"></noscript>
+  <link rel="stylesheet" href="css/fonts-serif.css?v=20261114c" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="css/fonts-serif.css?v=20261114c"></noscript>
 
   <script>
     /* Runs before first paint: enables JS styles, decides whether the intro plays,
-       and hides text until a non-default saved language is applied (no flash). */
+       picks the language (URL > manual choice > earlier auto-detection > browser language;
+       crawlers always get the Croatian default) and writes a self-referencing canonical. */
     (function () {
-      var d = document.documentElement, c = ['js'];
+      var d = document.documentElement, c = ['js'], ok = /^(hr|en|it|de)$/;
       var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var seen = false, lang = null;
+      var seen = false, lang = null, src = 'default', urlLang = null;
+      var bot = /bot|crawl|spider|slurp|lighthouse|preview|facebookexternalhit|embedly|whatsapp|telegram|headless/i.test(navigator.userAgent);
       try { seen = sessionStorage.getItem('aquva-intro') === '1'; } catch (e) {}
-      try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('aquva-lang'); } catch (e) {}
+      try { urlLang = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+      if (ok.test(urlLang)) { lang = urlLang; src = 'url'; } else { urlLang = null; }
+      if (!lang) { try { var m = localStorage.getItem('aquva-lang'); if (ok.test(m)) { lang = m; src = 'manual'; } } catch (e) {} }
+      if (!lang) { try { var a = localStorage.getItem('aquva-lang-auto'); if (ok.test(a)) { lang = a; src = 'auto'; } } catch (e) {} }
+      if (!lang && !bot) {
+        var list = navigator.languages || [navigator.language || ''];
+        for (var i = 0; i < list.length && !lang; i++) { var k = String(list[i]).slice(0, 2).toLowerCase(); if (ok.test(k)) lang = k; }
+        lang = lang || 'en'; src = 'browser'; c.push('geo-check');
+      }
+      lang = lang || 'hr';
       c.push(seen || reduce ? 'intro-seen' : 'intro-playing');
-      if (lang && lang !== 'hr' && /^(en|it|de)$/.test(lang)) { c.push('i18n-pending'); d.lang = lang; }
+      if (src === 'browser' && (seen || reduce)) c.push('geo-pending'); // the intro loader covers the check otherwise
+      if (lang !== 'hr') { c.push('i18n-pending'); d.lang = lang; }
       d.className = c.join(' ');
+      window.AQUVA_BOOT = { lang: lang, source: src, urlLang: urlLang };
+      // Only the production host may be indexed; test/preview hosts (e.g. www.aquva-test.com) are noindex
+      if (location.hostname !== 'www.aquva.hr') { var rb = document.querySelector('meta[name="robots"]'); if (rb) rb.setAttribute('content', 'noindex, nofollow'); }
+      var l = document.createElement('link'); l.rel = 'canonical';
+      l.href = 'https://www.aquva.hr' + location.pathname + (urlLang && urlLang !== 'hr' ? '?lang=' + urlLang : '');
+      document.head.appendChild(l);
     })();
   </script>
-  <script src="js/i18n.js?v=20261113d" defer></script>
-  <script src="js/shop-data.js?v=20261113d" defer></script>
-  <script src="js/main.js?v=20261113d" defer></script>
-  <script src="js/cart.js?v=20261113d" defer></script>
+  <script src="js/i18n.js?v=20261114c" defer></script>
+  <script src="js/shop-data.js?v=20261114c" defer></script>
+  <script src="js/main.js?v=20261114c" defer></script>
+  <script src="js/cart.js?v=20261114c" defer></script>
+  <script src="js/consent.js?v=20261114c" defer></script>
+  <script src="js/newsletter-config.js?v=20261114c" defer></script>
+  <script src="js/newsletter.js?v=20261114c" defer></script>
+  <!-- Optional tools (analytics/marketing) must be added as
+       <script type="text/plain" data-consent="analytics" data-src="https://..."></script>
+       so js/consent.js only activates them after the visitor consents. None are configured. -->
 
   <script type="application/ld+json">
   {
@@ -75,28 +104,33 @@
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://www.aquva-test.com/#organization",
+        "@id": "https://www.aquva.hr/#organization",
         "name": "AQUVA",
-        "url": "https://www.aquva-test.com/",
-        "logo": "https://www.aquva-test.com/assets/favicon/favicon-512.png",
+        "legalName": "AQUVA D.P. d.o.o.",
+        "url": "https://www.aquva.hr/",
+        "logo": "https://www.aquva.hr/assets/favicon/favicon-512.png",
+        "image": "https://www.aquva.hr/assets/img/og-image.jpg",
         "email": "info@aquva.hr",
+        "contactPoint": { "@type": "ContactPoint", "contactType": "customer service", "email": "info@aquva.hr", "availableLanguage": ["hr", "en", "it", "de"] },
         "slogan": "Water in an aluminium can."
       },
       {
         "@type": "WebSite",
-        "@id": "https://www.aquva-test.com/#website",
+        "@id": "https://www.aquva.hr/#website",
         "name": "AQUVA",
-        "url": "https://www.aquva-test.com/",
-        "publisher": { "@id": "https://www.aquva-test.com/#organization" },
+        "alternateName": "AQUVA D.P. d.o.o.",
+        "url": "https://www.aquva.hr/",
+        "publisher": { "@id": "https://www.aquva.hr/#organization" },
         "inLanguage": ["hr", "en", "it", "de"]
       },
       {
         "@type": "WebPage",
-        "@id": "https://www.aquva-test.com/#webpage",
-        "url": "https://www.aquva-test.com/",
-        "name": "AQUVA — Voda u aluminijskoj limenci",
-        "isPartOf": { "@id": "https://www.aquva-test.com/#website" },
-        "about": { "@id": "https://www.aquva-test.com/#organization" },
+        "@id": "https://www.aquva.hr/#webpage",
+        "url": "https://www.aquva.hr/",
+        "name": "AQUVA D.P. d.o.o. | Voda u aluminijskoj limenci",
+        "description": "AQUVA negazirana i gazirana voda u vitkoj aluminijskoj limenci od 330 ml.",
+        "isPartOf": { "@id": "https://www.aquva.hr/#website" },
+        "about": { "@id": "https://www.aquva.hr/#organization" },
         "inLanguage": "hr"
       }
     ]
@@ -237,7 +271,7 @@
               <img src="assets/img/can-sparkling-760.webp"
                    srcset="assets/img/can-sparkling-420.webp 420w, assets/img/can-sparkling-760.webp 760w"
                    sizes="(max-width: 760px) 30vw, 300px" width="760" height="1520"
-                   alt="AQUVA Sparkling — gazirana voda u aluminijskoj limenci od 330 ml"
+                   alt="AQUVA Sparkling, gazirana voda u aluminijskoj limenci od 330 ml"
                    data-i18n-attr="alt:alt.sparkling" decoding="async">
             </div>
           </div>
@@ -246,7 +280,7 @@
               <img src="assets/img/can-still-760.webp"
                    srcset="assets/img/can-still-420.webp 420w, assets/img/can-still-760.webp 760w"
                    sizes="(max-width: 760px) 36vw, 340px" width="760" height="1520"
-                   alt="AQUVA Still — negazirana voda u aluminijskoj limenci od 330 ml"
+                   alt="AQUVA Still, negazirana voda u aluminijskoj limenci od 330 ml"
                    data-i18n-attr="alt:alt.still" fetchpriority="high" decoding="async">
             </div>
           </div>
@@ -286,7 +320,7 @@
       <div class="container">
         <header class="section-head">
           <div>
-            <p class="eyebrow" data-reveal data-i18n="products.eyebrow">01 — Proizvodi</p>
+            <p class="eyebrow" data-reveal><span data-i18n="products.eyebrow">Proizvodi</span></p>
             <h2 class="title" id="products-title" data-reveal style="--d:.08s">
               <span data-i18n="products.title1">Negazirana ili gazirana.</span>
               <span class="serif" data-i18n="products.title2">Ista limenka.</span>
@@ -304,14 +338,14 @@
               <img class="product__can" src="assets/img/can-still-760.webp"
                    srcset="assets/img/can-still-420.webp 420w, assets/img/can-still-760.webp 760w"
                    sizes="(max-width: 860px) 46vw, 260px" width="760" height="1520" loading="lazy" decoding="async"
-                   alt="AQUVA Still — negazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.still">
+                   alt="AQUVA Still, negazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.still">
               <span class="product__shadow" aria-hidden="true"></span>
             </div>
             <div class="product__info">
-              <p class="product__index"><span>01</span> <span data-i18n="still.type">Negazirana</span></p>
+              <p class="product__index"><span data-i18n="still.type">Negazirana</span></p>
               <h3 class="product__name" id="still-name">AQUVA <strong>STILL</strong></h3>
               <p class="product__tagline" data-i18n="still.tagline">Negazirana voda.</p>
-              <p class="product__desc" data-i18n="still.desc">Negazirana voda kakvu većina nas pije svaki dan — uz obrok, za stolom ili nakon treninga.</p>
+              <p class="product__desc" data-i18n="still.desc">Negazirana voda kakvu većina nas pije svaki dan. Uz obrok, za stolom ili nakon treninga.</p>
               <ul class="tags">
                 <li>330 ml</li>
                 <li data-i18n="tags.can">Aluminijska limenka</li>
@@ -327,11 +361,11 @@
               <img class="product__can" src="assets/img/can-sparkling-760.webp"
                    srcset="assets/img/can-sparkling-420.webp 420w, assets/img/can-sparkling-760.webp 760w"
                    sizes="(max-width: 860px) 46vw, 260px" width="760" height="1520" loading="lazy" decoding="async"
-                   alt="AQUVA Sparkling — gazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.sparkling">
+                   alt="AQUVA Sparkling, gazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.sparkling">
               <span class="product__shadow" aria-hidden="true"></span>
             </div>
             <div class="product__info">
-              <p class="product__index"><span>02</span> <span data-i18n="sparkling.type">Gazirana</span></p>
+              <p class="product__index"><span data-i18n="sparkling.type">Gazirana</span></p>
               <h3 class="product__name" id="sparkling-name">AQUVA <strong>SPARKLING</strong></h3>
               <p class="product__tagline" data-i18n="sparkling.tagline">Gazirana voda.</p>
               <p class="product__desc" data-i18n="sparkling.desc">Ista voda, s mjehurićima. Dobra sama, uz obrok ili s ledom i kriškom limuna.</p>
@@ -353,7 +387,7 @@
       </div>
 
       <div class="container sustain__intro">
-        <p class="eyebrow eyebrow--light" data-reveal data-i18n="sustain.eyebrow">02 — Održivost</p>
+        <p class="eyebrow eyebrow--light" data-reveal><span data-i18n="sustain.eyebrow">Održivost</span></p>
         <h2 class="sustain__title" id="sustain-title" data-reveal style="--d:.08s">
           <span class="sustain__title-a" data-i18n="sustain.title1">Budućnost nije</span>
           <span class="strike"><span data-i18n="sustain.title2">plastika.</span></span>
@@ -364,22 +398,18 @@
       <div class="container">
         <ol class="points">
           <li class="point" data-reveal>
-            <span class="point__num">01</span>
             <h3 class="point__title" data-i18n="sustain.p1t">Reciklabilan</h3>
             <p class="point__text" data-i18n="sustain.p1">Aluminijske limenke ulaze u sustave recikliranja koji već postoje u mnogim zemljama.</p>
           </li>
           <li class="point" data-reveal style="--d:.1s">
-            <span class="point__num">02</span>
             <h3 class="point__title" data-i18n="sustain.p2t">Uvijek iznova</h3>
             <p class="point__text" data-i18n="sustain.p2">Od recikliranog aluminija mogu se raditi nove limenke, i to više puta.</p>
           </li>
           <li class="point" data-reveal style="--d:.2s">
-            <span class="point__num">03</span>
             <h3 class="point__title" data-i18n="sustain.p3t">Umjesto plastične boce</h3>
             <p class="point__text" data-i18n="sustain.p3">Limenka je jednostavna zamjena za jednokratnu plastičnu bocu.</p>
           </li>
           <li class="point" data-reveal style="--d:.3s">
-            <span class="point__num">04</span>
             <h3 class="point__title" data-i18n="sustain.p4t">Male odluke</h3>
             <p class="point__text" data-i18n="sustain.p4">Gotovo sve što pijemo dolazi u nekoj ambalaži. Pažljiviji izbor dobar je početak.</p>
           </li>
@@ -395,7 +425,7 @@
             <img src="assets/img/can-still-760.webp"
                  srcset="assets/img/can-still-420.webp 420w, assets/img/can-still-760.webp 760w"
                  sizes="(max-width: 760px) 40vw, 280px" width="760" height="1520" loading="lazy" decoding="async"
-                 alt="AQUVA Still — negazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.still">
+                 alt="AQUVA Still, negazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.still">
           </div>
           <p class="pin__word pin__word--b" data-i18n="sustain.more">Više aluminija.</p>
           <p class="pin__note" data-i18n="sustain.note">Popij. Limenku recikliraj.</p>
@@ -411,14 +441,14 @@
     <section class="section philosophy" id="philosophy" aria-labelledby="philosophy-title">
       <div class="container philosophy__grid">
         <div class="philosophy__head">
-          <p class="eyebrow" data-reveal data-i18n="phil.eyebrow">03 — Naša filozofija</p>
+          <p class="eyebrow" data-reveal><span data-i18n="phil.eyebrow">Naša filozofija</span></p>
           <h2 class="title" id="philosophy-title" data-reveal style="--d:.08s">
             <span data-i18n="phil.title1">Zašto</span>
             <span class="serif" data-i18n="phil.title2">limenka.</span>
           </h2>
         </div>
         <div class="philosophy__body">
-          <p class="philosophy__text" data-words data-i18n="phil.text">AQUVA je negazirana i gazirana voda u aluminijskoj limenci — za one koji žele manje plastike, bez komplikacija.</p>
+          <p class="philosophy__text" data-words data-i18n="phil.text">AQUVA je negazirana i gazirana voda u aluminijskoj limenci, za sve koji žele manje plastike bez komplikacija.</p>
           <ul class="pillars">
             <li class="pillar" data-reveal>
               <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5s-11 13-11 20a11 11 0 0 0 22 0C31 18 20 5 20 5Z"/></svg>
@@ -453,7 +483,7 @@
             <img src="assets/img/can-still-760.webp"
                  srcset="assets/img/can-still-420.webp 420w, assets/img/can-still-760.webp 760w"
                  sizes="(max-width: 760px) 34vw, 220px" width="760" height="1520" loading="lazy" decoding="async"
-                 alt="AQUVA Still — negazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.still">
+                 alt="AQUVA Still, negazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.still">
             <img class="moment__reflection" src="assets/img/can-still-420.webp" width="420" height="840" loading="lazy" decoding="async" alt="">
             <figcaption>AQUVA Still</figcaption>
           </figure>
@@ -461,7 +491,7 @@
             <img src="assets/img/can-sparkling-760.webp"
                  srcset="assets/img/can-sparkling-420.webp 420w, assets/img/can-sparkling-760.webp 760w"
                  sizes="(max-width: 760px) 34vw, 220px" width="760" height="1520" loading="lazy" decoding="async"
-                 alt="AQUVA Sparkling — gazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.sparkling">
+                 alt="AQUVA Sparkling, gazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.sparkling">
             <img class="moment__reflection" src="assets/img/can-sparkling-420.webp" width="420" height="840" loading="lazy" decoding="async" alt="">
             <figcaption>AQUVA Sparkling</figcaption>
           </figure>
@@ -472,21 +502,17 @@
     <!-- ============ CONTACT ============ -->
     <section class="section contact" id="contact" aria-labelledby="contact-title">
       <div class="container contact__inner">
-        <p class="eyebrow" data-reveal data-i18n="contact.eyebrow">04 — Kontakt</p>
+        <p class="eyebrow" data-reveal><span data-i18n="contact.eyebrow">Kontakt</span></p>
         <h2 class="title" id="contact-title" data-reveal style="--d:.08s">
           <span data-i18n="contact.title1">Javite nam se.</span>
         </h2>
-        <p class="contact__text" data-reveal style="--d:.16s" data-i18n="contact.text">Pitanja, ideje ili poslovni upit? Pišite nam — javit ćemo se.</p>
+        <p class="contact__text" data-reveal style="--d:.16s" data-i18n="contact.text">Pitanja, ideje ili poslovni upit? Pišite nam i javit ćemo se.</p>
         <a class="contact__email" href="mailto:info@aquva.hr" data-reveal style="--d:.24s">info@aquva.hr</a>
         <div class="contact__actions" data-reveal style="--d:.32s">
           <a class="btn btn--primary" href="mailto:info@aquva.hr">
             <span data-i18n="contact.write">Pošaljite e-mail</span>
             <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <button class="btn btn--ghost" type="button" id="copyEmail" data-email="info@aquva.hr" aria-describedby="copy-status">
-            <span class="copy-label" data-i18n="contact.copy">Kopiraj adresu</span>
-          </button>
-          <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
         </div>
       </div>
     </section>
@@ -516,11 +542,37 @@
           <a href="mailto:info@aquva.hr">info@aquva.hr</a>
         </div>
       </div>
-      <div class="footer__giant" aria-hidden="true">AQUVA</div>
+      <section class="footer__nl" aria-labelledby="nl-footer-title">
+        <div class="footer__nl-copy">
+          <h2 class="footer__nl-title" id="nl-footer-title" data-i18n="nl.footerTitle">Ostanite povezani s AQUVA.</h2>
+          <p class="footer__nl-text" data-i18n="nl.footerText">Primajte novosti i obavijesti iz AQUVA svijeta.</p>
+        </div>
+        <div class="footer__nl-form" data-newsletter="footer"></div>
+      </section>
+      <!-- Calm water droplets (pure CSS, decorative; static when reduced motion is preferred) -->
+      <div class="footer__drops" aria-hidden="true">
+        <span class="drop" style="--x:6%;--s:10px;--t:13s;--dl:-2s;--yf:-0.30;--dx:8px"></span>
+        <span class="drop" style="--x:13%;--s:18px;--t:17s;--dl:-9s;--yf:-0.70;--dx:-10px"></span>
+        <span class="drop" style="--x:21%;--s:7px;--t:11s;--dl:-5s;--yf:-0.45;--dx:6px"></span>
+        <span class="drop" style="--x:29%;--s:24px;--t:19s;--dl:-14s;--yf:-0.22;--dx:12px"></span>
+        <span class="drop" style="--x:37%;--s:9px;--t:12s;--dl:-1s;--yf:-0.85;--dx:-6px"></span>
+        <span class="drop" style="--x:45%;--s:14px;--t:15s;--dl:-11s;--yf:-0.55;--dx:9px"></span>
+        <span class="drop" style="--x:52%;--s:6px;--t:10s;--dl:-7s;--yf:-0.36;--dx:-4px"></span>
+        <span class="drop" style="--x:59%;--s:20px;--t:18s;--dl:-4s;--yf:-0.64;--dx:-12px"></span>
+        <span class="drop" style="--x:66%;--s:8px;--t:12s;--dl:-10s;--yf:-0.15;--dx:7px"></span>
+        <span class="drop" style="--x:73%;--s:15px;--t:16s;--dl:-13s;--yf:-0.76;--dx:-8px"></span>
+        <span class="drop" style="--x:80%;--s:11px;--t:14s;--dl:-3s;--yf:-0.42;--dx:10px"></span>
+        <span class="drop" style="--x:87%;--s:22px;--t:20s;--dl:-8s;--yf:-0.26;--dx:-9px"></span>
+        <span class="drop" style="--x:94%;--s:8px;--t:11s;--dl:-6s;--yf:-0.60;--dx:5px"></span>
+        <span class="ripple" style="--x:24%;--dl:0s"></span>
+        <span class="ripple" style="--x:62%;--dl:-3.5s"></span>
+        <span class="ripple" style="--x:85%;--dl:-6s"></span>
+      </div>
       <div class="footer__bottom">
         <p>© <span id="year">2026</span> AQUVA. <span data-i18n="footer.rights">Sva prava pridržana.</span></p>
         <div class="footer__links">
           <button type="button" class="link-btn" id="privacyOpen" data-i18n="footer.privacy">Privatnost</button>
+          <button type="button" class="link-btn" data-consent-open data-i18n="footer.cookies">Postavke kolačića</button>
           <a href="#home" data-i18n="footer.top">Natrag na vrh</a>
         </div>
       </div>
@@ -535,12 +587,15 @@
       </button>
       <p class="eyebrow" data-i18n="footer.privacy">Privatnost</p>
       <h2 id="privacy-title" data-i18n="privacy.title">Vaša privatnost</h2>
-      <p data-i18n="privacy.p1">Ova web stranica ne koristi kolačiće, analitiku ni praćenje. Vaš odabir jezika i sadržaj košarice spremaju se samo u vašem pregledniku kako bi ih stranica zapamtila.</p>
-      <p data-i18n="privacy.p2">Fontovi i slike poslužuju se izravno s ove stranice. Naš pružatelj hostinga (GitHub Pages) može obrađivati tehničke podatke, poput IP adrese, kako bi isporučio stranicu.</p>
-      <p data-i18n="privacy.p3">Ako nam pišete e-poštom, vašu poruku koristimo isključivo kako bismo vam odgovorili. Za sva pitanja o privatnosti javite nam se na info@aquva.hr.</p>
+      <p data-i18n="privacy.p1">Ova stranica ne koristi analitiku ni marketinško praćenje. U vašem pregledniku spremamo samo ono što je potrebno za rad stranice: odabrani jezik, sadržaj košarice i vaše postavke kolačića.</p>
+      <p data-i18n="privacy.p2">Stranicu isporučuje naš pružatelj web hostinga, koji pri tome može obrađivati tehničke podatke poput IP adrese. Kako bismo vam pri prvom posjetu prikazali odgovarajući jezik, koristimo jezik vašeg preglednika i, ako je dostupna, samo državu iz koje dolazite. IP adresu ne spremamo.</p>
+      <p data-i18n="privacy.p3">Ako se prijavite na newsletter, na našem poslužitelju spremamo vašu e-mail adresu, vrijeme prijave, jezik i tekst privole koju ste potvrdili, isključivo za slanje AQUVA novosti. Odjaviti se možete u bilo kojem trenutku putem poveznice u svakom e-mailu ili pišući na info@aquva.hr. Ako nam pišete, vašu poruku koristimo samo za odgovor.</p>
     </div>
   </dialog>
 
   <noscript><style>.loader{display:none!important}</style></noscript>
+  <button class="to-top" type="button" aria-label="Natrag na vrh" data-i18n-attr="aria-label:footer.top" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+  </button>
 </body>
 </html>

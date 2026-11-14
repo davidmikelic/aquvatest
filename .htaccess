@@ -1,0 +1,49 @@
+# =========================================================================
+# AQUVA production web root (www.aquva.hr on Plus hosting, LiteSpeed/Apache)
+# GitHub Pages ignores this file; it only takes effect on the hosting server.
+# =========================================================================
+
+Options -Indexes
+DirectoryIndex index.html index.php
+ErrorDocument 404 /404.html
+
+# One canonical address: https://www.aquva.hr
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # SSL certificate checks (AutoSSL / Let's Encrypt) must reach /.well-known/ unchanged
+  RewriteCond %{REQUEST_URI} !^/\.well-known/
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} ^aquva\.hr$ [NC]
+  RewriteCond %{HTTP_HOST} ^(www\.)?aquva\.hr$ [NC]
+  RewriteRule ^ https://www.aquva.hr%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Never serve dotfiles, docs, templates or source-control leftovers
+<FilesMatch "(^\.|\.(md|ps1|sql|toml|bak|log|sample\.php)$|^CNAME$)">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# Long caching for versioned assets (?v=...), short for HTML
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>

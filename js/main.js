@@ -32,6 +32,9 @@
   }
 
   function resolveLang() {
+    // The pre-paint script in <head> already decided (URL > manual > auto > browser).
+    var boot = window.AQUVA_BOOT;
+    if (boot && LANGS.indexOf(boot.lang) > -1) return boot.lang;
     var fromUrl = null;
     try { fromUrl = new URLSearchParams(location.search).get("lang"); } catch (e) {}
     if (fromUrl && LANGS.indexOf(fromUrl) > -1) return fromUrl;
@@ -63,6 +66,17 @@
     });
   }
 
+  /* Homepage sections opened via their link (/#products ...) get their own tab title,
+     "AQUVA D.P. d.o.o. | Proizvodi"; the plain homepage keeps meta.title. Only document.title
+     changes here; canonical, og and the other SEO tags stay those of the homepage. */
+  var SECTION_TITLES = { products: "nav.products", philosophy: "nav.philosophy", sustainability: "nav.sustainability", contact: "nav.contact" };
+  function syncSectionTitle() {
+    if (document.body.hasAttribute("data-title-key")) return;          // other pages manage their own title
+    var key = SECTION_TITLES[(location.hash || "").replace(/^#/, "")];
+    document.title = key ? "AQUVA D.P. d.o.o. | " + t(key) : t("meta.title");
+  }
+  window.addEventListener("hashchange", syncSectionTitle);
+
   function applyLang(lang, persist) {
     if (LANGS.indexOf(lang) < 0) lang = DEFAULT_LANG;
     currentLang = lang;
@@ -74,6 +88,7 @@
     var titleKey = document.body.getAttribute("data-title-key") || "meta.title";
     var descKey = document.body.getAttribute("data-desc-key") || "meta.description";
     document.title = t(titleKey);
+    syncSectionTitle();
     setMeta('meta[name="description"]', "content", t(descKey));
     setMeta('meta[property="og:title"]', "content", t(titleKey));
     setMeta('meta[property="og:description"]', "content", t(descKey));
@@ -300,6 +315,7 @@
       closeMenu(false);
       window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
       if (history.replaceState) history.replaceState(null, "", location.pathname + location.search);
+      syncSectionTitle();
     });
   });
 
@@ -474,42 +490,22 @@
   bindTilt(document);
 
   /* ---------------------------------------------------------------------
-     Contact: copy email
-     --------------------------------------------------------------------- */
-  var copyBtn = $("#copyEmail"), copyStatus = $(".copy-status"), copyTimer;
-  if (copyBtn) {
-    copyBtn.addEventListener("click", function () {
-      var email = copyBtn.getAttribute("data-email");
-      var ok = function () {
-        copyStatus.textContent = t("contact.copied");
-        clearTimeout(copyTimer);
-        copyTimer = setTimeout(function () { copyStatus.textContent = ""; }, 2600);
-      };
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(email).then(ok, function () { legacyCopy(email) && ok(); });
-      } else if (legacyCopy(email)) ok();
-    });
-  }
-  function legacyCopy(text) {
-    var ta = document.createElement("textarea");
-    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
-    document.body.appendChild(ta); ta.select();
-    var ok = false;
-    try { ok = document.execCommand("copy"); } catch (e) {}
-    document.body.removeChild(ta);
-    return ok;
-  }
-
-  /* ---------------------------------------------------------------------
      Privacy dialog
      --------------------------------------------------------------------- */
   var dialog = $("#privacy");
   var privacyOpen = $("#privacyOpen");
   var privacyClose = $("#privacyClose");
+  function openPrivacy() {
+    if (!dialog || dialog.open) return;
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else dialog.setAttribute("open", "");
+  }
   if (dialog) {
-    if (privacyOpen) privacyOpen.addEventListener("click", function () {
-      if (typeof dialog.showModal === "function") dialog.showModal();
-      else dialog.setAttribute("open", "");
+    if (privacyOpen) privacyOpen.addEventListener("click", openPrivacy);
+    // Any other "privacy" link (cookie banner, newsletter note) opens the same dialog
+    document.addEventListener("click", function (e) {
+      var el = e.target.closest && e.target.closest("[data-privacy-open]");
+      if (el) { e.preventDefault(); openPrivacy(); }
     });
     if (privacyClose) privacyClose.addEventListener("click", function () {
       if (typeof dialog.close === "function") dialog.close(); else dialog.removeAttribute("open");
@@ -549,8 +545,82 @@
       bindTilt(root);
     },
     reduceMotion: reduceMotion,
+    openPrivacy: openPrivacy,
+    /* True while something modal or important is open (used by the newsletter popup) */
+    isBusy: function () {
+      return doc.classList.contains("menu-open") || doc.classList.contains("drawer-open") ||
+        doc.classList.contains("consent-open") || !!$("dialog[open]");
+    },
     viewerSlots: function () { return $$("[data-viewer-slot]"); }
   };
+
+  /* ---------------------------------------------------------------------
+     Automatic language for first-time visitors
+     Country comes from Cloudflare's first-party /cdn-cgi/trace endpoint on our own
+     domain (only the 2-letter "loc" value is read; nothing is stored or sent on).
+     Fallback: the browser language already chosen in <head>, else English.
+     Never runs if the visitor chose a language, used ?lang=, or was detected before.
+     --------------------------------------------------------------------- */
+  var COUNTRY_LANG = { HR: "hr", IT: "it", DE: "de", AT: "de", CH: "de" };
+  function finishGeo() { doc.classList.remove("geo-check", "geo-pending"); }
+  function detectCountryLanguage() {
+    if (!doc.classList.contains("geo-check")) return;
+    var done = false;
+    var fallback = (window.AQUVA_BOOT && window.AQUVA_BOOT.lang) || "en";
+    function settle(lang) {
+      if (done) return; done = true;
+      if (LANGS.indexOf(lang) < 0) lang = "en";
+      store.set("aquva-lang-auto", lang);              // remembered, but never overrides a manual choice
+      if (!store.get("aquva-lang") && lang !== currentLang) applyLang(lang, false);
+      finishGeo();
+    }
+    var timer = setTimeout(function () { settle(fallback); }, 1500);
+    if (!window.fetch) { clearTimeout(timer); settle(fallback); return; }
+    // Cloudflare-proxied test site (and local testing): Cloudflare's first-party trace endpoint.
+    // Every other host, i.e. production and staging on Plus hosting: the hosting server's own
+    // country hint (api/geo.php, may be empty).
+    var h = location.hostname;
+    var viaTrace = h === "localhost" || h === "127.0.0.1" || /(^|\.)aquva-test\.com$/.test(h);
+    fetch(viaTrace ? "/cdn-cgi/trace" : "/api/geo.php", { cache: "no-store", credentials: viaTrace ? "omit" : "same-origin" })
+      .then(function (r) { if (!r.ok) throw new Error("geo " + r.status); return r.text(); })
+      .then(function (txt) {
+        var m = viaTrace ? /(?:^|\n)loc=([A-Z]{2})/.exec(txt) : /"country":"([A-Z]{2})"/.exec(txt);
+        clearTimeout(timer);
+        settle(m ? (COUNTRY_LANG[m[1]] || "en") : fallback);   // no country known: browser language
+      })
+      .catch(function () { clearTimeout(timer); settle(fallback); });
+  }
+
+  /* ---------------------------------------------------------------------
+     Back-to-top button (all sizes; hidden while menus, drawers or the cookie banner are open)
+     --------------------------------------------------------------------- */
+  var toTop = $(".to-top");
+  var toTopShown = false, footerLinksVisible = false;
+  function syncToTop(y) {
+    if (!toTop) return;
+    var show = y > Math.max(600, window.innerHeight * 0.9) && !footerLinksVisible &&
+      !doc.classList.contains("menu-open") && !doc.classList.contains("drawer-open") && !doc.classList.contains("consent-open");
+    if (show === toTopShown) return;
+    toTopShown = show;
+    if (show) { toTop.hidden = false; requestAnimationFrame(function () { toTop.classList.add("is-visible"); }); }
+    else { toTop.classList.remove("is-visible"); setTimeout(function () { if (!toTopShown) toTop.hidden = true; }, 350); }
+  }
+  if (toTop) {
+    toTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+      var target = $("#main") || document.body;
+      if (target.focus) target.focus({ preventScroll: true });
+    });
+    window.addEventListener("scroll", function () { syncToTop(window.scrollY); }, { passive: true });
+    // The footer has its own "back to top" link; step aside there so nothing overlaps
+    var footBar = $(".footer__bottom");
+    if (footBar && "IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) {
+        footerLinksVisible = en[0].isIntersecting; syncToTop(window.scrollY);
+      }).observe(footBar);
+    }
+    new MutationObserver(function () { syncToTop(window.scrollY); }).observe(doc, { attributes: true, attributeFilter: ["class"] });
+  }
 
   /* ---------------------------------------------------------------------
      Boot
@@ -568,4 +638,6 @@
   });
   runIntro();
   requestTick();
+  detectCountryLanguage();
+  syncToTop(window.scrollY);
 })();

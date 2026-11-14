@@ -1,0 +1,42 @@
+# =========================================================================
+# AQUVA STAGING web root (test copy on Plus hosting, e.g. a subdomain).
+# Used only in dist\staging\aquva-staging-public_html.zip instead of the
+# production .htaccess. Never indexed, never redirected to www.aquva.hr.
+# =========================================================================
+
+Options -Indexes
+DirectoryIndex index.html index.php
+ErrorDocument 404 /404.html
+
+# HTTPS on the staging address itself (no redirect to production)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_URI} !^/\.well-known/
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=302]
+</IfModule>
+
+# Never serve dotfiles, docs, templates or source-control leftovers
+<FilesMatch "(^\.|\.(md|ps1|sql|toml|bak|log|sample\.php)$|^CNAME$)">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  Header always set X-Robots-Tag "noindex, nofollow"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# Staging: no long caching, so every new upload is visible immediately
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 0 seconds"
+</IfModule>

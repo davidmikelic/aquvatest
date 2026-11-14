@@ -26,14 +26,31 @@
   position: absolute; right: -2vw; bottom: -5vw; font-size: 27vw; font-weight: 500; line-height: .8; letter-spacing: .02em; white-space: nowrap;
   color: transparent; -webkit-text-stroke: 1px rgba(11, 114, 224, .1); user-select: none;
 }
-.shop-hero__title { margin-top: 24px; font-size: clamp(44px, 7vw, 116px); font-weight: 500; line-height: .94; letter-spacing: -.035em; text-transform: uppercase; }
+.shop-hero__title { margin-top: 24px; font-size: clamp(44px, 7vw, 116px); font-weight: 500; line-height: 1.08; letter-spacing: -.035em; text-transform: uppercase; }
 .shop-hero__title span { display: block; }
 .shop-hero__sub { margin-top: 24px; max-width: 40ch; font-size: clamp(18px, 1.6vw, 23px); font-weight: 300; line-height: 1.45; color: var(--ink-soft); }
 .shop-hero__facts { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 32px; font-size: 12.5px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-faint); }
 .shop-hero__facts li + li::before { content: ""; display: inline-block; width: 4px; height: 4px; margin: 0 18px 2px 0; border-radius: 50%; background: var(--sky-3); vertical-align: middle; }
 
 .shop-products { padding: clamp(36px, 5vw, 72px) 0 var(--section-y); }
-.shop-products__note { margin-top: clamp(36px, 5vw, 64px); max-width: 760px; }
+/* Business inquiry banner under the two product cards */
+.inquiry {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  width: min(100%, 680px); margin: clamp(48px, 6vw, 80px) auto 0; padding: clamp(28px, 3.4vw, 40px) clamp(20px, 4vw, 48px);
+  border-radius: var(--radius); background: linear-gradient(180deg, var(--white), var(--sky)); border: 1px solid var(--sky-2); color: var(--navy);
+}
+.inquiry__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--white); border: 1px solid var(--sky-2); }
+.inquiry__icon svg { width: 22px; height: 22px; fill: none; stroke: var(--blue); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.inquiry__title { margin-top: 18px; font-size: clamp(22px, 2.2vw, 30px); font-weight: 400; line-height: 1.25; letter-spacing: -.01em; }
+.inquiry__text { margin-top: 10px; max-width: 48ch; color: var(--ink-soft); font-weight: 300; font-size: clamp(15px, 1.15vw, 17px); line-height: 1.6; }
+.inquiry__email {
+  display: inline-flex; align-items: center; min-height: 48px; margin-top: 14px; padding: 0 6px;
+  font-size: clamp(19px, 1.7vw, 23px); font-weight: 500; letter-spacing: .01em; color: var(--blue);
+  text-decoration: underline; text-decoration-color: rgba(11, 114, 224, .35); text-underline-offset: 6px; text-decoration-thickness: 1px;
+  transition: color .3s var(--ease), text-decoration-color .3s var(--ease); overflow-wrap: anywhere;
+}
+.inquiry__email:hover { color: var(--navy); text-decoration-color: currentColor; }
+.inquiry__email:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 8px; }
 .product--link { color: inherit; border-radius: var(--radius); }
 .product--link:focus-visible { outline: 2px solid var(--blue); outline-offset: 8px; }
 /* Centred under the image and pinned to the card bottom so both cards line up */
@@ -121,7 +138,7 @@
 
 /* ---------- Checkout ---------- */
 .checkout { padding: calc(var(--header-h) + 36px) 0 var(--section-y); }
-.checkout__title { margin-top: 16px; font-size: clamp(38px, 5vw, 72px); }
+.checkout__title { margin-top: 16px; font-size: clamp(38px, 5vw, 72px); line-height: 1.12; }
 .checkout__head .demo-banner { margin-top: 26px; max-width: 760px; }
 .checkout__grid { display: grid; grid-template-columns: 1.25fr .85fr; gap: clamp(28px, 4vw, 72px); align-items: start; margin-top: clamp(36px, 4vw, 56px); }
 .co-summary { position: sticky; top: calc(var(--header-h) + 24px); }
@@ -171,13 +188,6 @@
 .co-hint--center { text-align: center; }
 
 .field--check { margin-bottom: 24px; }
-.check { position: relative; display: flex; gap: 14px; align-items: flex-start; font-size: 15px; line-height: 1.5; cursor: pointer; }
-.check input { position: absolute; opacity: 0; width: 24px; height: 24px; margin: 0; }
-.check__box { flex: none; width: 24px; height: 24px; margin-top: 0; border-radius: 7px; border: 1px solid rgba(10, 42, 107, .3); display: grid; place-items: center; transition: background-color .3s var(--ease), border-color .3s var(--ease); }
-.check__box svg { width: 15px; height: 15px; fill: none; stroke: var(--white); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity .25s var(--ease); }
-.check input:checked + .check__box { background: var(--navy); border-color: var(--navy); }
-.check input:checked + .check__box svg { opacity: 1; }
-.check input:focus-visible + .check__box { outline: 2px solid var(--blue); outline-offset: 3px; }
 .field--check.is-invalid .check__box { border-color: var(--blue); border-width: 1.5px; }
 .co-submit { height: 62px; }
 

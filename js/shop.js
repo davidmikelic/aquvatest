@@ -105,7 +105,7 @@
       return '<a class="product product--' + p.id + ' product--link" href="#/' + p.id + '" data-reveal data-tilt style="--d:' + (i * 0.12) + 's">' +
         stage(p, { eager: true }) +
         '<div class="product__info">' +
-          '<p class="product__index"><span>' + p.index + '</span> <span data-i18n="' + p.typeKey + '"></span></p>' +
+          '<p class="product__index"><span data-i18n="' + p.typeKey + '"></span></p>' +
           '<h2 class="product__name">' + productName(p) + '</h2>' +
           '<p class="product__tagline" data-i18n="' + p.taglineKey + '"></p>' +
           '<p class="product__desc" data-i18n="' + p.shopDescKey + '"></p>' +
@@ -127,7 +127,12 @@
         '</div>' +
       '</section>' +
       '<section class="shop-products" aria-label="AQUVA Still & Sparkling"><div class="container"><div class="product-grid">' + cards + '</div>' +
-      '<div class="shop-products__note" data-reveal>' + demoBanner("shop.demoNote") + '</div></div></section>';
+      '<aside class="inquiry" data-reveal aria-labelledby="inquiry-title">' +
+        '<span class="inquiry__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M4 7.5l8 6 8-6"/></svg></span>' +
+        '<h2 class="inquiry__title" id="inquiry-title" data-i18n="shop.inquiryTitle"></h2>' +
+        '<p class="inquiry__text" data-i18n="shop.inquiryText"></p>' +
+        '<a class="inquiry__email" href="mailto:info@aquva.hr">info@aquva.hr</a>' +
+      '</aside></div></section>';
   }
 
   function viewProduct(p) {
@@ -150,7 +155,7 @@
       '<div class="pdp__grid">' +
         '<div class="pdp__media"><div class="product product--' + p.id + ' pdp__product" data-tilt>' + stage(p, { eager: true, slot: true, sizes: "(max-width: 860px) 44vw, 300px" }) + '</div></div>' +
         '<div class="pdp__info">' +
-          '<p class="product__index"><span>' + p.index + '</span> <span data-i18n="' + p.typeKey + '"></span></p>' +
+          '<p class="product__index"><span data-i18n="' + p.typeKey + '"></span></p>' +
           '<h1 class="pdp__name" tabindex="-1" data-focus>' + productName(p) + '</h1>' +
           '<p class="product__tagline" data-i18n="' + p.taglineKey + '"></p>' +
           '<p class="product__desc" data-i18n="' + p.descKey + '"></p>' +
@@ -376,14 +381,15 @@
 
   function syncDocumentMeta(r) {
     var titleKey = "shop.meta.title", descKey = "shop.meta.description";
+    var COMPANY = "AQUVA D.P. d.o.o.";
     if (r.name === "product" && r.product) {
-      document.title = r.product.name + " — AQUVA";
+      document.title = COMPANY + " | " + r.product.name;
       return;
     }
     if (r.name === "checkout") titleKey = "checkout.title";
     if (r.name === "confirmation") titleKey = "confirm.eyebrow";
     var title = A.t(titleKey), desc = A.t(descKey);
-    if (title) document.title = r.name === "checkout" || r.name === "confirmation" ? (title + " — AQUVA") : title;
+    if (title) document.title = r.name === "checkout" || r.name === "confirmation" ? (COMPANY + " | " + title) : title;
     var meta = document.querySelector('meta[name="description"]');
     if (meta && desc) meta.setAttribute("content", desc);
   }
@@ -417,6 +423,7 @@
       refreshFormatted(view);            // keep typed form values, update numbers & errors
       var s = $("[data-summary]", view);
       if (s) { s.innerHTML = summary(Cart.lines(), Cart.totals()); A.translate(s); }
+      syncDocumentMeta(currentRoute);    // keep the checkout title in the new language
     } else {
       render({ keepScroll: true, noFocus: true });
     }

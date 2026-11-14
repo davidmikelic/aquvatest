@@ -95,7 +95,7 @@
       b.hidden = t.packages === 0;
     });
     $$("[data-cart-open]").forEach(function (btn) {
-      var label = AQUVA.t("cart.title") + (t.packages ? " — " + t.packages + " " + AQUVA.tp("unit.package", t.packages) : "");
+      var label = AQUVA.t("cart.title") + (t.packages ? ", " + t.packages + " " + AQUVA.tp("unit.package", t.packages) : "");
       btn.setAttribute("aria-label", label);
     });
   }
