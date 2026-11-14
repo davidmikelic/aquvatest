@@ -23,10 +23,10 @@ window.AQUVA_I18N = {
     "nav.sustainability": "Održivost",
     "nav.contact": "Kontakt",
 
-    "hero.eyebrow": "Voda u aluminijskoj limenci",
+    "hero.eyebrow": "Voda u limenci",
     "hero.title1": "Čista voda.",
     "hero.title2": "U limenci.",
-    "hero.sub": "Negazirana i gazirana voda u vitkoj aluminijskoj limenci od 330 ml.",
+    "hero.sub": "Negazirana i gazirana voda u limenci od 330 ml.",
     "hero.cta": "Pogledaj ponudu",
     "hero.scroll": "Dalje",
 
@@ -39,8 +39,8 @@ window.AQUVA_I18N = {
 
     "products.eyebrow": "Proizvodi",
     "products.title1": "Negazirana ili gazirana.",
-    "products.title2": "Ista limenka.",
-    "products.lead": "Obje dolaze u istoj vitkoj limenci od 330 ml. Odaberite onu koja vam više odgovara.",
+    "products.title2": "Vaš izbor.",
+    "products.lead": "Obje dolaze u aluminijskoj limenci od 330 ml. Odaberite onu koja vam više odgovara.",
     "tags.can": "Aluminijska limenka",
     "still.type": "Negazirana",
     "still.tagline": "Negazirana voda.",
@@ -253,10 +253,10 @@ window.AQUVA_I18N = {
     "nav.sustainability": "Sustainability",
     "nav.contact": "Contact",
 
-    "hero.eyebrow": "Water in an aluminium can",
+    "hero.eyebrow": "Water in a can",
     "hero.title1": "Pure water.",
     "hero.title2": "In a can.",
-    "hero.sub": "Still and sparkling water in a slim 330 ml aluminium can.",
+    "hero.sub": "Still and sparkling water in a 330 ml can.",
     "hero.cta": "See the range",
     "hero.scroll": "Scroll",
 
@@ -269,8 +269,8 @@ window.AQUVA_I18N = {
 
     "products.eyebrow": "Products",
     "products.title1": "Still or sparkling.",
-    "products.title2": "Same can.",
-    "products.lead": "Both come in the same slim 330 ml can. Pick the one that suits you.",
+    "products.title2": "Your choice.",
+    "products.lead": "Both come in a 330 ml aluminium can. Pick the one that suits you.",
     "tags.can": "Aluminium can",
     "still.type": "Still",
     "still.tagline": "Still water.",
@@ -483,10 +483,10 @@ window.AQUVA_I18N = {
     "nav.sustainability": "Sostenibilità",
     "nav.contact": "Contatti",
 
-    "hero.eyebrow": "Acqua in lattina di alluminio",
+    "hero.eyebrow": "Acqua in lattina",
     "hero.title1": "Acqua pura.",
     "hero.title2": "In lattina.",
-    "hero.sub": "Acqua naturale e frizzante in una sottile lattina di alluminio da 330 ml.",
+    "hero.sub": "Acqua naturale e frizzante in lattina da 330 ml.",
     "hero.cta": "Vedi la gamma",
     "hero.scroll": "Scorri",
 
@@ -499,8 +499,8 @@ window.AQUVA_I18N = {
 
     "products.eyebrow": "Prodotti",
     "products.title1": "Naturale o frizzante.",
-    "products.title2": "Stessa lattina.",
-    "products.lead": "Entrambe arrivano nella stessa lattina sottile da 330 ml. Scegli quella che preferisci.",
+    "products.title2": "A te la scelta.",
+    "products.lead": "Entrambe arrivano in una lattina di alluminio da 330 ml. Scegli quella che preferisci.",
     "tags.can": "Lattina di alluminio",
     "still.type": "Naturale",
     "still.tagline": "Acqua naturale.",
@@ -713,10 +713,10 @@ window.AQUVA_I18N = {
     "nav.sustainability": "Nachhaltigkeit",
     "nav.contact": "Kontakt",
 
-    "hero.eyebrow": "Wasser in der Aluminiumdose",
+    "hero.eyebrow": "Wasser in der Dose",
     "hero.title1": "Reines Wasser.",
     "hero.title2": "In der Dose.",
-    "hero.sub": "Stilles und sprudelndes Wasser in der schlanken 330-ml-Aluminiumdose.",
+    "hero.sub": "Stilles und sprudelndes Wasser in der 330-ml-Dose.",
     "hero.cta": "Zum Sortiment",
     "hero.scroll": "Weiter",
 
@@ -729,8 +729,8 @@ window.AQUVA_I18N = {
 
     "products.eyebrow": "Produkte",
     "products.title1": "Still oder sprudelnd.",
-    "products.title2": "Dieselbe Dose.",
-    "products.lead": "Beide kommen in derselben schlanken 330-ml-Dose. Nehmen Sie, worauf Sie Lust haben.",
+    "products.title2": "Ihre Wahl.",
+    "products.lead": "Beide kommen in einer 330-ml-Aluminiumdose. Nehmen Sie, worauf Sie Lust haben.",
     "tags.can": "Aluminiumdose",
     "still.type": "Still",
     "still.tagline": "Stilles Wasser.",

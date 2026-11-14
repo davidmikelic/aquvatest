@@ -845,7 +845,6 @@ html.drawer-open .drawer__overlay { opacity: 1; }
 html.drawer-open .drawer__panel { transform: none; }
 html.drawer-open body { overflow: hidden; }
 .drawer__head { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: calc(24px + env(safe-area-inset-top)) 28px 20px; border-bottom: 1px solid var(--line); }
-.drawer__head > div { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; min-width: 0; }
 .drawer__title { margin-top: 0; font-size: 34px; font-weight: 400; line-height: 1; letter-spacing: -.02em; }
 .drawer__close { width: 44px; height: 44px; margin: 0 -10px 0 0; border-radius: 50%; display: grid; place-items: center; transition: background-color .3s var(--ease); }
 .drawer__close:hover { background: var(--sky); }
@@ -1015,9 +1014,18 @@ html.geo-pending body { visibility: hidden; animation: geoReveal 0s 1.6s forward
   .footer__top { grid-template-columns: 1fr 1fr; }
   .footer__brand { grid-column: 1 / -1; }
 }
-@media (max-width: 760px) {
-  .footer__contact { grid-column: 1 / -1; }
-  .footer-nl { max-width: none; }
+@media (max-width: 760px) {          /* phones: one centred column; desktop layout unchanged */
+  .footer__top { grid-template-columns: 1fr; gap: 32px; text-align: center; justify-items: center; }
+  .footer__brand, .footer__contact { grid-column: auto; }
+  .footer__contact { width: 100%; }
+  .footer__brand .brand { justify-content: center; }
+  .footer__nav { justify-items: center; }
+  .footer-nl { width: 100%; max-width: 420px; margin-inline: auto; }
+  .footer-nl .nl-form__consent { width: fit-content; max-width: 100%; margin-inline: auto; text-align: left; }
+  .footer-nl .nl-form__note { padding-left: 0; text-align: center; }
+  .footer-nl .nl-form__msg { justify-content: center; text-align: left; }
+  .footer__bottom { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+  .footer__links { flex-wrap: wrap; justify-content: center; gap: 8px 22px; }
 }
 
 /* Newsletter popup: compact and balanced. Logo, title and text sit close together; the form

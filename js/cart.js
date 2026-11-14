@@ -125,7 +125,7 @@
     '<div class="drawer__overlay" data-cart-close></div>' +
     '<aside class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">' +
       '<header class="drawer__head">' +
-        '<div><p class="eyebrow" data-i18n="cart.eyebrow"></p><h2 class="drawer__title" id="cart-title" data-i18n="cart.title"></h2></div>' +
+        '<h2 class="drawer__title" id="cart-title" data-i18n="cart.title"></h2>' +
         '<button class="drawer__close" type="button" data-cart-close data-i18n-attr="aria-label:a11y.close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
       '</header>' +
       '<div class="drawer__body" data-cart-body></div>' +
