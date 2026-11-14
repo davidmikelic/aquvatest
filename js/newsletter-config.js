@@ -17,6 +17,6 @@ window.AQUVA_NEWSLETTER = {
   endpoint: "/api/newsletter.php",
   consentVersion: "v1",    // must exist in api/lib/newsletter-core.php (nl_consent_texts); bump when the wording changes
   doubleOptIn: false,      // no confirmation emails are sent by the file-based storage
-  popupDelayMs: 12000,     // timed popup appears ~12 s after the visitor arrives
+  popupDelayMs: 30000,     // timed popup appears 30 s after the visitor enters the site (counted per browsing session)
   popupSnoozeDays: 14      // after closing the popup, do not show it again for this long
 };

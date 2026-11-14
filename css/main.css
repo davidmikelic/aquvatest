@@ -1039,11 +1039,16 @@ html.geo-pending body { visibility: hidden; animation: geoReveal 0s 1.6s forward
   .footer__nl { grid-template-columns: 1fr; text-align: center; }
 }
 
-.nl-pop { width: min(520px, calc(100% - 32px)); text-align: center; }
-.nl-pop .dialog__inner { padding: clamp(30px, 5vw, 48px) clamp(20px, 5vw, 44px) clamp(24px, 4vw, 36px); }
-.nl-pop__mark { width: 60px; height: auto; margin: 0 auto 16px; }
-.dialog h2.nl-pop__title { margin: 0 0 10px; font-size: clamp(26px, 3vw, 34px); }
-.dialog p.nl-pop__text { margin-bottom: 22px; }
+/* Newsletter popup: compact and balanced. Logo, title and text sit close together; the form
+   keeps its own rhythm; the privacy note lines up with the consent text (checkbox 20px + 14px gap). */
+.nl-pop { width: min(480px, calc(100% - 32px)); text-align: center; }
+.nl-pop .dialog__inner { padding: clamp(26px, 4vw, 34px) clamp(20px, 4.5vw, 36px) clamp(22px, 3.5vw, 28px); }
+.nl-pop .dialog__close { right: 12px; top: 12px; }
+.nl-pop__mark { display: block; width: 54px; height: auto; margin: 0 auto 12px; }
+.dialog h2.nl-pop__title { margin: 0 0 8px; font-size: clamp(26px, 3vw, 32px); line-height: 1.2; }
+.dialog p.nl-pop__text { max-width: 42ch; margin: 0 auto 20px; font-size: clamp(15px, 1.2vw, 16px); line-height: 1.55; }
+.nl-pop .nl-form__consent { margin-top: 14px; }
+.nl-pop .nl-form__note { margin-top: 8px; padding-left: 34px; line-height: 1.5; }
 .nl-pop.is-closing { animation: dialogOut .22s var(--ease) forwards; }
 .nl-pop.is-closing::backdrop { animation: backdropOut .22s forwards; }
 @keyframes dialogOut { to { opacity: 0; transform: translateY(12px) scale(.98); } }
