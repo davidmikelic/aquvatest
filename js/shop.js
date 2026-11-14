@@ -76,23 +76,23 @@
       '<p><strong data-i18n="demo.label"></strong> <span data-i18n="' + key + '"></span></p></div>';
   }
 
-  /* Order summary (checkout sidebar + confirmation) */
+  /* Order summary (checkout sidebar + confirmation). Prices only when SHOP.showPrices. */
   function summary(lines, t) {
+    var P = SHOP.showPrices;
     return '<ul class="sum-lines">' + lines.map(function (l) {
       return '<li class="sum-line">' +
         '<img src="' + l.product.image.small + '" alt="" width="420" height="840" loading="lazy" decoding="async">' +
         '<div><p class="sum-line__name">' + esc(l.product.name) + '</p>' +
         '<p class="sum-line__pack">' + Cart.ui.packLabel(l.variant) + '</p>' +
-        '<p class="sum-line__qty">' + l.qty + ' × ' + price(l.variant.priceCents) + '</p></div>' +
-        '<strong class="sum-line__total">' + price(l.lineCents) + '</strong></li>';
+        '<p class="sum-line__qty">' + l.qty + ' × ' + (P ? price(l.variant.priceCents) : '<span data-i18n="pack.' + l.variant.packKey + '.name"></span>') + '</p></div>' +
+        '<strong class="sum-line__total">' + (P ? price(l.lineCents) : counted(l.cans, "unit.can")) + '</strong></li>';
     }).join("") + '</ul>' +
     '<div class="sum">' +
-      '<div class="sum-row"><span data-i18n="cart.packages"></span><strong>' + SHOP.formatNumber(t.packages) + '</strong></div>' +
-      '<div class="sum-row"><span data-i18n="cart.cans"></span><strong>' + SHOP.formatNumber(t.cans) + '</strong></div>' +
+      Cart.ui.summaryRows(t) +
       '<div class="sum-row"><span data-i18n="cart.volume"></span><strong>' + litres(t.volumeMl) + '</strong></div>' +
-      '<div class="sum-row sum-row--sep"><span data-i18n="cart.subtotal"></span><strong>' + price(t.subtotalCents) + '</strong></div>' +
-      '<div class="sum-row"><span data-i18n="checkout.delivery"></span><strong class="sum-muted" data-i18n="checkout.notConfigured"></strong></div>' +
-      '<div class="sum-row sum-row--total"><span><span data-i18n="checkout.total"></span><small data-i18n="checkout.totalNote"></small></span><strong>' + price(t.subtotalCents) + '</strong></div>' +
+      (P ? '<div class="sum-row sum-row--sep"><span data-i18n="cart.subtotal"></span><strong>' + price(t.subtotalCents) + '</strong></div>' +
+        '<div class="sum-row"><span data-i18n="checkout.delivery"></span><strong class="sum-muted" data-i18n="checkout.notConfigured"></strong></div>' +
+        '<div class="sum-row sum-row--total"><span><span data-i18n="checkout.total"></span><small data-i18n="checkout.totalNote"></small></span><strong>' + price(t.subtotalCents) + '</strong></div>' : '') +
     '</div>';
   }
 
@@ -111,7 +111,7 @@
           '<p class="product__desc" data-i18n="' + p.shopDescKey + '"></p>' +
           '<div class="product__buyrow">' +
             '<span class="btn btn--primary product__cta"><span data-i18n="shop.discover"></span>' + ICON_ARROW + '</span>' +
-            '<p class="product__from"><span data-i18n="shop.from"></span> ' + price(from.priceCents) + '</p>' +
+            (SHOP.showPrices ? '<p class="product__from"><span data-i18n="shop.from"></span> ' + price(from.priceCents) + '</p>' : '') +
           '</div>' +
         '</div></a>';
     }).join("");
@@ -145,8 +145,7 @@
         packVisual(v.cans) +
         '<span class="pack__name" data-i18n="pack.' + v.packKey + '.name"></span>' +
         '<span class="pack__qty">' + v.cans + ' × ' + SHOP.canMl + ' ml</span>' +
-        '<span class="pack__vol">' + litres(v.volumeMl) + (v.cans > 1 ? ' <span data-i18n="pdp.inTotal"></span>' : '') + '</span>' +
-        '<span class="pack__price">' + price(v.priceCents) + '</span>' +
+        (SHOP.showPrices ? '<span class="pack__price">' + price(v.priceCents) + '</span>' : '') +
       '</label>';
     }).join("");
 
@@ -164,16 +163,16 @@
           '<div class="pdp__qty">' +
             '<label class="field-label" for="qty" data-i18n="pdp.quantity"></label>' +
             '<div class="pdp__qty-row">' +
+              // The value is the number of CANS; it steps by the selected pack size (1, 6 or 24)
               '<div class="stepper">' +
                 '<button type="button" class="stepper__btn" data-qty="-1" data-i18n-attr="aria-label:qty.decrease"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg></button>' +
                 '<input class="stepper__input" id="qty" type="number" inputmode="numeric" min="1" max="' + Cart.maxQty + '" step="1" value="' + st.qty + '">' +
                 '<button type="button" class="stepper__btn" data-qty="1" data-i18n-attr="aria-label:qty.increase"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12M12 6v12"/></svg></button>' +
               '</div>' +
-              '<p class="pdp__calc" data-pdp-calc aria-live="polite"></p>' +
             '</div>' +
           '</div>' +
-          '<div class="pdp__buy">' +
-            '<div class="pdp__total"><span class="field-label" data-i18n="pdp.total"></span><strong class="pdp__price" data-pdp-price></strong></div>' +
+          '<div class="pdp__buy' + (SHOP.showPrices ? '' : ' pdp__buy--noprice') + '">' +
+            (SHOP.showPrices ? '<div class="pdp__total"><span class="field-label" data-i18n="pdp.total"></span><strong class="pdp__price" data-pdp-price></strong></div>' : '') +
             '<button class="btn btn--primary pdp__add" type="button" data-add><span data-add-label data-i18n="pdp.add"></span>' + ICON_ARROW + '</button>' +
           '</div>' +
           '<a class="pdp__switch" href="#/' + other.id + '"><span data-i18n="pdp.also"></span> <strong>' + esc(other.name) + '</strong>' + ICON_ARROW + '</a>' +
@@ -181,30 +180,45 @@
       '</div></div></section>';
   }
 
+  // st.qty = number of the selected packs (what goes into the cart); the field shows cans = st.qty × pack size
   function updatePdp(p) {
     var st = pdpState[p.id], v = SHOP.variant(p.id + "-" + st.pack);
-    var calc = $("[data-pdp-calc]", view), pr = $("[data-pdp-price]", view);
-    if (calc) calc.innerHTML = counted(st.qty, "unit.package") + ' · ' + counted(v.cans * st.qty, "unit.can") + ' · ' + litres(v.volumeMl * st.qty);
+    var input = $("#qty", view), pr = $("[data-pdp-price]", view);
+    if (input) {
+      input.min = v.cans; input.step = v.cans; input.max = v.cans * Cart.maxQty;
+      if (document.activeElement !== input || input.value !== "") input.value = v.cans * st.qty;
+    }
     if (pr) pr.innerHTML = price(v.priceCents * st.qty);
     $$(".pack", view).forEach(function (l) { l.classList.toggle("is-selected", $("input", l).checked); });
   }
 
   function bindProduct(p) {
     var st = pdpState[p.id], input = $("#qty", view);
-    function setQty(q) {
+    function packCans() { return SHOP.variant(p.id + "-" + st.pack).cans; }
+    function setPacks(q) {
       q = Math.floor(Number(q));
       if (!(q >= 1)) q = 1;
-      q = Math.min(Cart.maxQty, q);
-      st.qty = q; input.value = q; updatePdp(p);
+      st.qty = Math.min(Cart.maxQty, q); updatePdp(p);
+    }
+    function setCans(c, snap) {                       // typed number of cans -> whole packs
+      var n = Number(c), size = packCans();
+      if (!(n > 0)) { if (snap) setPacks(1); return; }
+      if (!snap && n % size !== 0) return;            // still typing (e.g. "1" on the way to "18")
+      setPacks(Math.round(n / size));
     }
     $$('input[name="pack"]', view).forEach(function (r) {
-      r.addEventListener("change", function () { st.pack = r.value; updatePdp(p); });
+      r.addEventListener("change", function () {
+        var cans = packCans() * st.qty;               // keep roughly the same number of cans
+        st.pack = r.value;
+        setPacks(Math.ceil(cans / packCans()));
+      });
     });
     $$("[data-qty]", view).forEach(function (b) {
-      b.addEventListener("click", function () { setQty(st.qty + Number(b.getAttribute("data-qty"))); });
+      b.addEventListener("click", function () { setPacks(st.qty + Number(b.getAttribute("data-qty"))); });
     });
-    input.addEventListener("input", function () { if (input.value !== "") setQty(input.value); });
-    input.addEventListener("blur", function () { setQty(input.value); });
+    input.addEventListener("input", function () { if (input.value !== "") setCans(input.value, false); });
+    input.addEventListener("change", function () { setCans(input.value, true); });
+    input.addEventListener("blur", function () { setCans(input.value, true); });
     var add = $("[data-add]", view), label = $("[data-add-label]", view), timer;
     add.addEventListener("click", function () {
       var v = SHOP.variant(p.id + "-" + st.pack);

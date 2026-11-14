@@ -58,10 +58,15 @@
         return { id: i.id, qty: i.qty, variant: v, product: p, lineCents: v.priceCents * i.qty, cans: v.cans * i.qty, volumeMl: v.volumeMl * i.qty };
       });
     },
+    // packages: optimal packaging of ALL cans in the cart (24s first, then 6s; loose cans
+    // are not packages), so it never depends on how many rows or variants were added.
     totals: function () {
-      return Cart.lines().reduce(function (t, l) {
-        t.packages += l.qty; t.cans += l.cans; t.volumeMl += l.volumeMl; t.subtotalCents += l.lineCents; return t;
-      }, { packages: 0, cans: 0, volumeMl: 0, subtotalCents: 0 });
+      var t = Cart.lines().reduce(function (t, l) {
+        t.cans += l.cans; t.volumeMl += l.volumeMl; t.subtotalCents += l.lineCents; return t;
+      }, { cans: 0, volumeMl: 0, subtotalCents: 0 });
+      var pk = SHOP.packaging(t.cans);
+      t.packages = pk.packages; t.case24 = pk.case24; t.six = pk.six; t.loose = pk.loose;
+      return t;
     },
     onChange: function (fn) { listeners.push(fn); },
     open: open,
@@ -79,23 +84,28 @@
     return '<span data-i18n="pack.' + v.packKey + '.name"></span> · ' + v.cans + " × " + SHOP.canMl + " ml";
   }
 
-  function summaryRows(t) {
-    return '' +
-      '<div class="sum-row"><span data-i18n="cart.packages"></span><strong>' + SHOP.formatNumber(t.packages) + '</strong></div>' +
-      '<div class="sum-row"><span data-i18n="cart.cans"></span><strong>' + SHOP.formatNumber(t.cans) + '</strong></div>';
+  // "7 limenki", "2 paketa": number + correctly declined unit, re-rendered on language change
+  function counted(n, key) {
+    return '<span data-count="' + n + '" data-count-key="' + key + '">' + SHOP.formatNumber(n) + " " + AQUVA.tp(key, n) + "</span>";
   }
 
-  Cart.ui = { esc: esc, packLabel: packLabel, summaryRows: summaryRows };
+  // 1 to 5 cans: only the cans. From 6 cans: packages and cans. Never "0 packages".
+  function summaryRows(t) {
+    return (t.packages > 0 ? '<div class="sum-row"><span data-i18n="cart.packages"></span><strong>' + counted(t.packages, "unit.package") + '</strong></div>' : '') +
+      '<div class="sum-row"><span data-i18n="cart.cans"></span><strong>' + counted(t.cans, "unit.can") + '</strong></div>';
+  }
+
+  Cart.ui = { esc: esc, packLabel: packLabel, summaryRows: summaryRows, counted: counted };
 
   /* ---------- Header badge ---------- */
   function renderBadges() {
     var t = Cart.totals();
-    $$("[data-cart-count]").forEach(function (b) {
-      b.textContent = SHOP.formatNumber(t.packages);
-      b.hidden = t.packages === 0;
+    $$("[data-cart-count]").forEach(function (b) {              // badge = total number of cans
+      b.textContent = SHOP.formatNumber(t.cans);
+      b.hidden = t.cans === 0;
     });
     $$("[data-cart-open]").forEach(function (btn) {
-      var label = AQUVA.t("cart.title") + (t.packages ? ", " + t.packages + " " + AQUVA.tp("unit.package", t.packages) : "");
+      var label = AQUVA.t("cart.title") + (t.cans ? ", " + t.cans + " " + AQUVA.tp("unit.can", t.cans) : "");
       btn.setAttribute("aria-label", label);
     });
   }
@@ -157,15 +167,16 @@
           '<div class="cart-line__main">' +
             '<p class="cart-line__name">' + esc(l.product.name) + '</p>' +
             '<p class="cart-line__pack">' + packLabel(l.variant) + '</p>' +
-            '<p class="cart-line__unit">' + SHOP.formatPrice(l.variant.priceCents) + ' / <span data-i18n="cart.perPackage"></span></p>' +
-            '<div class="cart-line__row">' + stepper(l.id, l.qty, l.product.name) + '<strong class="cart-line__total">' + SHOP.formatPrice(l.lineCents) + '</strong></div>' +
+            (SHOP.showPrices ? '<p class="cart-line__unit">' + SHOP.formatPrice(l.variant.priceCents) + ' / <span data-i18n="cart.perPackage"></span></p>' : '') +
+            '<div class="cart-line__row">' + stepper(l.id, l.qty, l.product.name) +
+              '<strong class="cart-line__total">' + (SHOP.showPrices ? SHOP.formatPrice(l.lineCents) : counted(l.cans, "unit.can")) + '</strong></div>' +
           '</div>' +
           '<button type="button" class="cart-line__remove" data-cart-remove="' + l.id + '" data-i18n-attr="aria-label:cart.remove"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></button>' +
         '</li>';
       }).join("") + '</ul>';
       foot.innerHTML =
         '<div class="sum">' + summaryRows(t) +
-          '<div class="sum-row sum-row--total"><span data-i18n="cart.subtotal"></span><strong>' + SHOP.formatPrice(t.subtotalCents) + '</strong></div>' +
+          (SHOP.showPrices ? '<div class="sum-row sum-row--total"><span data-i18n="cart.subtotal"></span><strong>' + SHOP.formatPrice(t.subtotalCents) + '</strong></div>' : '') +
         '</div>' +
         '<p class="drawer__note" data-i18n="cart.shippingNote"></p>' +
         '<div class="drawer__actions">' +

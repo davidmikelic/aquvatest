@@ -45,10 +45,10 @@
 
   <link rel="preload" href="/assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/jost-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/css/main.css?v=20261114d">
-  <link rel="stylesheet" href="/css/shop.css?v=20261114d">
-  <link rel="stylesheet" href="/css/fonts-serif.css?v=20261114d" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="/css/fonts-serif.css?v=20261114d"></noscript>
+  <link rel="stylesheet" href="/css/main.css?v=20261114e">
+  <link rel="stylesheet" href="/css/shop.css?v=20261114e">
+  <link rel="stylesheet" href="/css/fonts-serif.css?v=20261114e" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="/css/fonts-serif.css?v=20261114e"></noscript>
 
   <script>
     /* Same pre-paint setup as the home page (language order: URL > manual > earlier
@@ -77,14 +77,14 @@
       document.head.appendChild(l);
     })();
   </script>
-  <script src="/js/i18n.js?v=20261114d" defer></script>
-  <script src="/js/shop-data.js?v=20261114d" defer></script>
-  <script src="/js/main.js?v=20261114d" defer></script>
-  <script src="/js/cart.js?v=20261114d" defer></script>
-  <script src="/js/shop.js?v=20261114d" defer></script>
-  <script src="/js/consent.js?v=20261114d" defer></script>
-  <script src="/js/newsletter-config.js?v=20261114d" defer></script>
-  <script src="/js/newsletter.js?v=20261114d" defer></script>
+  <script src="/js/i18n.js?v=20261114e" defer></script>
+  <script src="/js/shop-data.js?v=20261114e" defer></script>
+  <script src="/js/main.js?v=20261114e" defer></script>
+  <script src="/js/cart.js?v=20261114e" defer></script>
+  <script src="/js/shop.js?v=20261114e" defer></script>
+  <script src="/js/consent.js?v=20261114e" defer></script>
+  <script src="/js/newsletter-config.js?v=20261114e" defer></script>
+  <script src="/js/newsletter.js?v=20261114e" defer></script>
 
   <script type="application/ld+json">
   {
@@ -206,6 +206,18 @@
         <p style="margin-top:28px"><a href="/">AQUVA</a> · <a href="mailto:info@aquva.hr">info@aquva.hr</a></p>
       </div>
     </noscript>
+    <!-- ============ NEWSLETTER (directly below Contact, above the footer) ============ -->
+    <section class="newsletter" aria-labelledby="nl-footer-title">
+      <div class="container">
+        <div class="footer__nl">
+          <div class="footer__nl-copy">
+            <h2 class="footer__nl-title" id="nl-footer-title" data-i18n="nl.footerTitle">Ostanite povezani s AQUVA.</h2>
+            <p class="footer__nl-text" data-i18n="nl.footerText">Primajte novosti i obavijesti iz AQUVA svijeta.</p>
+          </div>
+          <div class="footer__nl-form" data-newsletter="footer"></div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ============ FOOTER ============ -->
@@ -231,32 +243,6 @@
           <p class="footer__label" data-i18n="nav.contact">Kontakt</p>
           <a href="mailto:info@aquva.hr">info@aquva.hr</a>
         </div>
-      </div>
-      <section class="footer__nl" aria-labelledby="nl-footer-title">
-        <div class="footer__nl-copy">
-          <h2 class="footer__nl-title" id="nl-footer-title" data-i18n="nl.footerTitle">Ostanite povezani s AQUVA.</h2>
-          <p class="footer__nl-text" data-i18n="nl.footerText">Primajte novosti i obavijesti iz AQUVA svijeta.</p>
-        </div>
-        <div class="footer__nl-form" data-newsletter="footer"></div>
-      </section>
-      <!-- Calm water droplets (pure CSS, decorative; static when reduced motion is preferred) -->
-      <div class="footer__drops" aria-hidden="true">
-        <span class="drop" style="--x:6%;--s:10px;--t:13s;--dl:-2s;--yf:-0.30;--dx:8px"></span>
-        <span class="drop" style="--x:13%;--s:18px;--t:17s;--dl:-9s;--yf:-0.70;--dx:-10px"></span>
-        <span class="drop" style="--x:21%;--s:7px;--t:11s;--dl:-5s;--yf:-0.45;--dx:6px"></span>
-        <span class="drop" style="--x:29%;--s:24px;--t:19s;--dl:-14s;--yf:-0.22;--dx:12px"></span>
-        <span class="drop" style="--x:37%;--s:9px;--t:12s;--dl:-1s;--yf:-0.85;--dx:-6px"></span>
-        <span class="drop" style="--x:45%;--s:14px;--t:15s;--dl:-11s;--yf:-0.55;--dx:9px"></span>
-        <span class="drop" style="--x:52%;--s:6px;--t:10s;--dl:-7s;--yf:-0.36;--dx:-4px"></span>
-        <span class="drop" style="--x:59%;--s:20px;--t:18s;--dl:-4s;--yf:-0.64;--dx:-12px"></span>
-        <span class="drop" style="--x:66%;--s:8px;--t:12s;--dl:-10s;--yf:-0.15;--dx:7px"></span>
-        <span class="drop" style="--x:73%;--s:15px;--t:16s;--dl:-13s;--yf:-0.76;--dx:-8px"></span>
-        <span class="drop" style="--x:80%;--s:11px;--t:14s;--dl:-3s;--yf:-0.42;--dx:10px"></span>
-        <span class="drop" style="--x:87%;--s:22px;--t:20s;--dl:-8s;--yf:-0.26;--dx:-9px"></span>
-        <span class="drop" style="--x:94%;--s:8px;--t:11s;--dl:-6s;--yf:-0.60;--dx:5px"></span>
-        <span class="ripple" style="--x:24%;--dl:0s"></span>
-        <span class="ripple" style="--x:62%;--dl:-3.5s"></span>
-        <span class="ripple" style="--x:85%;--dl:-6s"></span>
       </div>
       <div class="footer__bottom">
         <p>© <span id="year">2026</span> AQUVA. <span data-i18n="footer.rights">Sva prava pridržana.</span></p>

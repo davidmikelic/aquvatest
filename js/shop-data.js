@@ -12,6 +12,11 @@ window.AQUVA_SHOP = (function () {
   var CURRENCY = "EUR";
   var CAN_ML = 330;
 
+  /* Prices are temporarily NOT shown anywhere in the shop (product page, cards, cart,
+     checkout). The price data below and all calculations stay intact: set this back to
+     true to show prices again. */
+  var SHOW_PRICES = false;
+
   /* Packaging options — id is used in variant IDs, key in translations */
   var PACKS = [
     { id: "1",  key: "single", cans: 1,  priceCents: 99 },    // 1 × 330 ml  — €0.99
@@ -72,6 +77,16 @@ window.AQUVA_SHOP = (function () {
   return {
     currency: CURRENCY,
     canMl: CAN_ML,
+    showPrices: SHOW_PRICES,
+
+    /* Optimal packaging for a total number of cans, independent of how the cans were
+       added: as many cases of 24 as possible, then six-packs, the rest are loose cans.
+       Loose cans are never counted as packages (1 to 5 cans = 0 packages). */
+    packaging: function (cans) {
+      cans = Math.max(0, Math.floor(Number(cans) || 0));
+      var case24 = Math.floor(cans / 24), rest = cans % 24, six = Math.floor(rest / 6);
+      return { cans: cans, case24: case24, six: six, loose: rest % 6, packages: case24 + six };
+    },
     packs: PACKS,
     products: PRODUCTS,
     product: function (id) { for (var i = 0; i < PRODUCTS.length; i++) if (PRODUCTS[i].id === id) return PRODUCTS[i]; return null; },
