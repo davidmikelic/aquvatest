@@ -20,7 +20,8 @@
     set: function (k, v, s) { try { (s ? sessionStorage : localStorage).setItem(k, v); } catch (e) {} }
   };
 
-  function formHTML(id, source) {
+  // compact (footer): same fields, same consent wording and backend; the privacy note is just the link
+  function formHTML(id, source, compact) {
     return '<form class="nl-form" novalidate data-nl-form data-source="' + source + '" data-i18n-attr="aria-label:nl.label">' +
       '<div class="nl-form__row">' +
         '<label class="sr-only" for="nl-email-' + id + '" data-i18n="nl.emailLabel"></label>' +
@@ -33,7 +34,7 @@
         '<span class="check__box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>' +
         '<span data-i18n="nl.consent"></span></label>' +
       '<p class="nl-form__msg" id="nl-msg-' + id + '" role="status" aria-live="polite"></p>' +
-      '<p class="nl-form__note"><span data-i18n="nl.privacy"></span> <button type="button" class="link-btn" data-privacy-open data-i18n="footer.privacy"></button></p>' +
+      '<p class="nl-form__note">' + (compact ? '' : '<span data-i18n="nl.privacy"></span> ') + '<button type="button" class="link-btn" data-privacy-open data-i18n="footer.privacy"></button></p>' +
     '</form>';
   }
 
@@ -108,7 +109,7 @@
 
   /* ---------- Footer form ---------- */
   var footerSlot = $('[data-newsletter="footer"]');
-  if (footerSlot) { footerSlot.innerHTML = formHTML("footer", "footer"); A.translate(footerSlot); }
+  if (footerSlot) { footerSlot.innerHTML = formHTML("footer", "footer", true); A.translate(footerSlot); }
 
   /* ---------- Timed popup ---------- */
   var popup = document.createElement("dialog");

@@ -45,10 +45,10 @@
 
   <link rel="preload" href="/assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/jost-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/css/main.css?v=20261114e">
-  <link rel="stylesheet" href="/css/shop.css?v=20261114e">
-  <link rel="stylesheet" href="/css/fonts-serif.css?v=20261114e" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="/css/fonts-serif.css?v=20261114e"></noscript>
+  <link rel="stylesheet" href="/css/main.css?v=20261114f">
+  <link rel="stylesheet" href="/css/shop.css?v=20261114f">
+  <link rel="stylesheet" href="/css/fonts-serif.css?v=20261114f" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="/css/fonts-serif.css?v=20261114f"></noscript>
 
   <script>
     /* Same pre-paint setup as the home page (language order: URL > manual > earlier
@@ -77,14 +77,14 @@
       document.head.appendChild(l);
     })();
   </script>
-  <script src="/js/i18n.js?v=20261114e" defer></script>
-  <script src="/js/shop-data.js?v=20261114e" defer></script>
-  <script src="/js/main.js?v=20261114e" defer></script>
-  <script src="/js/cart.js?v=20261114e" defer></script>
-  <script src="/js/shop.js?v=20261114e" defer></script>
-  <script src="/js/consent.js?v=20261114e" defer></script>
-  <script src="/js/newsletter-config.js?v=20261114e" defer></script>
-  <script src="/js/newsletter.js?v=20261114e" defer></script>
+  <script src="/js/i18n.js?v=20261114f" defer></script>
+  <script src="/js/shop-data.js?v=20261114f" defer></script>
+  <script src="/js/main.js?v=20261114f" defer></script>
+  <script src="/js/cart.js?v=20261114f" defer></script>
+  <script src="/js/shop.js?v=20261114f" defer></script>
+  <script src="/js/consent.js?v=20261114f" defer></script>
+  <script src="/js/newsletter-config.js?v=20261114f" defer></script>
+  <script src="/js/newsletter.js?v=20261114f" defer></script>
 
   <script type="application/ld+json">
   {
@@ -206,18 +206,6 @@
         <p style="margin-top:28px"><a href="/">AQUVA</a> · <a href="mailto:info@aquva.hr">info@aquva.hr</a></p>
       </div>
     </noscript>
-    <!-- ============ NEWSLETTER (directly below Contact, above the footer) ============ -->
-    <section class="newsletter" aria-labelledby="nl-footer-title">
-      <div class="container">
-        <div class="footer__nl">
-          <div class="footer__nl-copy">
-            <h2 class="footer__nl-title" id="nl-footer-title" data-i18n="nl.footerTitle">Ostanite povezani s AQUVA.</h2>
-            <p class="footer__nl-text" data-i18n="nl.footerText">Primajte novosti i obavijesti iz AQUVA svijeta.</p>
-          </div>
-          <div class="footer__nl-form" data-newsletter="footer"></div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- ============ FOOTER ============ -->
@@ -242,6 +230,10 @@
         <div class="footer__contact">
           <p class="footer__label" data-i18n="nav.contact">Kontakt</p>
           <a href="mailto:info@aquva.hr">info@aquva.hr</a>
+          <section class="footer-nl" aria-labelledby="nl-footer-title">
+            <p class="footer__label footer-nl__title" id="nl-footer-title" data-i18n="nl.compactTitle">AQUVA novosti</p>
+            <div class="footer-nl__form" data-newsletter="footer"></div>
+          </section>
         </div>
       </div>
       <div class="footer__bottom">
