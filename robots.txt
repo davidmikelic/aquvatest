@@ -1,0 +1,4 @@
+# GitHub Pages test host (e.g. aquva-test.com) — do not index.
+# Pages also set meta robots noindex when the host is not www.aquva.hr.
+User-agent: *
+Disallow: /
