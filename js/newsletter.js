@@ -11,7 +11,9 @@
   var CFG = window.AQUVA_NEWSLETTER || {};
   var ENDPOINT = String(CFG.endpoint || "").trim();
   var DELAY = CFG.popupDelayMs || 30000;
+  var COOLDOWN = (CFG.popupCooldownHours || 24) * 36e5;
   var K_SUB = "aquva-nl";                 // UI hint only (set after the server confirmed a sign-up)
+  var K_SHOWN_AT = "aquva-nl-shown-at";   // localStorage: when the popup was last displayed
   var EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var store = {
@@ -135,24 +137,36 @@
   });
   popup.addEventListener("cancel", function (e) { e.preventDefault(); closePopup(true); }); // Esc
 
-  // Shown on EVERY page load after the delay, except for visitors who already subscribed.
+  // Last time the popup was actually DISPLAYED (ms). Missing, non-numeric, zero/negative or
+  // future values (clock changes, tampering) are ignored, so they can never block or spam.
+  function lastShown() {
+    var t = Number(store.get(K_SHOWN_AT));
+    return (isFinite(t) && t > 0 && t <= Date.now() + 6e4) ? t : 0;
+  }
+  // Never after a successful sign-up; otherwise at most once per COOLDOWN (24 h), across refreshes,
+  // pages and later visits. Closing the popup does not change anything: the clock starts when it is shown.
   function popupAllowed() {
-    return store.get(K_SUB) !== "1";
+    if (store.get(K_SUB) === "1") return false;
+    var t = lastShown();
+    return !t || Date.now() - t >= COOLDOWN;
   }
   function importantFlow() {                                             // never interrupt checkout
     return /\/shop\//.test(location.pathname) && /checkout|confirmation/.test(location.hash);
   }
 
+  var timer = null;                                                      // one pending timer per page, never more
+  function schedule(ms) { clearTimeout(timer); timer = setTimeout(tryShow, ms); }
   function tryShow() {
-    if (!popupAllowed() || popup.open) return;
+    clearTimeout(timer); timer = null;
+    if (popup.open || !popupAllowed()) return;                          // re-checked: another tab may have shown it
     if (A.isBusy() || importantFlow() || document.hidden) {
-      setTimeout(tryShow, 1500);                                         // wait while the cookie banner etc. is shown
+      schedule(1500);                                                    // wait while the cookie banner etc. is shown
       return;
     }
+    store.set(K_SHOWN_AT, String(Date.now()));                           // the 24 h cooldown starts now
     if (typeof popup.showModal === "function") popup.showModal(); else popup.setAttribute("open", "");
   }
-  // The delay restarts with every page load (also after a refresh).
-  if (popupAllowed()) setTimeout(tryShow, DELAY);
+  if (popupAllowed()) schedule(DELAY);                                   // 30 s after the page loads
 
   window.AQUVA_NEWSLETTER_UI = { open: function () { tryShow(); }, configured: !!ENDPOINT };
 })();

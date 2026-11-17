@@ -8,7 +8,7 @@
 
   var SHOP = window.AQUVA_SHOP;
   if (!SHOP || !window.AQUVA) return;
-  var KEY = "aquva-cart", MAX_QTY = 99;
+  var KEY = "aquva-cart", MAX_QTY = 99, K_NOTICE = "aquva-cart-notice";
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
   var listeners = [];
@@ -24,8 +24,17 @@
     });
     return Object.keys(merged).map(function (id) { return { id: id, qty: merged[id] }; });
   }
+  // Items whose package is no longer sold (a discontinued package) are REMOVED, never
+  // converted into another package, and the visitor is told once in the cart and at checkout.
   function load() {
-    try { return sanitize(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch (e) { return []; }
+    var raw;
+    try { raw = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return []; }
+    var clean = sanitize(raw);
+    var unavailable = (Array.isArray(raw) ? raw : []).some(function (i) { return i && i.id && !SHOP.variant(i.id); });
+    if (unavailable) {
+      try { sessionStorage.setItem(K_NOTICE, "1"); localStorage.setItem(KEY, JSON.stringify(clean)); } catch (e) {}
+    }
+    return clean;
   }
   function save() {
     try { localStorage.setItem(KEY, JSON.stringify(items)); } catch (e) {}
@@ -52,22 +61,27 @@
     },
     remove: function (id) { items = items.filter(function (i) { return i.id !== id; }); save(); },
     clear: function () { items = []; save(); },
+    // Notice shown after unavailable items were removed from an older cart (see load)
+    notice: function () {
+      var on = null; try { on = sessionStorage.getItem(K_NOTICE); } catch (e) {}
+      return on === "1" ? '<p class="cart-notice" role="status" data-i18n="cart.unavailableRemoved"></p>' : "";
+    },
+    dismissNotice: function () { try { sessionStorage.removeItem(K_NOTICE); } catch (e) {} },
     lines: function () {
       return items.map(function (i) {
         var v = SHOP.variant(i.id), p = SHOP.product(v.productId);
         return { id: i.id, qty: i.qty, variant: v, product: p, lineCents: v.priceCents * i.qty, cans: v.cans * i.qty, volumeMl: v.volumeMl * i.qty };
       });
     },
-    // Totals of exactly what was ordered: packages = number of 6- and 24-can packages in the
-    // cart lines (single cans are never packages), cans = packages × pack size + single cans.
+    // Totals of exactly what was ordered: packages = number of six-packs in the cart lines
+    // (single cans are never packages), cans = six-packs × 6 + single cans.
     totals: function () {
       return Cart.lines().reduce(function (t, l) {
         t.cans += l.cans; t.volumeMl += l.volumeMl; t.subtotalCents += l.lineCents;
         if (l.variant.cans > 1) t.packages += l.qty; else t.loose += l.qty;
-        if (l.variant.packKey === "case24") t.case24 += l.qty;
         if (l.variant.packKey === "six") t.six += l.qty;
         return t;
-      }, { cans: 0, volumeMl: 0, subtotalCents: 0, packages: 0, case24: 0, six: 0, loose: 0 });
+      }, { cans: 0, volumeMl: 0, subtotalCents: 0, packages: 0, six: 0, loose: 0 });
     },
     onChange: function (fn) { listeners.push(fn); },
     open: open,
@@ -154,7 +168,7 @@
     renderBadges();
     var lines = Cart.lines(), t = Cart.totals();
     if (!lines.length) {
-      body.innerHTML =
+      body.innerHTML = Cart.notice() +
         '<div class="cart-empty">' +
           '<svg class="cart-empty__icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 16h24l-2 24H14z"/><path d="M18 16v-3a6 6 0 0 1 12 0v3"/></svg>' +
           '<p class="cart-empty__title" data-i18n="cart.empty"></p>' +
@@ -162,7 +176,7 @@
         '</div>';
       foot.innerHTML = '<a class="btn btn--primary btn--block" href="/shop/" data-cart-continue-shop><span data-i18n="cart.discover"></span><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>';
     } else {
-      body.innerHTML = '<ul class="cart-lines">' + lines.map(function (l) {
+      body.innerHTML = Cart.notice() + '<ul class="cart-lines">' + lines.map(function (l) {
         return '<li class="cart-line">' +
           '<img class="cart-line__img" src="' + l.product.image.small + '" alt="" width="420" height="840" loading="lazy" decoding="async">' +
           '<div class="cart-line__main">' +
@@ -218,6 +232,7 @@
   }
   function close(skipFocus) {
     if (!document.documentElement.classList.contains("drawer-open")) return;
+    Cart.dismissNotice();                       // the visitor has seen the cart: show the notice only once
     document.documentElement.classList.remove("drawer-open");
     setExpanded(false);
     closeTimer = setTimeout(function () { drawer.hidden = true; }, 520);

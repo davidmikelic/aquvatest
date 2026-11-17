@@ -17,11 +17,11 @@ window.AQUVA_SHOP = (function () {
      true to show prices again. */
   var SHOW_PRICES = false;
 
-  /* Packaging options — id is used in variant IDs, key in translations */
+  /* Packaging options — id is used in variant IDs, key in translations.
+     Only these two are sold: a single can and a six-pack. */
   var PACKS = [
     { id: "1",  key: "single", cans: 1,  priceCents: 99 },    // 1 × 330 ml  — €0.99
-    { id: "6",  key: "six",    cans: 6,  priceCents: 549 },   // 6 × 330 ml  — €5.49
-    { id: "24", key: "case24", cans: 24, priceCents: 2199 }   // 24 × 330 ml — €21.99
+    { id: "6",  key: "six",    cans: 6,  priceCents: 549 }    // 6 × 330 ml  — €5.49
   ];
 
   var PRODUCTS = [
@@ -78,15 +78,6 @@ window.AQUVA_SHOP = (function () {
     currency: CURRENCY,
     canMl: CAN_ML,
     showPrices: SHOW_PRICES,
-
-    /* Optimal packaging for a total number of cans, independent of how the cans were
-       added: as many cases of 24 as possible, then six-packs, the rest are loose cans.
-       Loose cans are never counted as packages (1 to 5 cans = 0 packages). */
-    packaging: function (cans) {
-      cans = Math.max(0, Math.floor(Number(cans) || 0));
-      var case24 = Math.floor(cans / 24), rest = cans % 24, six = Math.floor(rest / 6);
-      return { cans: cans, case24: case24, six: six, loose: rest % 6, packages: case24 + six };
-    },
     packs: PACKS,
     products: PRODUCTS,
     product: function (id) { for (var i = 0; i < PRODUCTS.length; i++) if (PRODUCTS[i].id === id) return PRODUCTS[i]; return null; },

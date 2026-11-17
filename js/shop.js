@@ -162,7 +162,7 @@
           '<div class="pdp__qty">' +
             '<label class="field-label" for="qty" data-i18n="pdp.quantity"></label>' +
             '<div class="pdp__qty-row">' +
-              // The value is the number of PACKAGES of the selected pack (1, 6 or 24 cans each)
+              // The value is the number of PACKAGES of the selected pack (1 or 6 cans each)
               '<div class="stepper">' +
                 '<button type="button" class="stepper__btn" data-qty="-1" data-i18n-attr="aria-label:qty.decrease"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg></button>' +
                 '<input class="stepper__input" id="qty" type="number" inputmode="numeric" min="1" max="' + Cart.maxQty + '" step="1" value="' + st.qty + '">' +
@@ -208,7 +208,8 @@
     }
     $$('input[name="pack"]', view).forEach(function (r) {
       r.addEventListener("change", function () {
-        st.pack = r.value;                            // only the pack changes; the number of packages stays
+        if (r.value === st.pack) return;              // same package: keep the quantity
+        st.pack = r.value; st.qty = 1;                // new package: quantity always starts again at 1
         updatePdp(p);
       });
     });
@@ -259,7 +260,7 @@
       return '<section class="shop-state"><div class="container shop-state__inner">' +
         '<svg class="cart-empty__icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 16h24l-2 24H14z"/><path d="M18 16v-3a6 6 0 0 1 12 0v3"/></svg>' +
         '<h1 class="shop-state__title" tabindex="-1" data-focus data-i18n="cart.empty"></h1>' +
-        '<p class="shop-state__text" data-i18n="checkout.emptyText"></p>' +
+        '<p class="shop-state__text" data-i18n="checkout.emptyText"></p>' + Cart.notice() +
         '<a class="btn btn--primary" href="#/"><span data-i18n="cart.discover"></span>' + ICON_ARROW + '</a></div></section>';
     }
     var f = FIELDS.map(field);
@@ -297,6 +298,7 @@
         '</form>' +
         '<aside class="co-summary" aria-labelledby="sum-title"><div class="co-summary__card">' +
           '<h2 class="co-summary__title" id="sum-title" data-i18n="checkout.summary"></h2>' +
+          Cart.notice() +
           '<div data-summary>' + summary(Cart.lines(), Cart.totals()) + '</div>' +
           '<a class="co-summary__edit" href="#/" data-i18n="checkout.editCart"></a>' +
         '</div></aside>' +

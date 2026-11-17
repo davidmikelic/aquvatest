@@ -19,5 +19,6 @@ window.AQUVA_NEWSLETTER = {
   endpoint: "",            // GitHub test site: never collect or send sign-ups
   consentVersion: "v1",    // must exist in api/lib/newsletter-core.php (nl_consent_texts); bump when the wording changes
   doubleOptIn: false,      // no confirmation emails are sent by the file-based storage
-  popupDelayMs: 30000      // timed popup appears 30 s after every page load (not for visitors who already subscribed)
+  popupDelayMs: 30000,     // timed popup appears 30 s after the page loads ...
+  popupCooldownHours: 24   // ... at most once per 24 h after it was shown; never again after a successful sign-up
 };

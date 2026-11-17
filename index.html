@@ -51,10 +51,10 @@
   <link rel="preload" href="assets/fonts/jost-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
   <!-- Preload the intro loader image exactly (no imagesrcset — avoids competing 280/420 downloads). -->
   <link rel="preload" as="image" type="image/webp" href="assets/img/can-still-420.webp">
-  <link rel="stylesheet" href="css/main.css?v=20261117a">
+  <link rel="stylesheet" href="css/main.css?v=20261117b">
   <!-- Instrument Serif is below-the-fold only; load after first paint (font-face only, no layout FOUC). -->
-  <link rel="stylesheet" href="css/fonts-serif.css?v=20261117a" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="css/fonts-serif.css?v=20261117a"></noscript>
+  <link rel="stylesheet" href="css/fonts-serif.css?v=20261117b" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="css/fonts-serif.css?v=20261117b"></noscript>
 
   <script>
     /* Runs before first paint: enables JS styles, decides whether the intro plays,
@@ -91,13 +91,13 @@
       l.href = 'https://www.aquva.hr' + location.pathname.replace(/index\.html$/, '') + (urlLang && urlLang !== 'hr' ? '?lang=' + urlLang : '');
     })();
   </script>
-  <script src="js/i18n.js?v=20261117a" defer></script>
-  <script src="js/shop-data.js?v=20261117a" defer></script>
-  <script src="js/main.js?v=20261117a" defer></script>
-  <script src="js/cart.js?v=20261117a" defer></script>
-  <script src="js/consent.js?v=20261117a" defer></script>
-  <script src="js/newsletter-config.js?v=20261117a" defer></script>
-  <script src="js/newsletter.js?v=20261117a" defer></script>
+  <script src="js/i18n.js?v=20261117b" defer></script>
+  <script src="js/shop-data.js?v=20261117b" defer></script>
+  <script src="js/main.js?v=20261117b" defer></script>
+  <script src="js/cart.js?v=20261117b" defer></script>
+  <script src="js/consent.js?v=20261117b" defer></script>
+  <script src="js/newsletter-config.js?v=20261117b" defer></script>
+  <script src="js/newsletter.js?v=20261117b" defer></script>
   <!-- Optional tools (analytics/marketing) must be added as
        <script type="text/plain" data-consent="analytics" data-src="https://..."></script>
        so js/consent.js only activates them after the visitor consents. None are configured. -->
@@ -432,7 +432,7 @@
                  alt="AQUVA Still, negazirana voda u aluminijskoj limenci od 330 ml" data-i18n-attr="alt:alt.still">
           </div>
           <p class="pin__word pin__word--b" data-i18n="sustain.more">Više aluminija.</p>
-          <p class="pin__note" data-i18n="sustain.note">Popij. Limenku recikliraj.</p>
+          <p class="pin__note" data-i18n="sustain.note">Vodu popij, limenku recikliraj.</p>
         </div>
       </div>
 
@@ -532,10 +532,7 @@
             <span class="wordmark">AQUVA</span>
           </a>
           <p class="footer__tagline" data-i18n="footer.tagline">Voda u aluminijskoj limenci.</p>
-          <!-- Instagram: no verified AQUVA profile URL exists in the project yet. To enable the link, add
-               href="<official AQUVA Instagram profile URL>" and remove the "hidden" attribute
-               (same change on index.html and shop/index.html, in aquva-github and aquva-hosting). -->
-          <a class="footer__social" target="_blank" rel="noopener noreferrer" hidden aria-label="AQUVA na Instagramu (otvara se u novoj kartici)" data-i18n-attr="aria-label:footer.instagram">
+          <a class="footer__social" href="https://www.instagram.com/aquva.hr" target="_blank" rel="noopener noreferrer" aria-label="AQUVA na Instagramu (otvara se u novoj kartici)" data-i18n-attr="aria-label:footer.instagram">
             <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" focusable="false"><rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="footer__social-dot" cx="17.3" cy="6.7" r="1.1"/></svg>
             <span>Instagram</span>
           </a>

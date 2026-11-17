@@ -657,6 +657,8 @@ html:not(.js) .philosophy__text .w { color: var(--navy); }
 .footer__social .footer__social-dot { fill: currentColor; stroke: none; }
 .footer__social:hover, .footer__social:focus-visible { color: var(--navy); }
 .footer__social[hidden] { display: none; }
+/* One-time notice when unavailable items were removed from an older cart (drawer + checkout) */
+.cart-notice { margin: 0 0 18px; padding: 12px 14px; border: 1px solid var(--sky-2); border-radius: 14px; background: var(--sky); color: var(--ink); font-size: 13.5px; line-height: 1.5; text-align: left; }
 .footer__nav { display: grid; gap: 10px; }
 .footer__nav a, .footer__contact a { position: relative; width: fit-content; color: var(--ink-soft); transition: color .3s var(--ease); }
 .footer__nav a:hover, .footer__contact a:hover { color: var(--navy); }
