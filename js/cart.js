@@ -58,15 +58,16 @@
         return { id: i.id, qty: i.qty, variant: v, product: p, lineCents: v.priceCents * i.qty, cans: v.cans * i.qty, volumeMl: v.volumeMl * i.qty };
       });
     },
-    // packages: optimal packaging of ALL cans in the cart (24s first, then 6s; loose cans
-    // are not packages), so it never depends on how many rows or variants were added.
+    // Totals of exactly what was ordered: packages = number of 6- and 24-can packages in the
+    // cart lines (single cans are never packages), cans = packages × pack size + single cans.
     totals: function () {
-      var t = Cart.lines().reduce(function (t, l) {
-        t.cans += l.cans; t.volumeMl += l.volumeMl; t.subtotalCents += l.lineCents; return t;
-      }, { cans: 0, volumeMl: 0, subtotalCents: 0 });
-      var pk = SHOP.packaging(t.cans);
-      t.packages = pk.packages; t.case24 = pk.case24; t.six = pk.six; t.loose = pk.loose;
-      return t;
+      return Cart.lines().reduce(function (t, l) {
+        t.cans += l.cans; t.volumeMl += l.volumeMl; t.subtotalCents += l.lineCents;
+        if (l.variant.cans > 1) t.packages += l.qty; else t.loose += l.qty;
+        if (l.variant.packKey === "case24") t.case24 += l.qty;
+        if (l.variant.packKey === "six") t.six += l.qty;
+        return t;
+      }, { cans: 0, volumeMl: 0, subtotalCents: 0, packages: 0, case24: 0, six: 0, loose: 0 });
     },
     onChange: function (fn) { listeners.push(fn); },
     open: open,

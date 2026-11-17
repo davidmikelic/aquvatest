@@ -9,14 +9,15 @@
                                       language, source, page, website }
      -> 200 { ok: true, status: "subscribed" } only after the record is saved
 
-   GitHub Pages and the local static test server cannot run PHP: there the
-   endpoint answers 404/405 and the forms honestly say sign-up is not open yet.
-   Nothing is stored in the browser as a substitute.
+   THIS FILE IS THE GITHUB PAGES (TEST) VERSION: endpoint is intentionally EMPTY.
+   GitHub Pages cannot run PHP, so the forms honestly say sign-up is not open yet
+   and the address is never sent anywhere or stored (not even in the browser).
+   The hosting version (aquva-hosting/js/newsletter-config.js) uses
+   endpoint "/api/newsletter.php".
    ========================================================================= */
 window.AQUVA_NEWSLETTER = {
-  endpoint: "/api/newsletter.php",
+  endpoint: "",            // GitHub test site: never collect or send sign-ups
   consentVersion: "v1",    // must exist in api/lib/newsletter-core.php (nl_consent_texts); bump when the wording changes
   doubleOptIn: false,      // no confirmation emails are sent by the file-based storage
-  popupDelayMs: 30000,     // timed popup appears 30 s after the visitor enters the site (counted per browsing session)
-  popupSnoozeDays: 14      // after closing the popup, do not show it again for this long
+  popupDelayMs: 30000      // timed popup appears 30 s after every page load (not for visitors who already subscribed)
 };

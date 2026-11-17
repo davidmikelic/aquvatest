@@ -162,12 +162,13 @@
           '<div class="pdp__qty">' +
             '<label class="field-label" for="qty" data-i18n="pdp.quantity"></label>' +
             '<div class="pdp__qty-row">' +
-              // The value is the number of CANS; it steps by the selected pack size (1, 6 or 24)
+              // The value is the number of PACKAGES of the selected pack (1, 6 or 24 cans each)
               '<div class="stepper">' +
                 '<button type="button" class="stepper__btn" data-qty="-1" data-i18n-attr="aria-label:qty.decrease"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg></button>' +
                 '<input class="stepper__input" id="qty" type="number" inputmode="numeric" min="1" max="' + Cart.maxQty + '" step="1" value="' + st.qty + '">' +
                 '<button type="button" class="stepper__btn" data-qty="1" data-i18n-attr="aria-label:qty.increase"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12M12 6v12"/></svg></button>' +
               '</div>' +
+              '<p class="pdp__cans" aria-live="polite" data-pdp-cans></p>' +
             '</div>' +
           '</div>' +
           '<div class="pdp__buy' + (SHOP.showPrices ? '' : ' pdp__buy--noprice') + '">' +
@@ -179,45 +180,44 @@
       '</div></div></section>';
   }
 
-  // st.qty = number of the selected packs (what goes into the cart); the field shows cans = st.qty × pack size
+  // One representation everywhere (product page, cart, checkout):
+  //   st.pack = selected pack (variant <productId>-<packId>), st.qty = number of PACKAGES ordered,
+  //   total cans = st.qty × pack size, line total = st.qty × package price.
   function updatePdp(p) {
     var st = pdpState[p.id], v = SHOP.variant(p.id + "-" + st.pack);
-    var input = $("#qty", view), pr = $("[data-pdp-price]", view);
+    var input = $("#qty", view), pr = $("[data-pdp-price]", view), cans = $("[data-pdp-cans]", view);
     if (input) {
-      input.min = v.cans; input.step = v.cans; input.max = v.cans * Cart.maxQty;
-      if (document.activeElement !== input || input.value !== "") input.value = v.cans * st.qty;
+      input.min = 1; input.step = 1; input.max = Cart.maxQty;
+      if (document.activeElement !== input || input.value !== "") input.value = st.qty;
     }
     if (pr) pr.innerHTML = price(v.priceCents * st.qty);
+    if (cans) cans.innerHTML = "= " + counted(v.cans * st.qty, "unit.can");
     $$(".pack", view).forEach(function (l) { l.classList.toggle("is-selected", $("input", l).checked); });
   }
 
   function bindProduct(p) {
     var st = pdpState[p.id], input = $("#qty", view);
-    function packCans() { return SHOP.variant(p.id + "-" + st.pack).cans; }
     function setPacks(q) {
       q = Math.floor(Number(q));
       if (!(q >= 1)) q = 1;
       st.qty = Math.min(Cart.maxQty, q); updatePdp(p);
     }
-    function setCans(c, snap) {                       // typed number of cans -> whole packs
-      var n = Number(c), size = packCans();
-      if (!(n > 0)) { if (snap) setPacks(1); return; }
-      if (!snap && n % size !== 0) return;            // still typing (e.g. "1" on the way to "18")
-      setPacks(Math.round(n / size));
+    function setFromField(value, snap) {              // typed value = number of packages
+      var n = Number(value);
+      if (n > 0) setPacks(n); else if (snap) setPacks(1);
     }
     $$('input[name="pack"]', view).forEach(function (r) {
       r.addEventListener("change", function () {
-        var cans = packCans() * st.qty;               // keep roughly the same number of cans
-        st.pack = r.value;
-        setPacks(Math.ceil(cans / packCans()));
+        st.pack = r.value;                            // only the pack changes; the number of packages stays
+        updatePdp(p);
       });
     });
     $$("[data-qty]", view).forEach(function (b) {
       b.addEventListener("click", function () { setPacks(st.qty + Number(b.getAttribute("data-qty"))); });
     });
-    input.addEventListener("input", function () { if (input.value !== "") setCans(input.value, false); });
-    input.addEventListener("change", function () { setCans(input.value, true); });
-    input.addEventListener("blur", function () { setCans(input.value, true); });
+    input.addEventListener("input", function () { if (input.value !== "") setFromField(input.value, false); });
+    input.addEventListener("change", function () { setFromField(input.value, true); });
+    input.addEventListener("blur", function () { setFromField(input.value, true); });
     var add = $("[data-add]", view), label = $("[data-add-label]", view), timer;
     add.addEventListener("click", function () {
       var v = SHOP.variant(p.id + "-" + st.pack);

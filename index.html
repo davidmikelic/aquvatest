@@ -4,8 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>AQUVA D.P. d.o.o. | Voda u aluminijskoj limenci</title>
-  <meta name="description" content="AQUVA negazirana i gazirana voda u vitkoj aluminijskoj limenci od 330 ml. Upoznajte proizvode, zašto smo odabrali aluminij i AQUVA trgovinu.">
-  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="description" content="AQUVA negazirana i gazirana voda u aluminijskoj limenci od 330 ml. Upoznajte proizvode, zašto smo odabrali aluminij i AQUVA trgovinu.">
+  <!-- GitHub Pages TEST site: never indexed. Production (aquva-hosting, www.aquva.hr) uses "index, follow". -->
+  <meta name="robots" content="noindex, nofollow">
   <meta name="author" content="AQUVA D.P. d.o.o.">
   <meta name="application-name" content="AQUVA">
   <meta name="apple-mobile-web-app-title" content="AQUVA">
@@ -17,7 +18,7 @@
   <meta property="og:site_name" content="AQUVA D.P. d.o.o.">
   <meta property="og:url" content="https://www.aquva.hr/">
   <meta property="og:title" content="AQUVA D.P. d.o.o. | Voda u aluminijskoj limenci">
-  <meta property="og:description" content="AQUVA negazirana i gazirana voda u vitkoj aluminijskoj limenci od 330 ml. Upoznajte proizvode, zašto smo odabrali aluminij i AQUVA trgovinu.">
+  <meta property="og:description" content="AQUVA negazirana i gazirana voda u aluminijskoj limenci od 330 ml. Upoznajte proizvode, zašto smo odabrali aluminij i AQUVA trgovinu.">
   <meta property="og:image" content="https://www.aquva.hr/assets/img/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -29,8 +30,9 @@
   <meta property="og:locale:alternate" content="de_DE">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AQUVA D.P. d.o.o. | Voda u aluminijskoj limenci">
-  <meta name="twitter:description" content="AQUVA negazirana i gazirana voda u vitkoj aluminijskoj limenci od 330 ml. Upoznajte proizvode, zašto smo odabrali aluminij i AQUVA trgovinu.">
+  <meta name="twitter:description" content="AQUVA negazirana i gazirana voda u aluminijskoj limenci od 330 ml. Upoznajte proizvode, zašto smo odabrali aluminij i AQUVA trgovinu.">
 
+  <link rel="canonical" href="https://www.aquva.hr/">
   <link rel="alternate" hreflang="hr" href="https://www.aquva.hr/">
   <link rel="alternate" hreflang="en" href="https://www.aquva.hr/?lang=en">
   <link rel="alternate" hreflang="it" href="https://www.aquva.hr/?lang=it">
@@ -49,10 +51,10 @@
   <link rel="preload" href="assets/fonts/jost-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
   <!-- Preload the intro loader image exactly (no imagesrcset — avoids competing 280/420 downloads). -->
   <link rel="preload" as="image" type="image/webp" href="assets/img/can-still-420.webp">
-  <link rel="stylesheet" href="css/main.css?v=20261114j">
+  <link rel="stylesheet" href="css/main.css?v=20261117a">
   <!-- Instrument Serif is below-the-fold only; load after first paint (font-face only, no layout FOUC). -->
-  <link rel="stylesheet" href="css/fonts-serif.css?v=20261114j" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="css/fonts-serif.css?v=20261114j"></noscript>
+  <link rel="stylesheet" href="css/fonts-serif.css?v=20261117a" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="css/fonts-serif.css?v=20261117a"></noscript>
 
   <script>
     /* Runs before first paint: enables JS styles, decides whether the intro plays,
@@ -83,18 +85,19 @@
       window.AQUVA_BOOT = { lang: lang, source: src, urlLang: urlLang };
       // Only the production host may be indexed; test/preview hosts (e.g. www.aquva-test.com) are noindex
       if (location.hostname !== 'www.aquva.hr') { var rb = document.querySelector('meta[name="robots"]'); if (rb) rb.setAttribute('content', 'noindex, nofollow'); }
-      var l = document.createElement('link'); l.rel = 'canonical';
-      l.href = 'https://www.aquva.hr' + location.pathname + (urlLang && urlLang !== 'hr' ? '?lang=' + urlLang : '');
-      document.head.appendChild(l);
+      // Self-referencing canonical: update the static tag (exactly one canonical), create it only if missing
+      var l = document.querySelector('link[rel="canonical"]');
+      if (!l) { l = document.createElement('link'); l.rel = 'canonical'; document.head.appendChild(l); }
+      l.href = 'https://www.aquva.hr' + location.pathname.replace(/index\.html$/, '') + (urlLang && urlLang !== 'hr' ? '?lang=' + urlLang : '');
     })();
   </script>
-  <script src="js/i18n.js?v=20261114j" defer></script>
-  <script src="js/shop-data.js?v=20261114j" defer></script>
-  <script src="js/main.js?v=20261114j" defer></script>
-  <script src="js/cart.js?v=20261114j" defer></script>
-  <script src="js/consent.js?v=20261114j" defer></script>
-  <script src="js/newsletter-config.js?v=20261114j" defer></script>
-  <script src="js/newsletter.js?v=20261114j" defer></script>
+  <script src="js/i18n.js?v=20261117a" defer></script>
+  <script src="js/shop-data.js?v=20261117a" defer></script>
+  <script src="js/main.js?v=20261117a" defer></script>
+  <script src="js/cart.js?v=20261117a" defer></script>
+  <script src="js/consent.js?v=20261117a" defer></script>
+  <script src="js/newsletter-config.js?v=20261117a" defer></script>
+  <script src="js/newsletter.js?v=20261117a" defer></script>
   <!-- Optional tools (analytics/marketing) must be added as
        <script type="text/plain" data-consent="analytics" data-src="https://..."></script>
        so js/consent.js only activates them after the visitor consents. None are configured. -->
@@ -129,7 +132,7 @@
         "@id": "https://www.aquva.hr/#webpage",
         "url": "https://www.aquva.hr/",
         "name": "AQUVA D.P. d.o.o. | Voda u aluminijskoj limenci",
-        "description": "AQUVA negazirana i gazirana voda u vitkoj aluminijskoj limenci od 330 ml.",
+        "description": "AQUVA negazirana i gazirana voda u aluminijskoj limenci od 330 ml.",
         "isPartOf": { "@id": "https://www.aquva.hr/#website" },
         "about": { "@id": "https://www.aquva.hr/#organization" },
         "inLanguage": "hr"
@@ -459,7 +462,7 @@
             <li class="pillar" data-reveal style="--d:.1s">
               <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 32 20 8l12 24"/><path d="M6 27c5-4 9-4 14 0s9 4 14 0"/></svg>
               <h3 data-i18n="phil.p2t">Dizajn</h3>
-              <p data-i18n="phil.p2">Jednostavna etiketa i vitka limenka.</p>
+              <p data-i18n="phil.p2">Jednostavna etiketa i limenka.</p>
             </li>
             <li class="pillar" data-reveal style="--d:.2s">
               <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="12" y="5" width="16" height="30" rx="4"/><path d="M14 10h12M14 30h12"/></svg>
@@ -529,6 +532,13 @@
             <span class="wordmark">AQUVA</span>
           </a>
           <p class="footer__tagline" data-i18n="footer.tagline">Voda u aluminijskoj limenci.</p>
+          <!-- Instagram: no verified AQUVA profile URL exists in the project yet. To enable the link, add
+               href="<official AQUVA Instagram profile URL>" and remove the "hidden" attribute
+               (same change on index.html and shop/index.html, in aquva-github and aquva-hosting). -->
+          <a class="footer__social" target="_blank" rel="noopener noreferrer" hidden aria-label="AQUVA na Instagramu (otvara se u novoj kartici)" data-i18n-attr="aria-label:footer.instagram">
+            <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" focusable="false"><rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="footer__social-dot" cx="17.3" cy="6.7" r="1.1"/></svg>
+            <span>Instagram</span>
+          </a>
         </div>
         <nav class="footer__nav" aria-label="Navigacija u podnožju" data-i18n-attr="aria-label:a11y.navFooter">
           <a href="#home" data-i18n="nav.home">Početna</a>

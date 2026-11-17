@@ -14,11 +14,13 @@ Deploy
 
 Indexing
 - robots.txt Disallow: /
-- Pages set meta robots noindex when the host is not www.aquva.hr
+- Every page ships with a static <meta name="robots" content="noindex, nofollow">
+  (and the pages also force noindex at runtime whenever the host is not www.aquva.hr)
 - Canonical / hreflang / Open Graph URLs still point to https://www.aquva.hr (intentional)
 
 Does NOT work on GitHub Pages
-- Newsletter sign-up storage (forms show "not open yet"; nothing is saved)
+- Newsletter sign-up storage (js/newsletter-config.js endpoint is empty: forms show
+  "not open yet"; the address is never sent anywhere and nothing is saved)
 - api/geo.php country hint (browser language fallback is used)
 - .htaccess rules (ignored by GitHub Pages)
 

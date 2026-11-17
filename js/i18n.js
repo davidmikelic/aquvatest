@@ -6,7 +6,7 @@
 window.AQUVA_I18N = {
   hr: {
     "meta.title": "AQUVA D.P. d.o.o. | Voda u aluminijskoj limenci",
-    "meta.description": "AQUVA negazirana i gazirana voda u vitkoj aluminijskoj limenci od 330 ml. Upoznajte proizvode, zašto smo odabrali aluminij i AQUVA trgovinu.",
+    "meta.description": "AQUVA negazirana i gazirana voda u aluminijskoj limenci od 330 ml. Upoznajte proizvode, zašto smo odabrali aluminij i AQUVA trgovinu.",
     "meta.ogLocale": "hr_HR",
 
     "a11y.skip": "Preskoči na sadržaj",
@@ -72,7 +72,7 @@ window.AQUVA_I18N = {
     "phil.p1t": "Voda",
     "phil.p1": "Negazirana ili gazirana. Najbolja kad je hladna.",
     "phil.p2t": "Dizajn",
-    "phil.p2": "Jednostavna etiketa i vitka limenka.",
+    "phil.p2": "Jednostavna etiketa i limenka.",
     "phil.p3t": "Aluminij",
     "phil.p3": "Lagan je i može se reciklirati.",
 
@@ -85,6 +85,7 @@ window.AQUVA_I18N = {
     "footer.rights": "Sva prava pridržana.",
     "footer.privacy": "Privatnost",
     "footer.top": "Natrag na vrh",
+    "footer.instagram": "AQUVA na Instagramu (otvara se u novoj kartici)",
 
     "privacy.title": "Vaša privatnost",
     "privacy.p1": "Ova stranica ne koristi analitiku ni marketinško praćenje. U vašem pregledniku spremamo samo ono što je potrebno za rad stranice: odabrani jezik, sadržaj košarice i vaše postavke kolačića.",
@@ -236,7 +237,7 @@ window.AQUVA_I18N = {
 
   en: {
     "meta.title": "AQUVA D.P. d.o.o. | Water in Aluminium Cans",
-    "meta.description": "AQUVA still and sparkling water in a slim 330 ml aluminium can. Discover the range, why we chose aluminium and the AQUVA shop.",
+    "meta.description": "AQUVA still and sparkling water in a 330 ml aluminium can. Discover the range, why we chose aluminium and the AQUVA shop.",
     "meta.ogLocale": "en_GB",
 
     "a11y.skip": "Skip to content",
@@ -302,7 +303,7 @@ window.AQUVA_I18N = {
     "phil.p1t": "Water",
     "phil.p1": "Still or sparkling. Best served cold.",
     "phil.p2t": "Design",
-    "phil.p2": "A clear label and a slim can.",
+    "phil.p2": "A clear label and a can.",
     "phil.p3t": "Aluminium",
     "phil.p3": "Light, and it can be recycled.",
 
@@ -315,6 +316,7 @@ window.AQUVA_I18N = {
     "footer.rights": "All rights reserved.",
     "footer.privacy": "Privacy",
     "footer.top": "Back to top",
+    "footer.instagram": "AQUVA on Instagram (opens in a new tab)",
 
     "privacy.title": "Your privacy",
     "privacy.p1": "This website uses no analytics or marketing tracking. In your browser we only store what the site needs to work: your language, your cart and your cookie settings.",
@@ -466,7 +468,7 @@ window.AQUVA_I18N = {
 
   it: {
     "meta.title": "AQUVA D.P. d.o.o. | Acqua in lattina di alluminio",
-    "meta.description": "Acqua AQUVA naturale e frizzante in una sottile lattina di alluminio da 330 ml. Scopri la gamma, perché abbiamo scelto l'alluminio e lo shop AQUVA.",
+    "meta.description": "Acqua AQUVA naturale e frizzante in una lattina di alluminio da 330 ml. Scopri la gamma, perché abbiamo scelto l'alluminio e lo shop AQUVA.",
     "meta.ogLocale": "it_IT",
 
     "a11y.skip": "Vai al contenuto",
@@ -532,7 +534,7 @@ window.AQUVA_I18N = {
     "phil.p1t": "Acqua",
     "phil.p1": "Naturale o frizzante. Meglio se fredda.",
     "phil.p2t": "Design",
-    "phil.p2": "Etichetta essenziale e lattina sottile.",
+    "phil.p2": "Etichetta essenziale e lattina.",
     "phil.p3t": "Alluminio",
     "phil.p3": "Leggero e riciclabile.",
 
@@ -545,6 +547,7 @@ window.AQUVA_I18N = {
     "footer.rights": "Tutti i diritti riservati.",
     "footer.privacy": "Privacy",
     "footer.top": "Torna su",
+    "footer.instagram": "AQUVA su Instagram (si apre in una nuova scheda)",
 
     "privacy.title": "La tua privacy",
     "privacy.p1": "Questo sito non utilizza strumenti di analisi né di tracciamento pubblicitario. Nel tuo browser salviamo solo ciò che serve al funzionamento del sito: la lingua, il carrello e le impostazioni dei cookie.",
@@ -696,7 +699,7 @@ window.AQUVA_I18N = {
 
   de: {
     "meta.title": "AQUVA D.P. d.o.o. | Wasser in der Aluminiumdose",
-    "meta.description": "AQUVA stilles und sprudelndes Wasser in der schlanken 330-ml-Aluminiumdose. Entdecken Sie das Sortiment, unsere Wahl für Aluminium und den AQUVA Shop.",
+    "meta.description": "AQUVA stilles und sprudelndes Wasser in der 330-ml-Aluminiumdose. Entdecken Sie das Sortiment, unsere Wahl für Aluminium und den AQUVA Shop.",
     "meta.ogLocale": "de_DE",
 
     "a11y.skip": "Zum Inhalt springen",
@@ -762,7 +765,7 @@ window.AQUVA_I18N = {
     "phil.p1t": "Wasser",
     "phil.p1": "Still oder sprudelnd. Am besten gekühlt.",
     "phil.p2t": "Design",
-    "phil.p2": "Klares Etikett und schlanke Dose.",
+    "phil.p2": "Klares Etikett und Dose.",
     "phil.p3t": "Aluminium",
     "phil.p3": "Leicht und recycelbar.",
 
@@ -775,6 +778,7 @@ window.AQUVA_I18N = {
     "footer.rights": "Alle Rechte vorbehalten.",
     "footer.privacy": "Datenschutz",
     "footer.top": "Nach oben",
+    "footer.instagram": "AQUVA auf Instagram (öffnet in neuem Tab)",
 
     "privacy.title": "Ihre Privatsphäre",
     "privacy.p1": "Diese Website verwendet weder Analyse- noch Marketing-Tracking. In Ihrem Browser speichern wir nur, was für den Betrieb nötig ist: Ihre Sprache, Ihren Warenkorb und Ihre Cookie-Einstellungen.",

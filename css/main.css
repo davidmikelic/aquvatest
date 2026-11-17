@@ -651,6 +651,12 @@ html:not(.js) .philosophy__text .w { color: var(--navy); }
 .footer { position: relative; overflow: hidden; border-top: 1px solid var(--line); padding-top: clamp(48px, 6vw, 80px); background: linear-gradient(180deg, var(--white), var(--sky)); }
 .footer__top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; align-items: start; }
 .footer__tagline { margin-top: 18px; font-family: var(--serif); font-style: italic; font-size: 24px; color: var(--blue-text); }
+/* Instagram link under the slogan: small and quiet (navy, one line). Hidden until a verified profile URL is set. */
+.footer__social { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 13.5px; line-height: 1.2; letter-spacing: .02em; color: var(--ink-soft); transition: color .3s var(--ease); }
+.footer__social svg { width: 17px; height: 17px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.footer__social .footer__social-dot { fill: currentColor; stroke: none; }
+.footer__social:hover, .footer__social:focus-visible { color: var(--navy); }
+.footer__social[hidden] { display: none; }
 .footer__nav { display: grid; gap: 10px; }
 .footer__nav a, .footer__contact a { position: relative; width: fit-content; color: var(--ink-soft); transition: color .3s var(--ease); }
 .footer__nav a:hover, .footer__contact a:hover { color: var(--navy); }

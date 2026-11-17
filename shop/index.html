@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>AQUVA D.P. d.o.o. | Trgovina</title>
   <meta name="description" content="AQUVA Still i AQUVA Sparkling u limenci od 330 ml, kao jedna limenka, paket od 6 ili paket od 24. Pogledajte cijene i pakiranja.">
-  <meta name="robots" content="index, follow, max-image-preview:large">
+  <!-- GitHub Pages TEST site: never indexed. Production (aquva-hosting, www.aquva.hr) uses "index, follow". -->
+  <meta name="robots" content="noindex, nofollow">
   <meta name="author" content="AQUVA D.P. d.o.o.">
   <meta name="application-name" content="AQUVA">
   <meta name="apple-mobile-web-app-title" content="AQUVA">
@@ -29,6 +30,7 @@
   <meta name="twitter:description" content="AQUVA Still i AQUVA Sparkling u limenci od 330 ml, kao jedna limenka, paket od 6 ili paket od 24. Pogledajte cijene i pakiranja.">
   <meta name="twitter:image" content="https://www.aquva.hr/assets/img/og-image.jpg">
 
+  <link rel="canonical" href="https://www.aquva.hr/shop/">
   <link rel="alternate" hreflang="hr" href="https://www.aquva.hr/shop/">
   <link rel="alternate" hreflang="en" href="https://www.aquva.hr/shop/?lang=en">
   <link rel="alternate" hreflang="it" href="https://www.aquva.hr/shop/?lang=it">
@@ -45,10 +47,10 @@
 
   <link rel="preload" href="/assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/jost-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/css/main.css?v=20261114j">
-  <link rel="stylesheet" href="/css/shop.css?v=20261114j">
-  <link rel="stylesheet" href="/css/fonts-serif.css?v=20261114j" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="/css/fonts-serif.css?v=20261114j"></noscript>
+  <link rel="stylesheet" href="/css/main.css?v=20261117a">
+  <link rel="stylesheet" href="/css/shop.css?v=20261117a">
+  <link rel="stylesheet" href="/css/fonts-serif.css?v=20261117a" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="/css/fonts-serif.css?v=20261117a"></noscript>
 
   <script>
     /* Same pre-paint setup as the home page (language order: URL > manual > earlier
@@ -72,19 +74,20 @@
       window.AQUVA_BOOT = { lang: lang, source: src, urlLang: urlLang };
       // Only the production host may be indexed; test/preview hosts (e.g. www.aquva-test.com) are noindex
       if (location.hostname !== 'www.aquva.hr') { var rb = document.querySelector('meta[name="robots"]'); if (rb) rb.setAttribute('content', 'noindex, nofollow'); }
-      var l = document.createElement('link'); l.rel = 'canonical';
-      l.href = 'https://www.aquva.hr' + location.pathname + (urlLang && urlLang !== 'hr' ? '?lang=' + urlLang : '');
-      document.head.appendChild(l);
+      // Self-referencing canonical: update the static tag (exactly one canonical), create it only if missing
+      var l = document.querySelector('link[rel="canonical"]');
+      if (!l) { l = document.createElement('link'); l.rel = 'canonical'; document.head.appendChild(l); }
+      l.href = 'https://www.aquva.hr' + location.pathname.replace(/index\.html$/, '') + (urlLang && urlLang !== 'hr' ? '?lang=' + urlLang : '');
     })();
   </script>
-  <script src="/js/i18n.js?v=20261114j" defer></script>
-  <script src="/js/shop-data.js?v=20261114j" defer></script>
-  <script src="/js/main.js?v=20261114j" defer></script>
-  <script src="/js/cart.js?v=20261114j" defer></script>
-  <script src="/js/shop.js?v=20261114j" defer></script>
-  <script src="/js/consent.js?v=20261114j" defer></script>
-  <script src="/js/newsletter-config.js?v=20261114j" defer></script>
-  <script src="/js/newsletter.js?v=20261114j" defer></script>
+  <script src="/js/i18n.js?v=20261117a" defer></script>
+  <script src="/js/shop-data.js?v=20261117a" defer></script>
+  <script src="/js/main.js?v=20261117a" defer></script>
+  <script src="/js/cart.js?v=20261117a" defer></script>
+  <script src="/js/shop.js?v=20261117a" defer></script>
+  <script src="/js/consent.js?v=20261117a" defer></script>
+  <script src="/js/newsletter-config.js?v=20261117a" defer></script>
+  <script src="/js/newsletter.js?v=20261117a" defer></script>
 
   <script type="application/ld+json">
   {
@@ -218,6 +221,13 @@
             <span class="wordmark">AQUVA</span>
           </a>
           <p class="footer__tagline" data-i18n="footer.tagline">Voda u aluminijskoj limenci.</p>
+          <!-- Instagram: no verified AQUVA profile URL exists in the project yet. To enable the link, add
+               href="<official AQUVA Instagram profile URL>" and remove the "hidden" attribute
+               (same change on index.html and shop/index.html, in aquva-github and aquva-hosting). -->
+          <a class="footer__social" target="_blank" rel="noopener noreferrer" hidden aria-label="AQUVA na Instagramu (otvara se u novoj kartici)" data-i18n-attr="aria-label:footer.instagram">
+            <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" focusable="false"><rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="footer__social-dot" cx="17.3" cy="6.7" r="1.1"/></svg>
+            <span>Instagram</span>
+          </a>
         </div>
         <nav class="footer__nav" aria-label="Navigacija u podnožju" data-i18n-attr="aria-label:a11y.navFooter">
           <a href="/" data-i18n="nav.home">Početna</a>

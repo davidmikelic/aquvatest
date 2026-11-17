@@ -11,8 +11,7 @@
   var CFG = window.AQUVA_NEWSLETTER || {};
   var ENDPOINT = String(CFG.endpoint || "").trim();
   var DELAY = CFG.popupDelayMs || 30000;
-  var SNOOZE_DAYS = CFG.popupSnoozeDays || 14;
-  var K_SUB = "aquva-nl", K_SNOOZE = "aquva-nl-snooze", K_SHOWN = "aquva-nl-shown", K_ENTER = "aquva-nl-enter";
+  var K_SUB = "aquva-nl";                 // UI hint only (set after the server confirmed a sign-up)
   var EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var store = {
@@ -126,9 +125,8 @@
   document.body.appendChild(popup);
   A.translate(popup);
 
-  function closePopup(snooze) {
+  function closePopup() {
     if (!popup.open) return;
-    if (snooze !== false) store.set(K_SNOOZE, String(Date.now() + SNOOZE_DAYS * 864e5));
     var finish = function () { popup.classList.remove("is-closing"); if (typeof popup.close === "function") popup.close(); else popup.removeAttribute("open"); };
     if (A.reduceMotion) finish(); else { popup.classList.add("is-closing"); setTimeout(finish, 220); }
   }
@@ -137,32 +135,24 @@
   });
   popup.addEventListener("cancel", function (e) { e.preventDefault(); closePopup(true); }); // Esc
 
+  // Shown on EVERY page load after the delay, except for visitors who already subscribed.
   function popupAllowed() {
-    if (store.get(K_SUB) === "1") return false;                          // already subscribed
-    if (store.get(K_SHOWN, true) === "1") return false;                  // once per session
-    var until = parseInt(store.get(K_SNOOZE) || "0", 10);
-    if (until && Date.now() < until) return false;                       // recently dismissed
-    return true;
+    return store.get(K_SUB) !== "1";
   }
   function importantFlow() {                                             // never interrupt checkout
     return /\/shop\//.test(location.pathname) && /checkout|confirmation/.test(location.hash);
   }
 
-  var attempts = 0;
   function tryShow() {
-    if (!popupAllowed()) return;
+    if (!popupAllowed() || popup.open) return;
     if (A.isBusy() || importantFlow() || document.hidden) {
-      if (++attempts < 40) setTimeout(tryShow, 3000);                    // wait until the cookie banner etc. is done
+      setTimeout(tryShow, 1500);                                         // wait while the cookie banner etc. is shown
       return;
     }
-    store.set(K_SHOWN, "1", true);
     if (typeof popup.showModal === "function") popup.showModal(); else popup.setAttribute("open", "");
   }
-  // The delay counts from the moment the visitor entered the site in this browsing session,
-  // so moving from the homepage to the shop does not restart it.
-  var entered = parseInt(store.get(K_ENTER, true) || "0", 10);
-  if (!entered || entered > Date.now()) { entered = Date.now(); store.set(K_ENTER, String(entered), true); }
-  if (popupAllowed()) setTimeout(tryShow, Math.max(0, entered + DELAY - Date.now()));
+  // The delay restarts with every page load (also after a refresh).
+  if (popupAllowed()) setTimeout(tryShow, DELAY);
 
-  window.AQUVA_NEWSLETTER_UI = { open: function () { store.set(K_SHOWN, "", true); attempts = 0; tryShow(); }, configured: !!ENDPOINT };
+  window.AQUVA_NEWSLETTER_UI = { open: function () { tryShow(); }, configured: !!ENDPOINT };
 })();
